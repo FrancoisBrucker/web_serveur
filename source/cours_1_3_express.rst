@@ -109,8 +109,6 @@ Les appels aux middleware se font dans l'ordre. Le paramètre next permettant d'
 
 .. code-block:: javascript 
 
-    var http = require('http') 
-
     var express = require('express')
     var app = express()
 
@@ -165,7 +163,7 @@ On peut donc finalement écrire :
     app.use(function (req, res, next) {
           res.status(404).sendFile(__dirname + "/html/404.html")
     })
-
+ 
     app.listen(8080);
     console.log("c'est parti")
 
@@ -193,7 +191,7 @@ Pour l'instant, utilisons un petit middleware :
     var app = express()
 
 
-    app.use("/static", express.static('static'));
+    app.use("/static", express.static(__dirname + '/static'))
 
     app.get('/', (request, response) => {
             response.sendFile(__dirname + "/html/index.html")
@@ -233,25 +231,12 @@ Commençons par transformer nos fichiers html en templates :
 
     var http = require('http') 
 
-    var fs = require('fs')
-
     var express = require('express')
     var app = express()
 	
 	app.set('view engine', 'ejs')
 
     app.use("/static", express.static(__dirname + '/static'))
-	
-    app.use(function (req, res, next) {
-        console.log('Time:', Date.now());
-        next(); // sans cette ligne on ne pourra pas poursuivre.
-    })
-
-    app.use(function (req, res, next) {
-        console.log("ensuite");
-        next(); // sans cette ligne on ne pourra pas poursuivre.
-    })
-
 
 	app.get('/', (request, response) => {
 	        response.render("index")
@@ -264,8 +249,6 @@ Commençons par transformer nos fichiers html en templates :
     app.use(function (req, res, next) {
         res.status(404).render("404")
     })
-
-    //manque 404
 
     app.listen(3000);
     console.log("c'est parti")
