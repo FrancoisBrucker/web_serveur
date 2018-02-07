@@ -34,7 +34,7 @@ Cours 1
 
 Web front et qu'est-ce qu'un serveur. On téléchargera les bibliothèques nécessaires.
 
-Partage de code : on utilisera https://codeshare.io (ou le truc de l'ecm dont je ne me rappelle plus le nom)
+Partage de code : on utilisera https://codeshare.io ou le pad de l'ECM : https://outils.centrale-marseille.fr/pad/p/cours_serveur_web pour communiquer le code, les ajouts nécessaires, etc.
 
 Cours 2
 -------
