@@ -62,7 +62,7 @@ Lorsque l'on créera notre propre serveur, il tournera en développement toujour
 
 
 Le protocole HTTP
-==============
+=================
 
 https://fr.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP_1.1
 
@@ -139,7 +139,7 @@ On vérifie avec les outils de développement de *chrome* que c'est bien la mêm
 
 
 
-.. note:: on voit que tout un tas d'autres fichiers ont été  téléchargés.
+.. note:: On voit que tout un tas d'autres fichiers ont été téléchargés.
 
 On pourra voir que le navigateur envoit également tout un tas d'autres informations au serveur. C'est la partie *Request Headers*. Regardez par exemple la méthode :code:`User-Agent` de l'entête.
 
@@ -174,7 +174,7 @@ Timer et text/plain
     GET /files/20262/20262-0.txt HTTP/1.1
     host: www.gutenberg.org
 
-Attention au timer...
+Attention au timer qui ne vous laissera sans doute pas le temps de recopier la commande...
 
 
 Type binaire application/pdf
@@ -189,7 +189,7 @@ Type binaire application/pdf
     HEAD /regles/formula_d.pdf HTTP/1.1
     host: www.jeuxavolonte.asso.fr
 
-On peut télécharger ce que l'on veut. Ici on ne demande que les headers et pas le contenu, car il est binaire. Type de résultat ?
+On peut télécharger ce que l'on veut. Ici on ne demande que les headers et pas le contenu, car il est binaire. Le type de résultat est alors *text/html*.
 
 
 Curl
@@ -205,7 +205,8 @@ Très simple d'utilisation, il permet cependant de faire des choses complexes. T
     curl -#O https://www.gitbook.com/download/pdf/book/bagder/everything-curl
 
 
-.. note:: A quoi correspondent les options code:`-#O`?
+.. note:: L'option :code:`-O` permet à ce que l'output soit écrit dans un fichier de même nom qui est sauvegardé dans le dossier courant. L'option :code:`-#` ne fait que changer la manière d'afficher la *progress bar*.
+
 
 
 La suite
