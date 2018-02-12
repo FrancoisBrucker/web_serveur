@@ -5,18 +5,18 @@ Web front
 
 Structure de base d'un document : http://www.alsacreations.com/article/lire/1374-html5-structure-globale-document.html
 
-Juste un petit exemple, on en refera par la suite, c'est juste pour ne pas être (trop) perdu
+Juste un petit exemple, on en refera par la suite, c'est juste pour ne pas être (trop) perdu.
 
-html
+HTML
 ====
 
 .. note:: faire en direct avec le lien vers un navigateur.
 
 
-Langage à balise. Toujours deux parties, :code:`<head></head>` et :code:`<body></body>`.
+Le HTML est un langage à balise. C'est-à-dire qu'il est toujours en deux parties. Par exemple : :code:`<head></head>` et :code:`<body></body>`.
 
 Le navigateur interprétera directement le fichier. On ne passe pas par un serveur,
-il utilise directement le fichier avec l'uri (https://fr.wikipedia.org/wiki/Uniform_Resource_Identifier)  :code:`file://chemin/absolu/vers/fichier.html`
+il utilise directement le fichier avec l'URI (https://fr.wikipedia.org/wiki/Uniform_Resource_Identifier)  :code:`file://chemin/absolu/vers/fichier.html`
 
 
 .. code-block:: html
@@ -34,15 +34,15 @@ il utilise directement le fichier avec l'uri (https://fr.wikipedia.org/wiki/Unif
     </html>
 
 
-L'html crée un arbre (via les balises imbriquées). Il est appelé arbre DOM (Document Object Model)
+Le HTML crée un arbre (via les balises imbriquées). Il est appelé arbre DOM (Document Object Model).
 
-ajout du css
+Ajout du CSS
 ============
 
-.. note:: faire uniquement le début pour voir les changements s'effectuer en direct.
+.. note:: Faire uniquement le début pour voir les changements s'effectuer en direct.
 
 
-css ajouté directement sur la page grâce à la balise :code:`<style></style>`
+Le CSS est ajouté directement sur la page grâce à la balise :code:`<style></style>`.
 
 .. code-block:: html
 
@@ -79,29 +79,30 @@ css ajouté directement sur la page grâce à la balise :code:`<style></style>`
 
 Pour la couleur, on la gère en hexadécimal RGB sur 32bits 8 par channel.
 
-* Pour un aperçu des couleurs : https://color.adobe.com/fr/
-* pour les couleurs web : https://www.w3schools.com/colors/colors_names.asp
+* Pour un aperçu des couleurs : https://color.adobe.com/fr/.
+* Pour les couleurs en hexadécimal pour faire du développement web : https://www.w3schools.com/colors/colors_names.asp.
 
 
-les div et pourquoi c'est important
+Les div et pourquoi c'est important
 ===================================
 
-les div (ou span) sont des blocs anonymes :
-* span: sur une ligne. Ils sont placés les un à côtés des autres (propriété display en css). Comme un img ou un strong
-* div: un bloc les un en dessous des autres. Comme un p, ou un h1
+Les div (ou span) sont des blocs anonymes :
 
- Elles ne vont être caractérisées que par les classes/id css qu'on leur mettra.
+* span: sur une ligne. Ils sont placés les un à côtés des autres (propriété display en css). Comme un img ou un strong;
+* div: un bloc les un en dessous des autres. Comme un p, ou un h1.
 
-* class: plusieurs paramètres peuvent avoir la ou les mêmes classes
-* id: unique pour un bloc particulier
+Elles ne vont être caractérisées que par les classes/id css qu'on leur mettra :
+
+* class: plusieurs paramètres peuvent avoir la ou les mêmes classes;
+* id: unique pour un bloc particulier.
 
 On peut très finement caractériser la portée d'un sélecteur css : https://www.w3schools.com/cssref/css_selectors.asp
 
 Attention cependant :
 
-* une caractérisation chasse l'autre (donc on mettra ses propres sfichiers css en dernier)
-* les propriété snt appliquées de la plus générale à la slus spécifique (qui masque donc la plus générale)
-* il est compliqué de centrer verticalement (on le fera donc rarement tout seul)
+* une caractérisation chasse l'autre (donc on mettra ses propres fichiers css en dernier);
+* les propriétés sont appliquées de la plus générale à la plus spécifique (qui masque donc la plus générale);
+* il est compliqué de centrer verticalement (on le fera donc rarement tout seul).
 
 
 .. code-block:: html
@@ -139,16 +140,16 @@ Attention cependant :
     </body>
   </html>
 
-js (côté front)
+JS (côté front)
 ===============
 
-Permet la modification de l'arbre DOM
+Permet la modification de l'arbre DOM.
 
-Le script est exécuté lorsqu'il est lu : il est souvent exécuté à la fin  du html ou via un
+Le script est exécuté lorsqu'il est lu : il est souvent exécuté à la fin du html ou via un
  évènement lancé après que la page soit chargée.
 
 
-Le javascript permet de modifier cet arbre DOM via des évènements : https://www.w3schools.com/jsref/dom_obj_event.asp
+Le javascript permet de modifier cet arbre DOM via des évènements : https://www.w3schools.com/jsref/dom_obj_event.asp.
 
 
 .. code-block:: html
@@ -214,18 +215,18 @@ On peut aussi faire plus compliqué :
 
 Comme c'est compliqué comme ça, on utilise souvent (toujours ?) des bibliothèques.
 
-Une nouvelle tendance émerge comme utiliser d'autre langages puis on les "compile" en javascript : https://www.transcrypt.org
+Une nouvelle tendance émerge comme utiliser d'autres langages puis on les "compile" en javascript : https://www.transcrypt.org
 
 
-js et jquery
+JS et JQuery
 ------------
 
 
 .. note::
 
-    * Commencer par n'installer que jquery
+    * Commencer par n'installer que JQuery
     * aller dans les outils de développement et montrer ce que l'on a
-    * jouer avec jquery :code:`$("p").html()` un peu.
+    * jouer avec JQuery :code:`$("p").html()` un peu.
     * dire qu'il faut que tout soit chargé avant que ça marche.
 
 Ajout de la bibliothèque jquery (http://jquery.com) directement depuis un CDN
@@ -287,11 +288,11 @@ Notez le côté purement fonctionnel de la programmation (ici fin de chargement,
     </html>
 
 
-Le javascript est un langage très utilisé en front. C'est pas le plus beau mais avec la version ES6 (https://fr.wikipedia.org/wiki/ECMAScript), ça commence à ressembler à quelque chose.
+Le Javascript est un langage très utilisé en front. C'est pas le plus beau mais avec la version ES6 (https://fr.wikipedia.org/wiki/ECMAScript), ça commence à ressembler à quelque chose.
 
 .. image:: _static/javascript_the_good_parts.jpg
 
-.. note:: Un peu de lol. javascript en entier vs ce qui en est utilisé.
+.. note:: Un peu de lol. Javascript en entier vs ce qui en est utilisé.
 
 
 
@@ -299,18 +300,18 @@ Nous allons l'utiliser aussi côté back, avec *node*.
 
 On va tout de suite installer node pour utiliser son gestionnaire de package npm
 (https://www.npmjs.com) ou un
-équivalent yarn (https://yarnpkg.com/lang/en/)
+équivalent yarn (https://yarnpkg.com/lang/en/).
 
-.. code-block sh::
+.. code-block :: sh
 
   yarn init
   yarn install
 
 
-js ui
+JS UI
 -----
 
-Pour fabriquer des UI, js est un bon outil, muni des bons frameworks.
+Pour fabriquer des UI, JS est un bon outil, muni des bons frameworks.
  Le très connu et reconnu https://reactjs.org, ou encore https://vuejs.org
 
-Orienté jeu/2D : pixijs (http://www.pixijs.com)
+Orienté jeu/2D : Pixijs (http://www.pixijs.com)
