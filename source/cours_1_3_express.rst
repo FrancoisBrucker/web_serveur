@@ -175,7 +175,7 @@ Remplaçons le lien vers l'image de contact en un lien local. On va placer tous 
 
 Et ça ne marche pas... On a un 404. C'est parce que notre serveur ne répond qu'à nos requêtes, pas aux fichiers réels. Il faut trouver un moyen que notre serveur puisse à la fois servir nos requêtes et les fichiers css, images, javascript front et autres inclus dans les fichiers html.
 
-En développement, on pourra utiliser un middleware qui servira en tant que fichier toutes les demandes commençant par :code:`/static/`, mais c'est une mauvaise idée en production où l'on perd inutilement de la performance (voir https://blog.xervo.io/supercharge-your-nodejs-applications-with-nginx ou encore https://thefullsnack.com/don-t-serve-static-files-with-nodejs-31666462f79c#.sdjaerga1 ). 
+En développement, on pourra utiliser un middleware qui servira en tant que fichier toutes les demandes commençant par :code:`/static/`, mais c'est une mauvaise idée en production où l'on perd inutilement de la performance. 
 
 
 On utilisera ainsi un autre serveur, :code:`nginx`, dont la spécialité est de servir les fichiers statiques, les autres routes étant dirigées vers express et node. Vous verrez ça plus tard lorsque l'on mettra le site en production. Une configuration production possible est décrite ici : http://blog.danyll.com/setting-up-express-with-nginx-and-pm2/.

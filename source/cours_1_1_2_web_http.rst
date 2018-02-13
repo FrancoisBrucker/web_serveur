@@ -130,7 +130,7 @@ On vérifie avec les outils de développement de *chrome* que c'est bien la mêm
 
 #. Ouvrir les outils de développement,
 #. Aller sur l'onglet **network**,
-#. Recharger la page : on voit tout ce qui est téléchargé. Pour :code:`index.php` on voit :
+#. Recharger la page. On voit tout ce qui est téléchargé. Pour :code:`index.php` on voit :
     * son status (200),
     * son type (:code:`document`),
     * le temps que le téléchargement à mis.
