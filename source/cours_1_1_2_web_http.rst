@@ -1,31 +1,22 @@
 *****************
-Protocole http(s)
+Protocole HTTP
 *****************
 
 Back vs Front
 =============
 
-Le *back* est un serveur rendant accessible des ressources via le protocole http.
+Le *back* est un serveur rendant des ressources accessibles via le protocole HTTP.
 
-Les ressources accessibles sont principalement des pages html, mais bien d'autres choses sont possibles comme des fichiers texte, json voir même des fichiers binaire.
+Les ressources accessibles sont principalement des pages HTML, mais bien d'autres choses sont possibles comme des fichiers texte, JSON, voire même des fichiers binaires.
 
 
-Un serveur est ainsi une machine accessible depuis l'internet. Pour la contacter on a besoin :
-    * d'une adresse ip https://fr.wikipedia.org/wiki/Adresse_IP
-    * et d'un port de communication (web 80 par défaut) http://www.linuxnix.com/important-port-numbers-linux-system-administrator/
+Un serveur est ainsi une machine accessible depuis internet. Pour la contacter, on a besoin :
+    * D'une adresse IP (par exemple http://172.217.22.131),
+    * Et d'un port de communication (web 80 par défaut) (http://www.linuxnix.com/important-port-numbers-linux-system-administrator/)
 
-Derrière chaque port un programme peut écouter. 65536 possibilité (au départ sûrement
-bloqués par le firewall)
+Derrière chaque port, un programme peut écouter 65536 possibilités (sûrement bloquées par le firewall au départ).
 
-Pour se faciliter la tâche (un humain retient mieux des noms que des nombres), on lui associe un nom (https://fr.wikipedia.org/wiki/Domain_Name_System) et c'est lui que l'on retiendra.
-
-Ainsi :
-    * http://www.google.fr est équivalent à http://www.google.fr:80
-    * sur un autre port ça risque de ne pas marcher (ex. 1337)
-
-**Un nom particulier :** :code:`localhost` qui correspondra toujours à l'ordinateur courant (équivalent de this pour le réseau)
-
-Tout ceci correspond à une adresse ip (l'adresse de l'ordinateur sur le réseau). Connaître l'ip peut se faire avec la commande :code:`nslookup`
+Connaître l'IP peut se faire avec la commande :code:`nslookup` :
 
 .. code-block:: sh
 
@@ -53,7 +44,16 @@ Le contraire marche aussi :
     19.94.147.in-addr.arpa	nameserver = ns1.ec-marseille.fr.
 
 
-**Un numéro particulier :** A quel numéro correspond :code:`localhost` ?
+
+Pour se faciliter la tâche (un humain retient mieux des noms que des nombres), on associe un nom à chaque adresse IP : le DNS.
+
+Ainsi :
+    * http://www.google.fr, http://www.google.fr:80 et http://172.217.22.131 sont équivalents.
+    * sur un autre port ça risque de ne pas marcher (ex. 1337)
+
+**Un nom particulier :** :code:`localhost` qui correspondra toujours à l'ordinateur courant (équivalent de this pour le réseau)
+
+**Un IP particulier :** 127.0.0.1
 
 Lorsque l'on créera notre propre serveur, il tournera en développement toujours sur :code:`localhost` et pour ne pas interférer avec un potentiel serveur web déjà existant, on utilisera un port différent (8080 ou 3000 par exemple). On y accédera par l'url : :code:`http://localhost:8080`
 
@@ -61,28 +61,28 @@ Lorsque l'on créera notre propre serveur, il tournera en développement toujour
 .. note:: la commande :code:`dig` est également possible https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-bind-dig.html
 
 
-protocole http
-==============
+Le protocole HTTP
+=================
 
 https://fr.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP_1.1
 
-Il est décrit par une série de RFC, qui définissent les différents standards du net https://fr.wikipedia.org/wiki/Request_for_comments (le RFC 2026 décrit pcomment écrire une RFC).
+Il est décrit par une série de RFC, qui définissent les différents standards du net https://fr.wikipedia.org/wiki/Request_for_comments (le RFC 2026 explique comment écrire une RFC).
 
 On peut quasiment tout le temps communiquer avec un serveur via le logiciel  https://fr.wikipedia.org/wiki/Telnet qui permet d'envoyer et recevoir du texte.
 
 Nous allons émuler un navigateur en cherchant à recevoir la page http://www.wikipedia.fr Il faut tout d'abord se connecter :
-    * une adresse de serveur (nom ou ip)
-    * un port (80 est le protocole http. le quel est https ?)
+    * Une adresse de serveur (nom ou IP),
+    * Un port (80 pour le protocole http, 443 pour le protocole https ).
 
-Une requête est divisée en plusieurs lignes :
+Une requête Telnet est divisée en plusieurs lignes :
 
-#. type de requête
-    * type de requête (:code:`GET`, :code:`PUT`, ...)
-    * quoi (adresse suivant le serveur)
-    * protocole : :code:`HTTP/1.1`
+#. Le type de requête
+    * Le nom de la requête (:code:`GET`, :code:`PUT`, ...),
+    * A quoi on fait la requête (adresse suivant le serveur),
+    * Le protocole : :code:`HTTP/1.1`.
 
-#. liste de méthodes séparées par des retour à la ligne. La méthode :code:`Host` est obligatoire.
-#. une ligne vide signifie que l'on attend une réponse.
+#. Une liste de méthodes séparées par des retours à la ligne. La méthode :code:`Host` est obligatoire.
+#. une ligne vide signifiant que l'on attend une réponse.
 
 
 .. code-block:: sh
@@ -95,14 +95,12 @@ Une requête est divisée en plusieurs lignes :
     Host: www.wikipedia.fr
 
 
-On vérifie sur *chrome* que c'est identique.
+La réponse est composée de 3 parties :
+    #. L'entête de réponse,
+    #. Une ligne vide,
+    #. La réponse.
 
-La réponse est composée de 2 parties :
-    #. l'entête de réponse
-    #. une ligne vide
-    #. la réponse
-
-Pour notre requête précédente l'entête était :
+Pour notre requête précédente, l'entête était :
 
 .. code-block:: sh
 
@@ -116,36 +114,39 @@ Pour notre requête précédente l'entête était :
 
 En gros :
 
-#. protocole utilisé, status, nom du status (https://en.wikipedia.org/wiki/List_of_HTTP_status_codes ou mieux https://http.cat)
-#. listes de méthodes, dont le type de réponse
-#. une ligne vide
-#. la réponse
+#. Protocole utilisé, status, nom du status (https://en.wikipedia.org/wiki/List_of_HTTP_status_codes ou mieux https://http.cat),
+#. Listes de méthodes, dont le type de réponse.
+
+Puis...
+
+#. Une ligne vide,
+#. La réponse.
 
 
-Pour plus d'information sur les entêtes de réponses, on pourra lire  http://www.alsacreations.com/astuce/lire/1152-en-tetes-http.html
+Pour plus d'informations sur les entêtes de réponses, on pourra lire  http://www.alsacreations.com/astuce/lire/1152-en-tetes-http.html
 
 
 On vérifie avec les outils de développement de *chrome* que c'est bien la même chose :
 
-#. on ouvre les outils de développement,
-#. va sur l'onglet **network**
-#. on recharge la page et on voit tout ce qui est téléchargé. Pour :code:`index.php` on voit :
+#. Ouvrir les outils de développement,
+#. Aller sur l'onglet **network**,
+#. Recharger la page. On voit tout ce qui est téléchargé. Pour :code:`index.php` on voit :
     * son status (200),
-    * son type (:code:`document`)
-    * le temps que le téléchargement à mis
+    * son type (:code:`document`),
+    * le temps que le téléchargement à mis.
 
-#. en cliquant sur le nom du fichier on peut accéder à son header complet.
+#. En cliquant sur le nom du fichier, on peut accéder à son header complet.
 
 
 
-.. note:: on voit que tout un tas d'autres fichiers ont été  téléchargés.
+.. note:: On voit que tout un tas d'autres fichiers ont été téléchargés.
 
-On pourra voir que le navigateur envoit également otut un tas d'autres informations au serveur. C'est la partie *Request Headers*. Regardez par exemple la méthdoe :code:`User-Agent` de l'entête.
+On pourra voir que le navigateur envoit également tout un tas d'autres informations au serveur. C'est la partie *Request Headers*. Regardez par exemple la méthode :code:`User-Agent` de l'entête.
 
 
 Quelques variantes de réponses :
 
-redirect
+Redirect
 --------
 
 .. code-block:: sh
@@ -161,7 +162,7 @@ redirect
 
 Le statut est 302 (redirect). Regardez sur *chrome* pour voir ce qu'il s'est passé.
 
-timer et text/plain
+Timer et text/plain
 -------------------
 
 .. code-block:: sh
@@ -173,10 +174,10 @@ timer et text/plain
     GET /files/20262/20262-0.txt HTTP/1.1
     host: www.gutenberg.org
 
-Attention au timer...
+Attention au timer qui ne vous laissera sans doute pas le temps de recopier la commande...
 
 
-type binaire application/pdf
+Type binaire application/pdf
 ----------------------------
 
 .. code-block:: sh
@@ -188,10 +189,10 @@ type binaire application/pdf
     HEAD /regles/formula_d.pdf HTTP/1.1
     host: www.jeuxavolonte.asso.fr
 
-On apeut télécharger ce que l'on veut. Ici on ne demande que les header et pas le contenu, car il est binaire. Type  de résulat ?
+On peut télécharger ce que l'on veut. Ici on ne demande que les headers et pas le contenu, car il est binaire. Le type de résultat est alors *text/html*.
 
 
-curl
+Curl
 ----
 
 
@@ -204,7 +205,8 @@ Très simple d'utilisation, il permet cependant de faire des choses complexes. T
     curl -#O https://www.gitbook.com/download/pdf/book/bagder/everything-curl
 
 
-.. note:: A quoi correspondent les options code:`-#O`?
+.. note:: L'option :code:`-O` permet à ce que l'output soit écrit dans un fichier de même nom qui est sauvegardé dans le dossier courant. L'option :code:`-#` ne fait que changer la manière d'afficher la *progress bar*.
+
 
 
 La suite
