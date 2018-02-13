@@ -284,10 +284,11 @@ navbar.ejs
 	  </ul>
 	</nav>
 
-Passage de paramètres
-=====================
+.. Passage de paramètres
+
+.. =====================
  
- .. todo:: cours prochain.
+.. .. todo:: cours prochain.
  
 
  
