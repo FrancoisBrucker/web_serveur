@@ -1,25 +1,24 @@
 ****
-node
+Node
 ****
 
-https://nodejs.org/en/ est ideal pour créer de petits serveur web, des *single-page appication*, ou encore une interface *REST*.
+https://nodejs.org/en/ est idéal pour créer des petits serveur web, des sites à une seule page ressemblant à une application, ou encore une interface *REST*.
 
-Il est utilisé en conjonction d'autres bibliothèque pour créer des application *MEAN* (https://en.wikipedia.org/wiki/MEAN_(software_bundle)). Actuelement, il y a des alternatives serieuse à A (angular).
+Il est utilisé en conjonction d'autres bibliothèques pour créer des applications *MEAN* (http://bit.ly/1Nr0NUt) . Actuellement, il y a des alternatives sérieuses à A (angular).
 
-
-node en console
+Node en console
 ===============
 
-node peut être vu comme un interpréteur javascript. Il incorpore la moteur javascript V8 de google (https://fr.wikipedia.org/wiki/V8_(moteur_JavaScript) )
+Node peut être vu comme un interpréteur javascript. Il incorpore le moteur javascript V8 de google (http://bit.ly/2Cfjh7L).
 
-Tapez :code:`node` dans un terminal. Vous vous retrouverez dans un interpréteur javascript. Idéal pour tester des choses, en particulier pour reprendre les exemples de https://www.destroyallsoftware.com/talks/wat
+Tapez :code:`Node` dans un terminal. Vous vous retrouverez dans un interpréteur javascript. Idéal pour tester des choses, en particulier pour reprendre les exemples de https://www.destroyallsoftware.com/talks/wat
 
-node et serveur Web
+Node et serveur web
 ===================
 
-Node est surtout utilisé pour créer des serveur web. Essayons l'exemple minimal d'un serveur node de https://nodejs.org/api/synopsis.html
+Node est surtout utilisé pour créer des serveurs web. Essayons l'exemple minimal d'un serveur node de https://nodejs.org/api/synopsis.html
 
-example.js
+Example.js
 ^^^^^^^^^^
 
 .. code-block:: javascript
@@ -47,38 +46,39 @@ On exécute ce fichier en console :
   node example.js
 
 
-Et on peut ensuite voir le résultat dans un naviguateur à l'url : http://localhost:3000
+Et on peut ensuite voir le résultat dans un naviguateur à l'url : http://localhost:3000.
 
 Le code précédent crée un serveur *http* qui répond toujours la même chose dès qu'on le contacte. Il affiche en log la requête reçue, qui elle dépend de l'url donnée.
 
 
-Regardons le code de pres :
+Regardons le code de près :
 
-  * `const` : déclaration de constantes. Changer port par exmple produit une erreur.
-  * `require` : importation d'une bibliothèque (ici de node mais on créera les notres bientôt) et affectation de celle-ci à une constantes
-  * les fonctions peuvent se créer à la volée
-  * création d'un objet serveur avec une fonction ayant 2 paramètres, la requête et la réponse (voir doc)
-  * `listen` lien entre le serveur et le couple adresse + port.
+  * `const` : déclaration de constantes. Changer port par exemple produit une erreur.
+  * `require` : importation d'une bibliothèque (ici de Node mais on créera les nôtres bientôt) et affectation de celle-ci à une constante.
+  * les fonctions peuvent se créer à la volée avec : :code:`nomFonction((parameters)=>{})`
+  * création d'un objet serveur avec une fonction ayant 2 paramètres, la requête et la réponse (voir doc).
+  * `listen` : lien entre le serveur et le couple adresse + port.
 
 
-On peut :
+On peut afficher l'url de la requete : On récupère les variables *hostname* et *port* dépendantes du hostname et on les affiche dans la console.
+  
+  * Détails :
 
-  * afficher l'url de la requete : chercher dans la doc :
-    * http -> méthode http.createServer : demande un requestListener qui est ajouté à l'event request.
-    * event request : deux parametres http.IncomingMessage et http.ServerResponse.
-    * http.IncomingMessage a un attribut url.
-  * que fait listen : on cherche dans la doc pour http.Server qui est le retour de http.createServer
+    * http : C'est un protocole pour les échanges et le codage des données.
+    * http.createServer : demande un requestListener qui est ajouté à l'événement request.
+    * event request : deux paramètres http.IncomingMessage  et http.ServerResponse. Il est émit à chaque fois qu'un *request* est demandé
+    * http.IncomingMessage a un attribut url : il sert à générer le *Readable Stream interface* et beaucoup d'autres choses (événements, méthodes, ...).
 
 Tout est orienté autour d'évènements.
 
-globals et asynchrone
-=====================
+Globaux et Asynchrones
+======================
 
-**RTFM** : https://nodejs.org/api/
+**RTFM -- Merci de lire la notice** : https://nodejs.org/api/
 
-Node est un interpréteur javascript, mais sa grande force est dans ses modules et son sonctionnement purement asynchrone :
+Node est un interpréteur javascript, mais sa grande force est dans ses modules et son fonctionnement purement asynchrone :
 
-*Lorsque cet évènement se produit ou lorsque j'ai fini de faire quelque chose, j'execute une fonction.*
+*Lorsque cet évènement se produit ou lorsque j'ai fini de faire quelque chose, j'exécute une fonction.*
 
 
 Création de fonctions à la volée
@@ -107,10 +107,10 @@ Ceci est possible car en javascript, comme en python, un fonction peut être une
 
     affiche_2()
 
-évènements
+Événements
 ^^^^^^^^^^
 
-Exemple avec les intervalles. On utilise la méthode :code:`setInterval` utilisable par défaut en node.
+On fait un exemple avec les intervalles. On utilise la méthode :code:`setInterval` utilisable par défaut en node.
 
 Ce qui est utilisable par défaut est définit dans https://nodejs.org/api/globals.html
 
@@ -127,16 +127,18 @@ Ce qui est utilisable par défaut est définit dans https://nodejs.org/api/globa
     var timer2 = setInterval(function() { // un deuxième avec une function anonyme
         console.log("bim")
     }, 2000)
+        
 
 
-
-les routes
+Les Routes
 ==========
 
-Le principe d'un serveur web est de servir des pages différentes selon les requètes. Avant de passer à un framework permettant de le faire ben, voyons comment faire en node pure :
+Le principe d'un serveur web est de servir des pages différentes selon les requêtes. 
+
+Avant de passer à un framework permettant de le faire, voyons comment faire en node pure :
 
 
-routes.js
+Routes.js
 ^^^^^^^^^^
 
 .. code-block:: javascript
@@ -187,7 +189,7 @@ Servir des fichiers
 
 Le nom `__dirname` est un globals de node (https://nodejs.org/docs/latest/api/globals.html). Il permet de connaitre le répertoire du module courant (ici, notre application) 
 
-routes_2.js
+Routes_2.js
 ^^^^^^^^^^^ 
 
 .. code-block:: javascript
@@ -217,7 +219,7 @@ routes_2.js
 
 
 
-index.html
+Index.html
 ^^^^^^^^^^ 
 
 .. code-block:: html
@@ -254,7 +256,7 @@ index.html
     </html>
 
 
-contact.html
+Contact.html
 ^^^^^^^^^^^^ 
 
 .. code-block:: html
@@ -328,7 +330,7 @@ contact.html
 	    </body>
 	</html>
 
-streaming
+Streaming
 =========
 
 Les fichiers précédents ne sont pas volumineux, ils sont donc quasi-immédiatement chargés, mais pour de gros fichiers, le chargement peut être long, node organise ainsi tout chargement en stream pour permettre de servir du contenu le plus tôt possible. 
@@ -363,19 +365,19 @@ L'exemple suivant récupère un gros fichier de l'internet.
 Odds and ends
 =============
 
-.. note:: a sauter si on est à la bourre
+.. note:: À sauter si on est en retard.
 
-scope de variables
+Scope de variables
 ^^^^^^^^^^^^^^^^^^
 
-.. note:: la suite pas forcément utile si on est à la bourre
+.. note:: Pas forcément pertinent dans ce cours, on pourra passer outre si on est en retard.
 
 
-En javascript, on peut utiliser des variables définies dans des *scope* plus haut sans les redéfinir. Dans le code ci-après :code`delta1` et :code:`delta2` sont ainsi mis à jour (pour avoir le même comportement en python par exmeple, on aurait du utiliser le mot clé *global*)
+En javascript, on peut utiliser des variables définies dans des *scopes* plus haut sans les redéfinir. Dans le code ci-après :code`delta1` et :code:`delta2` sont ainsi mis à jour (pour avoir le même comportement en python par exemple, on aurait dû utiliser le mot clé *global*)
 
 .. code-block:: javascript
 
-    var delta_1 = 0  // vont être utilisées autre part.
+    var delta_1 = 0  // ces variables vont être utilisées autre part.
     var delta_2 = 0  // un peu comme une variable "globale" (attention au scope)
 
     setInterval(() => {  // encore une autre façon d'écrire une fonction
@@ -399,15 +401,15 @@ En javascript, on peut utiliser des variables définies dans des *scope* plus ha
 
 
 
-modules
+Modules
 ^^^^^^^
 
-.. note:: partie pas forcément utile si on est à la bourre
+.. note:: Comme la partie précédente, on pourra passer notre chemin sur cette partie.
 
 
-La force de node est ses modules. Le mécanisme de création est assez spécial. On en créera lorsque l'on voudra séparer notre code en unités fonctionnelles.
+La force de Node est ses modules. Le mécanisme de création est assez spécial. On en créera lorsque l'on voudra séparer notre code en unités fonctionnelles.
 
-Le méchanisme est expliqué dans les tutoriaux 6 et 7 du *ninja du net* : https://www.youtube.com/watch?v=xHLd36QoS4k&index=6&list=PL4cUxeGkcC9gcy9lrvMJ75z9maRw4byYp
+Le mécanisme est expliqué dans les tutoriaux 6 et 7 du *ninja du net* : https://www.youtube.com/watch?v=xHLd36QoS4k&index=6&list=PL4cUxeGkcC9gcy9lrvMJ75z9maRw4byYp
 
 
 Un module nommé :code:`un_module.js` :
@@ -429,7 +431,7 @@ On l'utilise dans le code suivant, qui est un fichier dans le même répertoire 
 
 .. code-block:: javascript
 
-    // importe le module, c'est à dire que l'on rend l'obet module.exports
+    // importe le module, c'est à dire que l'on rend l'objet module.exports
     // il est ensuite placé dans une variable, ici monModule
     var monModule = require("./un_module");
 
