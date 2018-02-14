@@ -2,9 +2,9 @@
 Outils de développement continu
 *******************************
 
-Logueur et tests unitaire/fonctionels
+Cet partie traîte les loggeurs et les tests unitaires/fonctionnels.
 
-loggeur
+Loggeur
 =======
 
 On commence à avoir pas mal de trafic sur notre site, et on est pas à l'abri de bug. La première chose à faire est donc de stocker tout ce qui se passe niveau serveur. En cas d'erreurs, on pourra remonter la trace de ce qui a conduit à l'erreur ou pire au plantage.
@@ -13,13 +13,13 @@ De nombreuses applications de log existent pour node, nous utiliserons `<https:/
 
 .. note:: voir par exemple `<https://blog.risingstack.com/node-js-logging-tutorial/>`_ ou encore `<http://thisdavej.com/using-winston-a-versatile-logging-library-for-node-js/>`_
 
-Pour la version 3, celle que nous utiliserons, in faut installer la version de dév de winston : :command:`npm install winston@next --save`. 
+Pour la version 3, celle que nous utiliserons, il faut installer la version de développement de winston : :command:`npm install winston@next --save`. 
 
 
 .. note ::  Le code ci-après ne fonctionnera pas avec la version 2.4, qui est  la version stable à l'heure où j'écris ces ligne.
 
 
-app.js
+App.js
 ^^^^^^ 
 
 
@@ -33,7 +33,7 @@ En lisant un peu la doc et les tutos, on ajoute son propre logger dans :file:`ap
       winston.format.simple())
   });
 
-Puis on ajoute la visibilité des logs. Ci après on ajoute un retour console qui va tout afficher jusqu'à un level silly : 
+Puis on ajoute la visibilité des logs. Ci-après, on ajoute un retour console qui va tout afficher jusqu'à un level silly : 
 
 .. code-block:: javascript
 
@@ -59,7 +59,7 @@ L'affichage console est pratique en développement. En production, on préfère 
   logger.add(new winston.transports.File({ filename: 'combined.log' }))
  
 
-On va ajouter un log systématique à chaque appel grace à un petit middle-ware : 
+On va ajouter un log systématique à chaque appel grâce à un petit middle-ware : 
 
 .. code-block:: javascript
 
@@ -85,12 +85,12 @@ En changeant le level de notre logger à *debug* ont devrait voir tous les appel
 .. note :: les différents attributs de req sont décrites ici : `<http://expressjs.com/fr/api.html#req>`_
 
 
-logger.js
+Logger.js
 ^^^^^^^^^
 
-De part la nature des import js, on peut passer des paramètres à la création d'un module. Utilisons ça pour séparer logger et app.
+De part la nature des imports js, on peut passer des paramètres à la création d'un module. Utilisons ça pour séparer logger et app.
 
-fichier :file:`logger.js` :
+Fichier :file:`logger.js` :
 
 .. code-block:: js
 
@@ -112,7 +112,7 @@ fichier :file:`logger.js` :
     module.exports = logger
 
 
-fichier :file:`app.js` :
+Fichier :file:`app.js` :
 
 .. code-block:: js 
 
@@ -150,7 +150,7 @@ fichier :file:`app.js` :
         }
 
 
-fichier : file:`server.js` :
+Fichier :file:`server.js` :
 
 .. code-block:: js 
 
@@ -164,7 +164,7 @@ fichier : file:`server.js` :
     logger.silly("mon kiki")
 
 
-tests
+Tests
 =====
 
 .. note :: 
@@ -172,26 +172,27 @@ tests
     `<https://www.slideshare.net/robertgreiner/test-driven-development-at-10000-feet>`_
     regardez en particulier la courbe décroissante.
 
-côté client
+Côté Client
 ^^^^^^^^^^^  
 
 On peut tester le rendu client en simulant un navigateur.
 
-Pour cela on utilise selenium `<http://www.seleniumhq.org>`_ et ses webdriver qui simulent un browser. Tout ceci fonctionne en java, donc assurez vous d'avoir un java qui va.
+Pour cela on utilise Selenium `<http://www.seleniumhq.org>`_ et ses webdriver qui simulent un browser. Tout ceci fonctionne en java, donc assurez vous d'avoir un java qui corresponde.
+Étapes à suivre : 
 
-#. installation de java (si nécessaire. Tapez java dans un terminal/powershell et soi ça rate, c'est qu'il faut l'installer) : `<https://www.java.com/fr/download/faq/develop.xml>`_ et suivez le lien pour télécharger le jdk.
-#. le jar de selenium standalone server : `<http://www.seleniumhq.org/download/>`_
-#. un driver. Nous utiliserons celui de chrome : `<https://sites.google.com/a/chromium.org/chromedriver/>`_.Il y en a d'autres possibles (par exemple pour firefox : `<https://github.com/mozilla/geckodriver/releases>`_)
+#. installation de java (si nécessaire. Tapez java dans un terminal/powershell et si ça rate, c'est qu'il faut l'installer) : `<https://www.java.com/fr/download/faq/develop.xml>`_ et suivez le lien pour télécharger le jdk.
+#. récupérer le fichier jar de Selenium standalone server : `<http://www.seleniumhq.org/download/>`_.
+#. ajouter un driver. Nous utiliserons celui de Chrome : `<https://sites.google.com/a/chromium.org/chromedriver/>`_. Il y en a d'autres possibles (par exemple pour Firefox : `<https://github.com/mozilla/geckodriver/releases>`_).
 
-Une fois selenium et le driver pacé dans un dossier selenium. Je l'ai placé dans le dossier parent de l'application. On peut tester pour voir si ça marche. En utilisant ce que j'ai téléchargé et mis dans le même dossier : :command:`java -Dwebdriver.chrome.driver=./chromedriver -jar selenium-server-standalone-3.8.1.jar` 
+Une fois Selenium et le driver placé dans un dossier Selenium. Je l'ai placé dans le dossier parent de l'application. On peut tester pour voir si ça marche. En utilisant ce que j'ai téléchargé et mis dans le même dossier : :command:`java -Dwebdriver.chrome.driver=./chromedriver -jar selenium-server-standalone-3.8.1.jar` 
 
-Un serveur web selenium est lancé. Il est sur le port 4444 par défaut (lisez les logs).
+Un serveur web Selenium est lancé. Il est sur le port 4444 par défaut (lisez les logs).
 
-.. note :: java est toujours verbeux dans ses log. Apprenez à les lire. 
+.. note :: Java est toujours verbeux dans ses logs. Apprenez à les lire. 
 
-Et maintenant, il nous reste à installer `<http://webdriver.io>`_ pour utiliser selenium avec node : :command:`npm install --save-dev webdriverio`
+Et maintenant, il nous reste à installer `<http://webdriver.io>`_ pour utiliser Selenium avec Node : :command:`npm install --save-dev webdriverio`
 
-.. note :: on a installé webdriver.io uniquement pour le developpement. Il n'est pas nécessaire de l'emmener avec nous en production.
+.. note :: On a installé webdriver.io uniquement pour le developpement. Il n'est pas nécessaire de l'emmener avec nous en production.
 
 Et on fait un premier essai avec le tout : :file:`selenium.essai.js` :
 
@@ -217,14 +218,14 @@ Et on fait un premier essai avec le tout : :file:`selenium.essai.js` :
 
 
 
-Avant d'executer le fichier avec :command:`node selenium.essai.js` On s'assure que le serveur selenium tourne toujours sur le port 4444.
+Avant d'exécuter le fichier avec :command:`node selenium.essai.js` On s'assure que le serveur Selenium tourne toujours sur le port 4444.
 
-.. note :: assurez vous de ne part avoir de serveur qui tourne sur le port par défaut. Sinon, changez de port par défaut.
+.. note :: Assurez vous de ne part avoir de serveur qui tourne sur le port par défaut. Sinon, changez de port par défaut.
 
-On peut maintenant faire des vrai tests pour notre application : 
+On peut maintenant faire des vrais tests pour notre application : 
 
-* vérifier que par défaut on est sur la page d'accueil,
-* en cliquant sur commantaires on arrive bien sur la page de commantaires
+* vérifier que par défaut on est sur la page d'accueil ;
+* en cliquant sur commentaires on arrive bien sur la page de commentaires ;
 * en recliquant sur le nom de la page, on retourne à l'accueil.
 
 .. code-block:: js 
@@ -261,23 +262,23 @@ On peut maintenant faire des vrai tests pour notre application :
     .end()
 
 
-.. note :: attention au .end(). Tout est asynchrone donc si ajoute une ligne avec le .end() il risque d'être exécuté avant la fin de la requête.
+.. note :: Attention au .end(). Tout est asynchrone donc si on ajoute une ligne avec le .end(), il risque d'être exécuté avant la fin de la requête.
 
-On peut attraper plein de choses avec selenium et webdriver.io en utilisant les selecteurs : `<http://webdriver.io/guide/usage/selectors.html>`_
-
-
-On peut finalement rajouter tout nos tests à la batterie de tests de node en faisant finir notre fichier par le nom "test.js". Voir partie suivante pour dréer une batterie de tests avec jest.js.
+On peut attraper plein de choses avec Selenium et Webdriver.io en utilisant les selecteurs : `<http://webdriver.io/guide/usage/selectors.html>`_
 
 
-côté serveur
+On peut finalement rajouter tout nos tests à la batterie de tests de Node en créant un dernier morceau notre fichier avec le nom "test.js". Voir partie suivante pour créer une batterie de tests avec jest.js.
+
+
+Côté Serveur
 ^^^^^^^^^^^^ 
 
 `<https://facebook.github.io/jest/>`_
 
-Tester le js et les routes.
+Tester le JS et les routes.
 
 
-Pour l'instant on a pas de fonction js, donc on va faire comme si et reprendre le tuto.
+Pour l'instant on a pas de fonction JS, donc on va faire comme si et reprendre le tuto.
 
 :file:`sum.js` :
 
@@ -305,7 +306,7 @@ Pour l'instant on a pas de fonction js, donc on va faire comme si et reprendre l
   })
 
 
-On installe jest pour le developpement, :command:`npm install --save-dev jest`, puis on mets jest comme commande de test dans :file:`package.json`. Par exmeple le mien ressemble à : 
+On installe jest pour le developpement, :command:`npm install --save-dev jest`, puis on mets jest comme commande de test dans :file:`package.json`. Par exemple le mien ressemble à : 
 
 .. code-block:: json
 
@@ -333,10 +334,10 @@ On installe jest pour le developpement, :command:`npm install --save-dev jest`, 
 On peut ensuite utiliser la commande :command:`npm test`  pour exécuter tous les fichiers qui finissent par `test.js` 
 
 
-.. note :: on pet aussi utiliser jest en ligne de commande en l'installant de façon globale. Voir `<https://facebook.github.io/jest/docs/en/getting-started.html#running-from-command-line>`_
+.. note :: on peut aussi utiliser jest en ligne de commande en l'installant de façon globale. Voir `<https://facebook.github.io/jest/docs/en/getting-started.html#running-from-command-line>`_
 
 
-Test des routes. On utilise en plus supertest `<https://github.com/visionmedia/supertest>`_ 
+Pour tester des routes maintnant : on utilise en plus supertest `<https://github.com/visionmedia/supertest>`_ 
 
 :command:`npm install --save-dev supertest`
 
@@ -377,7 +378,7 @@ Test des routes. On utilise en plus supertest `<https://github.com/visionmedia/s
 
 
 
-test utilisateur (UI)
+Test Utilisateur (UI)
 ^^^^^^^^^^^^^^^^^^^^^ 
 
 `<https://www.invisionapp.com/blog/ux-usability-research-testing/>`_
