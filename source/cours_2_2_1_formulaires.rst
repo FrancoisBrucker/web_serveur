@@ -4,16 +4,16 @@ Formulaires
 
 On va mettre en place un formulaire (`<https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms>`_ ) dans la page de contact.
 
-mise en place
+Mise en place
 ============= 
 
 form
 ^^^^ 
 
 
-Un formulaire tout simple. :file:`commentaires.ejs` :
+Un formulaire tout simple, :file:`commentaires.ejs` :
 
-.. code-block: html
+.. code-block:: html
 
     <html>
 
@@ -34,13 +34,13 @@ Un formulaire tout simple. :file:`commentaires.ejs` :
 
     </html>
 
-Voyez comment sont envoyé les données (attribut "name" suivi de la valeur). Mais avangt ça, rendons le tout plus joli.
+Voyez comment sont envoyées les données (attribut "name" suivi de la valeur). Mais avangt ça, rendons le tout plus joli.
 
 
 materialize
 ^^^^^^^^^^^ 
 
-On utilise Materializecss pour que ce soit plus joli : `<http://materializecss.com/forms.html>`_ 
+On utilise MaterializeCSS pour que ce soit plus joli : `<http://materializecss.com/forms.html>`_ 
 
 
 :file:`commentaires.ejs` :
@@ -98,10 +98,10 @@ On utilise Materializecss pour que ce soit plus joli : `<http://materializecss.c
 
     </html>
 
-query strings
+Query strings
 ^^^^^^^^^^^^^ 
 
-Lorsque l'on clique sur le bouton, pour l'instant on envoie une requête GET (cf. les headers) avec les valeurs passées en argument de l'url. par exmeple : http://localhost:8080/commentaires?pseudo=caro&comment=Trop+cool+ton+site+%28lol%29
+Lorsque l'on clique sur le bouton, pour l'instant on envoie une requête GET (cf. les headers) avec les valeurs passées en argument de l'URL. Par exemple : http://localhost:8080/commentaires?pseudo=caro&comment=Trop+cool+ton+site+%28lol%29
 
 On appelle ça des *query string parameters* : `<https://en.wikipedia.org/wiki/Query_string>`_. Le format est assez simple et permet de faire passer des variables dans une url.
 
@@ -116,10 +116,10 @@ Modifion un peu :file:`app.js` pour voir ce qu'il se passe.
 
 
 
-templating
+Templating
 ==========  
 
-On va utiliser ces query string dans notre template. Commençons par passer les query string en paramètre de notre template : 
+On va utiliser ces query strings dans notre template. Commençons par passer les query strings en paramètres de notre template : 
 
 :file:`app.js` :
 
@@ -130,9 +130,9 @@ On va utiliser ces query string dans notre template. Commençons par passer les 
     })
 
 
-L'objet qs est passé en paramètre de notre template et vaut notre query string. Il a donc 2 champs, les noms de notre formulaires : :code:`qs.pseudo` et :code:`qs.comment`
+L'objet qs est passé en paramètre de notre template et prend la valeur de notre query string. Dans notre cas, il a donc 2 champs correspondant aux noms de nos formulaires, à savoir :code:`qs.pseudo` et :code:`qs.comment`.
 
-Modifions le template pour les utiliser. On va tout de même faire attention au fait que ces paramètres peuvent être vide. 
+Modifions le template pour les utiliser. On va tout de même faire attention au fait que ces paramètres peuvent être vides. 
 
 
 .. code-block:: text
@@ -194,7 +194,7 @@ Modifions le template pour les utiliser. On va tout de même faire attention au 
     </html>
 
     
-.. note :: Notez comment le code html est imbriqué dans le code ejs. C'est un peu sale, on va donc essayer de le faire le moins possible. Pour le textaera, on est ainsi obligé de tout mette sur une seule ligne sinon les retour chariot son compté comme une réponse.
+.. note :: Notez comment le code HTML est imbriqué dans le code EJS. C'est un peu sale, on va donc essayer de le faire le moins possible. Pour le textaera, on est ainsi obligé de tout mettre sur une seule ligne, sinon les retours chariot son comptés comme une réponse.
 
 
 
