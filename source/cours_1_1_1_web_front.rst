@@ -3,9 +3,26 @@ Web front
 *********
 
 
-Structure de base d'un document : http://www.alsacreations.com/article/lire/1374-html5-structure-globale-document.html
+Comment j'ai découvert le Web
+=============================
 
-Juste un petit exemple, on en refera par la suite, c'est juste pour ne pas être (trop) perdu.
+* client (front): affichage de contenu html5, css3, javascript. Pour apprendre :
+    * http://www.w3schools.com
+    * https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web
+    * http://www.thenetninja.co.uk
+    * https://wiki.centrale-marseille.fr/informatique/public:developpement_web
+
+* serveur (back). Peut dans un sens très (trop) large :
+    * servir du contenu html, css, js
+    * servir des fichiers binaires/textes
+    * fonctionnement asynchrone par défaut mais aussi synchrone (websocket)
+    * stockage et accès à des données côté serveur (api rest, crud) ou client (cookies)
+
+* communication entre front et back par le protocole http ou https.
+
+
+
+
 
 HTML
 ====
@@ -14,7 +31,8 @@ HTML
 
 
 Le HTML est un langage à balise. C'est-à-dire qu'il est toujours en deux parties. Par exemple : :code:`<head></head>` et :code:`<body></body>`.
-
+Structure de base d'un document : http://www.alsacreations.com/article/lire/1374-html5-structure-globale-document.html
+Juste un petit exemple, on en refera par la suite, c'est juste pour ne pas être (trop) perdu.
 Le navigateur interprétera directement le fichier. On ne passe pas par un serveur,
 il utilise directement le fichier avec l'URI (https://fr.wikipedia.org/wiki/Uniform_Resource_Identifier)  :code:`file://chemin/absolu/vers/fichier.html`
 

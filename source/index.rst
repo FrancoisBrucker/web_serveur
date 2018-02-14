@@ -7,19 +7,23 @@
 Web Serveur
 ###########
 
+*********
+Bienvenue
+*********
+
+Bienvenue sur le site du cours de Web et Systèmes, une Option d'informatique de la filière OMIS 3A en 2017-2018.
 Le cours sera disponible en ligne.
 
-.. note::
-
-	On utilisera le pad: https://outils.centrale-marseille.fr/pad/p/cours_serveur_web pour communiquer le code, les ajouts nécessaires, etc.
-
-
+******************
+Table des matières
+******************
 
 .. toctree::
    :maxdepth: 2
 
    outils
-   cours_1_1_web
+   cours_1_1_1_web_front
+   cours_1_1_2_web_http
    cours_1_2_node
    cours_1_3_express
 
@@ -39,6 +43,4 @@ Le cours sera disponible en ligne.
 Index
 *****
 
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
