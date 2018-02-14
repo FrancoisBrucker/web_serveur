@@ -2,7 +2,10 @@
 S'identifier
 ************
 
-module passport et jwt `<https://jwt.io>`_.
+À compléter
+===========
+
+Module passport et jwt `<https://jwt.io>`_.
 
 Pas de session, tout en web token.
 
