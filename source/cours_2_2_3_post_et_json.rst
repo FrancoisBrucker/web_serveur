@@ -1,54 +1,54 @@
 *************
-requêtes POST
+Requêtes POST
 *************
 
-Les query string sont un moyen utile de passer des données au serveur via une url. La méthode la plus pratique car elle permet de transmettre des données arbitraires est d'utiliser le protocole http lui même et la méthode POST.
+Les query strings sont un moyen utile de passer des données au serveur via une URL. La méthode la plus pratique est d'utiliser le protocole HTTP lui-même et la méthode POST, car elle permet de transmettre des données arbitraires.
 
 
-Toutes les données vont être transférées sous forme de chaine de caractère. On utilise pour cela le format `<http://www.json.org>`_ qui est fait pour ça. C'est *en gros* un dictionnaire. Donc pour transférer un objet javascript :code:`data`:
+Toutes les données vont être transférées sous forme de chaîne de caractères. On utilise pour cela le format `<http://www.json.org>`_ qui est fait pour ça. C'est *en gros* un dictionnaire. Donc pour transférer un objet javascript :code:`data`:
 
-  #. on transforme :code:`data` en chaine de caractère : :code:`JSON.stringify(data)`
-  #. on transfère cette chaine d'un endroit à un autre
-  #. on récupère notre donnée en retransformant notre chaine de caractère en objet :code:`JSON.parse(chaine_de_caractère)`. Cette étape est souvent faite automatiquement si l'on sait que l'on transporte du json.
+  #. On transforme :code:`data` en chaine de caractères : :code:`JSON.stringify(data)`,
+  #. On transfère cette chaîne d'un endroit à un autre,
+  #. On récupère notre donnée en retransformant notre chaîne de caractères en objet :code:`JSON.parse(chaine_de_caractère)`. Cette étape est souvent faite automatiquement si l'on sait que l'on transporte du JSON.
 
 
 Requête POST
 ============  
 
-Avant de gérer directement les connection côté client (avec du javascript client), on va installer une appllication extension  permettant de simuler l'envoi de donnée via la méthode POST. IL y en  plusieurs. 
+Avant de gérer directement les connections côté client (avec du javascript client), on va installer une appllication extension permettant de simuler l'envoi de données via la méthode POST. Il y en a plusieurs. 
 
 
-postman
+Postman
 ^^^^^^^
 
-J'utilise ici `<https://www.getpostman.com/>`_
+J'utilise ici `<https://www.getpostman.com/>`_.
 
-On va tester les la façon de gérer des requêtes avec postman : 
+On va tester les façons de gérer des requêtes avec postman : 
 
-#. on lance l'application
-#. on dit que l'on ne veut pas de compte
-#. on choisi de faire une requête
-#. que l'on ne veut pas sauver : on clique sur fermer la fenêtre
+#. On lance l'application,
+#. On dit que l'on ne veut pas de compte,
+#. On choisit de faire une requête que l'on ne veut pas sauver,
+#. On clique sur fermer la fenêtre.
 
-On peut tester la requête `<http://localhost:8080>`_ en GET. On récupère bien des header par défaut et du html.
+On peut tester la requête `<http://localhost:8080>`_ en GET. On récupère bien des headers par défaut et du HTML.
 
-Essayons de vois si un cookie peut être placé : 
+Essayons de voir si un cookie peut être placé : 
 
 * `<http://localhost:8080/commentaires?pseudo=caro&comment=c%27est+moins+bien+que+sonate+je+trouve>`_
-* on peut en créer un nous même en cliquant sur cookie juste en dessous de poutons send :
+* on peut en créer un nous-mêmes en cliquant sur cookie juste en dessous de boutons send :
 
-    * add cookie
-    * à la place de "Cookie_1=value;" on met notre "pseudo=toto"
-    * on sauve
+    * Add cookie,
+    * A la place de :code:'Cookie_1=value;' on met notre :code:'pseudo=toto',
+    * On sauvegarde.
 
-En exécutant la requête get : `<http://localhost:8080/commentaires/>`_ on voit que notre cookie est bien placé.
+En exécutant la requête GET : `<http://localhost:8080/commentaires/>`_, on voit que notre cookie est bien placé.
 
-post en serveur
-^^^^^^^^^^^^^^^ 
+POST en serveur
+^^^^^^^^^^^^^^^
 
-Côté serveur, on attend une requête de type POST sur l'adresse contact. Pour avoir accès au corps de notre requête, ici l'objet transmis sous la forme d'un json, il faut utiliser `<https://github.com/expressjs/body-parser>`_. On l'installe comme d'habitude: :command:`npm install body-parser --save`, 
+Côté serveur, on attend une requête de type POST sur l'adresse contact. Pour avoir accès au corps de notre requête, ici l'objet transmis sous la forme d'un JSON, il faut utiliser `<https://github.com/expressjs/body-parser>`_. On l'installe comme d'habitude: :command:`npm install body-parser --save`. 
 
-Puis on l'utilise dans :file:`app.js`, juste après l'utilisation de express :
+Puis on l'utilise dans :file:`app.js`, juste après l'utilisation de Express :
 
 .. code-block:: javascript
 
@@ -58,7 +58,7 @@ Puis on l'utilise dans :file:`app.js`, juste après l'utilisation de express :
     var bodyParser = require('body-parser');
     app.use(bodyParser.json()); // for parsing application/json
 
-Ce middleware nous permet d'utiliser l'attribute *body* de request, qui contiendra notre objet :
+Ce middleware nous permet d'utiliser l'attribut *body* de request, qui contiendra notre objet :
 
 
 .. code-block:: javascript
@@ -69,9 +69,9 @@ Ce middleware nous permet d'utiliser l'attribute *body* de request, qui contiend
   })
 
 
-.. note :: voir `<http://expressjs.com/fr/api.html#req.body>`_.
+.. note :: Voir `<http://expressjs.com/fr/api.html#req.body>`_.
 
-On peut alors tester notre requête post avec postman (`<https://www.youtube.com/watch?v=FyZBTbv7UM0>`_) : 
+On peut alors tester notre requête POST avec Postman (`<https://www.youtube.com/watch?v=FyZBTbv7UM0>`_) : 
 
 * type : POST (à la place de GET)
 * url : `<http://localhost:8080/commentaires>`_
@@ -88,25 +88,25 @@ On peut alors tester notre requête post avec postman (`<https://www.youtube.com
                 "comment": "ce serait pas plus simple en sh ?"
             }
 
-Si tout se passe comme prévu. Le retour dans postman devrait être "Ok", et côté serveur :code:`request.body` devrait être un objet javascript. 
+Si tout se passe comme prévu. Le retour dans postman devrait être "Ok", et côté serveur, :code:`request.body` devrait être un objet javascript. 
 
 
 POST avec un formulaire
 =======================
 
-On utilisera pas l méthdoe post directement avec un formaulaire : 
+On n'utilisera pas la méthode POST directement avec un formulaire : 
 :code:`<form class="form" id="form1" method="POST" action="/commentaire">`
 
 
-Mais on l'avait fait faut  éviter qu'une recharge de page envoie à nouveau un formulaire. Voir : 
+Mais c'est ce qu'on a fait. À l'avenir, il faudrait éviter qu'une recharge de page envoie à nouveau un formulaire.
 
-Deux possibilités : 
+Pour ce faire, deux possibilités : 
 
-* classiquement, on redirige la page vers ne version GET de celle-ci. Voir : `<https://fr.wikipedia.org/wiki/Post-redirect-get>`_
-* utiliser le parser :code:`urlencoded` de body-parser.
+* Classiquement, on redirige la page vers une version GET de celle-ci. Voir : `<https://fr.wikipedia.org/wiki/Post-redirect-get>`_.
+* Utiliser le parser :code:`urlencoded` de body-parser.
  
 
-On va utiliser une autre méthode , avec un bouton adapté.
+On va utiliser une autre méthode, avec un bouton adapté.
 
 
 
@@ -116,11 +116,11 @@ POST client
 Mise en place de jquery 
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Ainsi, lorsque l'on va appuyer sur notre bouton, on veut envoyer les données à notre serveur. Pour cela on va utiliser `<http://jquery.com>`_ la bibliothèque à tout faire pour le javascript en front.
+L'objectif est que lorsque l'on va appuyer sur notre bouton, on veut envoyer les données à notre serveur. Pour cela on va utiliser `<http://jquery.com>`_ la bibliothèque à tout faire pour le javascript en front.
 
 Elle est a priori déjà utilisé avec materialize.
 
-javascript est exécuté lorsqu'il arrive. Il faut que tout soit chargé côté client avant d'exécuter du javascript :
+Javascript est exécuté lorsqu'il arrive. Il faut que tout soit chargé côté client avant d'exécuter du javascript :
 
 
 .. code-block:: html
@@ -132,14 +132,14 @@ javascript est exécuté lorsqu'il arrive. Il faut que tout soit chargé côté 
       })
   </script>
 
-Le code ci dessus exécute une fonction anonyme (avec uniquement un commentaire pour l'instant)  une fois que le document est chargé (voir `<http://learn.jquery.com/using-jquery-core/document-ready/>`_). Ici , la console est celle de votre navigateur, puisque ce code est exécuté côté front.
+Le code ci dessus exécute une fonction anonyme (avec uniquement un commentaire pour l'instant) une fois que le document est chargé (voir `<http://learn.jquery.com/using-jquery-core/document-ready/>`_). Ici, la console est celle de votre navigateur, puisque ce code est exécuté côté front.
 
-Le signe :code:`$` est la marque de jquery. Tout ce qui utiliser jquery commence par :code:`$`. POur plus d'info, lisez la doc : `<http://learn.jquery.com>`_.
+Le signe :code:`$` est la marque de JQuery. Tout ce qui utilise JQuery commence par :code:`$`. Pour plus d'infos, lisez la doc : `<http://learn.jquery.com>`_.
 
 Bind du bouton
 ^^^^^^^^^^^^^^
 
-On veut récupérer l'évènement d'envoi du formulaire, pour fabriquer nos propres données et les envoyer.
+On veut récupérer l'évènement d'envoi du formulaire pour fabriquer nos propres données et les envoyer.
 
 Le code suivant le fait :
 
@@ -158,13 +158,13 @@ Le code suivant le fait :
 
 
 Quelques remarques :
-  * on stop l'exécution normale du formulaire avec :code:`event.preventDefault()`
-  * on utilise la localisation d'élément en jquery comme on le ferait en css. Par exemple :code:`$("input[name=firstname]")` rend l'objet de type input ayant un attribut name valant firstname.
-  * une fois l'élément récupéré, jquery met à notre disposition de nombreuses méthodes, comme ici :code:`val()`
+  * On stoppe l'exécution normale du formulaire avec :code:`event.preventDefault()`,
+  * On utilise la localisation d'éléments en JQuery comme on le ferait en CSS. Par exemple :code:`$("input[name=firstname]")` rend l'objet de type input ayant un attribut name valant firstname.
+  * Une fois l'élément récupéré, JQuery met à notre disposition de nombreuses méthodes, comme ici :code:`val()`.
 
 
 
-Côté client, on va envoyer un json contenant les données. Tout ceci se fera via
+Côté client, on va envoyer un JSON contenant les données. Tout ceci se fera via
 une requête *ajax* (`<http://learn.jquery.com/ajax/>`_) :
 
 Le fichier :file:`commentaires.ejs` en entier (seule la partie script est modifiée) :
@@ -258,12 +258,12 @@ Le fichier :file:`commentaires.ejs` en entier (seule la partie script est modifi
 
     </html>
 
-Remarque :
+Remarques :
 
-* on envoie des données que si le texte est non vide,
-* si les données ont été envoyées avec succès, on supprime le texte, pour éviter d'envoyer 2 fois les même choses.
-* on utilise le serveur courant avec la commande :command:`$(location).attr('host')` Ceci fera que ça va marcher également en production.
+* On n'envoie des données que si le texte est non-vide,
+* Si les données ont été envoyées avec succès, on supprime le texte pour éviter d'envoyer 2 fois les même choses.
+* On utilise le serveur courant avec la commande :command:`$(location).attr('host')` Ceci fera que ça va marcher également en production.
 
 
-  .. note:: on ne gère pas les cookie ici puisque c'est via la requète post. Cela pourrait être à ajouter.
+  .. note:: on ne gère pas les cookies ici puisque c'est via la requète POST. Cela pourrait être à ajouter.
 

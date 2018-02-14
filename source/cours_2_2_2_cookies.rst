@@ -4,21 +4,21 @@ Cookies
 
 On va utiliser les cookies pour se rappeler de notre pseudo.
 
-Un `<https://fr.wikipedia.org/wiki/Cookie_(informatique)>`_ c'est un objet chez le client. Il a un nom, une durée de vie et contient des informations.
+Un `<https://fr.wikipedia.org/wiki/Cookie_(informatique)>`_, c'est un objet chez le client. Il a un nom, une durée de vie et contient des informations.
 
-Les cookies mis par un serveur sont envoyé par le client à chaque requête de celui-ci. Ceci permet de sauvegarder des données directement chez le client et de les retrouver
+Les cookies mis par un serveur sont envoyés par le client à chaque requête de celui-ci. Ceci permet de sauvegarder des données directement chez le client et de les retrouver.
 
 
-voir les cookies
+Voir les cookies
 ================ 
 
-* les cookie d'un site en particulier, dans l'onglet application des outils de développement. Allez voir sur un site contenant des publicités par exemple pour voir le nombre de cookies qui vous concerne.
-* à la console : :code:`document.cookie`
+* Les cookies d'un site en particulier, dans l'onglet application des outils de développement. Allez voir sur un site contenant des publicités par exemple pour voir le nombre de cookies qui vous concerne.
+* Dans la console : :code:`document.cookie`.
 
 Créer des cookies
 =================
 
-Pour avoir accès aux cookies, il faut utiliser un middleware : :code:`cookie-parser` `<https://www.npmjs.com/package/cookie-parser>`_
+Pour avoir accès aux cookies, il faut utiliser un middleware : :code:`cookie-parser`. `<https://www.npmjs.com/package/cookie-parser>`_
 
 On commence par l'installer : :command:`npm install --save cookie-parser` puis on l'utilise dans :file:`app.js` :
 
@@ -32,10 +32,10 @@ On commence par l'installer : :command:`npm install --save cookie-parser` puis o
 
 Ceci nous donnera accès aux cookies que nous aurons créé. 
 
-* les cookies seront dans :code:`request.cookies` : `<https://expressjs.com/en/4x/api.html#req.cookies>`_
-* on pourra en créer de nouveaux en les placant dans la réponse : `<https://expressjs.com/en/4x/api.html#res.cookie>`_
+* Les cookies seront dans :code:`request.cookies` : `<https://expressjs.com/en/4x/api.html#req.cookies>`_
+* On pourra en créer de nouveaux en les placant dans la réponse : `<https://expressjs.com/en/4x/api.html#res.cookie>`_
 
- Comme tout sera géré au niveau des commentaires, regardons la route dédiée dans :file:`app.js` :
+Comme tout sera géré au niveau des commentaires, regardons la route dédiée dans :file:`app.js` :
 
 
 .. code-block:: js
