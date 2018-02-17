@@ -22,22 +22,46 @@ Table des matières
    :maxdepth: 2
 
    outils
-   cours_1_1_1_web_front
-   cours_1_1_2_web_http
-   cours_1_2_node
-   cours_1_3_express
 
-   cours_2_1_1_preparation
-   cours_2_1_2_outils
+Cours 1
+^^^^^^^
 
-   cours_2_2_1_formulaires
-   cours_2_2_2_cookies
-   cours_2_2_3_post_et_json
+.. toctree::
+    :maxdepth: 2
 
-   cours_2_3_1_crud
-   cours_2_3_2_webstorage
-   
-   cours_3_1_identification
+    cours_1_1_web_front
+    cours_1_2_web_http
+
+Cours 2
+^^^^^^^
+
+.. toctree::
+    :maxdepth: 2
+
+    cours_2_1_node
+    cours_2_2_express
+
+Cours 3
+^^^^^^^
+
+.. toctree::
+    :maxdepth: 2
+
+    cours_3_1_1_preparation
+    cours_3_1_2_outils
+    cours_3_2_1_formulaires
+    cours_3_2_2_cookies
+
+Cours 4
+^^^^^^^
+.. toctree::
+    :maxdepth: 2
+
+    cours_4_2_3_post_et_json
+    cours_4_3_1_crud
+    cours_4_3_2_webstorage
+    cours_4_1_identification
+
 
 *****
 Index
