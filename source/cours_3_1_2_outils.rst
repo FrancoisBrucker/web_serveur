@@ -16,7 +16,7 @@ De nombreuses applications de log existent pour node, nous utiliserons `<https:/
 Pour la version 3, celle que nous utiliserons, il faut installer la version de développement de winston : :command:`npm install winston@next --save`. 
 
 
-.. note ::  Le code ci-après ne fonctionnera pas avec la version 2.4, qui est  la version stable à l'heure où j'écris ces ligne.
+.. note ::  Le code ci-après ne fonctionnera pas avec la version 2.4, qui est  la version stable à l'heure où j'écris ces lignes.
 
 
 App.js
@@ -51,7 +51,7 @@ On ajoute les deux dernières lignes à :file:`app.js` :
   logger.info("c'est parti")
   logger.silly("mon kiki")
 
-L'affichage console est pratique en développement. En production, on préfère peut de log et dans des fichiers. Par exemple : 
+L'affichage console est pratique en développement. En production, on préfère peu de log mais les stocker dans des fichiers. Par exemple : 
 
 .. code-block:: javascript
 
@@ -82,7 +82,7 @@ Et on log également les 404 :
 
 En changeant le level de notre logger à *debug* ont devrait voir tous les appels.
 
-.. note :: les différents attributs de req sont décrites ici : `<http://expressjs.com/fr/api.html#req>`_
+.. note :: Les différents attributs de requêtes sont décrits ici : `<http://expressjs.com/fr/api.html#req>`_.
 
 
 Logger.js
