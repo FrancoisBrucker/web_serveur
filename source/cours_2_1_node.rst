@@ -373,7 +373,7 @@ Scope de variables
 .. note:: Pas forcément pertinent dans ce cours, on pourra passer outre si on est en retard.
 
 
-En javascript, on peut utiliser des variables définies dans des *scopes* plus haut sans les redéfinir. Dans le code ci-après :code`delta1` et :code:`delta2` sont ainsi mis à jour (pour avoir le même comportement en python par exemple, on aurait dû utiliser le mot clé *global*)
+En javascript, on peut utiliser des variables définies dans des *scopes* plus haut sans les redéfinir. Dans le code ci-après :code:`delta1` et :code:`delta2` sont ainsi mis à jour (pour avoir le même comportement en python par exemple, on aurait dû utiliser le mot clé *global*)
 
 .. code-block:: javascript
 
