@@ -450,7 +450,7 @@ On crée un fichier :file:`app.js` contenant nos routes :
     // 404 aucune interception
     app.use(function (req, res, next) {
         res.status(404).render("404")
-        logger.info("404 for: " + req.originalUrl);
+        // logger.info("404 for: " + req.originalUrl); Le logger n'a pas ete defini, on en parle juste apres
     })
 
 
