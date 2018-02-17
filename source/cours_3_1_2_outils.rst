@@ -4,7 +4,7 @@ Outils de développement continu
 
 Cet partie traîte les loggeurs et les tests unitaires/fonctionnels.
 
-Loggeur
+Logger
 =======
 
 On commence à avoir pas mal de trafic sur notre site, et on est pas à l'abri de bug. La première chose à faire est donc de stocker tout ce qui se passe niveau serveur. En cas d'erreurs, on pourra remonter la trace de ce qui a conduit à l'erreur ou pire au plantage.
