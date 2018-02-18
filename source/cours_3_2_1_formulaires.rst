@@ -7,7 +7,7 @@ On va mettre en place un formulaire (`<https://developer.mozilla.org/en-US/docs/
 Mise en place
 ============= 
 
-form
+Form
 ^^^^ 
 
 
@@ -34,7 +34,7 @@ Un formulaire tout simple, :file:`commentaires.ejs` :
 
     </html>
 
-Voyez comment sont envoyées les données (attribut "name" suivi de la valeur). Mais avangt ça, rendons le tout plus joli.
+Voyez comment sont envoyées les données (attribut "name" suivi de la valeur). Mais avant ça, rendons le tout plus joli.
 
 
 Materialize
@@ -98,7 +98,7 @@ On utilise MaterializeCSS pour que ce soit plus joli : `<http://materializecss.c
 
     </html>
 
-Query strings
+Query Strings
 ^^^^^^^^^^^^^ 
 
 Lorsque l'on clique sur le bouton, pour l'instant on envoie une requête GET (cf. les headers) avec les valeurs passées en argument de l'URL. Par exemple : http://localhost:8080/commentaires?pseudo=caro&comment=Trop+cool+ton+site+%28lol%29
@@ -194,7 +194,7 @@ Modifions le template pour les utiliser. On va tout de même faire attention au 
     </html>
 
     
-.. note :: Notez comment le code HTML est imbriqué dans le code EJS. C'est un peu sale, on va donc essayer de le faire le moins possible. Pour le textaera, on est ainsi obligé de tout mettre sur une seule ligne, sinon les retours chariot son comptés comme une réponse.
+.. note :: Notez comment le code HTML est imbriqué dans le code EJS. C'est un peu sale, on va donc essayer de le faire le moins possible. Pour la zone de texte, on est ainsi obligé de tout mettre sur une seule ligne, sinon les retours chariot sont comptés comme une réponse.
 
 
 
