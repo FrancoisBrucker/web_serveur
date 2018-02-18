@@ -177,7 +177,7 @@ Côté Client
 
 On peut tester le rendu client en simulant un navigateur.
 
-Pour cela on utilise Selenium `<http://www.seleniumhq.org>`_ et ses webdriver qui simulent un browser. Tout ceci fonctionne en java, donc assurez vous d'avoir un java qui corresponde.
+Pour cela on utilise Selenium `<http://www.seleniumhq.org>`_ et ses webdrivers qui simulent un browser. Tout ceci fonctionne en java, donc assurez vous d'avoir un java qui corresponde.
 Étapes à suivre : 
 
 #. installation de java (si nécessaire. Tapez java dans un terminal/powershell et si ça rate, c'est qu'il faut l'installer) : `<https://www.java.com/fr/download/faq/develop.xml>`_ et suivez le lien pour télécharger le jdk.

@@ -37,7 +37,7 @@ Un formulaire tout simple, :file:`commentaires.ejs` :
 Voyez comment sont envoyées les données (attribut "name" suivi de la valeur). Mais avangt ça, rendons le tout plus joli.
 
 
-materialize
+Materialize
 ^^^^^^^^^^^ 
 
 On utilise MaterializeCSS pour que ce soit plus joli : `<http://materializecss.com/forms.html>`_ 
