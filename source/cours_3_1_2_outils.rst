@@ -13,10 +13,10 @@ De nombreuses applications de log existent pour node, nous utiliserons `<https:/
 
 .. note:: voir par exemple `<https://blog.risingstack.com/node-js-logging-tutorial/>`_ ou encore `<http://thisdavej.com/using-winston-a-versatile-logging-library-for-node-js/>`_
 
-Pour la version 3, celle que nous utiliserons, il faut installer la version de développement de winston : :command:`npm install winston@next --save`. 
+Pour la version 3, celle que nous utiliserons, il faut installer la version de développement de winston : :code:`npm install winston@next --save`. 
 
 
-.. note ::  Le code ci-après ne fonctionnera pas avec la version 2.4, qui est  la version stable à l'heure où j'écris ces lignes.
+.. note ::  Le code ci-après ne fonctionnera pas avec la version 2.4, qui est la version stable à l'heure où j'écris ces lignes.
 
 
 App.js
@@ -184,15 +184,15 @@ Pour cela on utilise Selenium `<http://www.seleniumhq.org>`_ et ses webdrivers q
 #. récupérer le fichier jar de Selenium standalone server : `<http://www.seleniumhq.org/download/>`_.
 #. ajouter un driver. Nous utiliserons celui de Chrome : `<https://sites.google.com/a/chromium.org/chromedriver/>`_. Il y en a d'autres possibles (par exemple pour Firefox : `<https://github.com/mozilla/geckodriver/releases>`_).
 
-Une fois Selenium et le driver placé dans un dossier Selenium. Je l'ai placé dans le dossier parent de l'application. On peut tester pour voir si ça marche. En utilisant ce que j'ai téléchargé et mis dans le même dossier : :command:`java -Dwebdriver.chrome.driver=./chromedriver -jar selenium-server-standalone-3.8.1.jar` 
+Une fois Selenium et le driver placé dans un dossier Selenium. Je l'ai placé dans le dossier parent de l'application. On peut tester pour voir si ça marche. En utilisant ce que j'ai téléchargé et mis dans le même dossier : :code:`java -Dwebdriver.chrome.driver=./chromedriver.exe -jar selenium-server-standalone-3.8.1.jar` 
 
 Un serveur web Selenium est lancé. Il est sur le port 4444 par défaut (lisez les logs).
 
 .. note :: Java est toujours verbeux dans ses logs. Apprenez à les lire. 
 
-Et maintenant, il nous reste à installer `<http://webdriver.io>`_ pour utiliser Selenium avec Node : :command:`npm install --save-dev webdriverio`
+Et maintenant, il nous reste à installer `<http://webdriver.io>`_ pour utiliser Selenium avec Node : :code:`npm install --save-dev webdriverio`
 
-.. note :: On a installé webdriver.io uniquement pour le developpement. Il n'est pas nécessaire de l'emmener avec nous en production.
+.. note :: On a installé webdriver.io uniquement pour le développement. Il n'est pas nécessaire de l'emmener avec nous en production.
 
 Et on fait un premier essai avec le tout : :file:`selenium.essai.js` :
 
@@ -218,7 +218,7 @@ Et on fait un premier essai avec le tout : :file:`selenium.essai.js` :
 
 
 
-Avant d'exécuter le fichier avec :command:`node selenium.essai.js` On s'assure que le serveur Selenium tourne toujours sur le port 4444.
+Avant d'exécuter le fichier avec :code:`node selenium.essai.js` On s'assure que le serveur Selenium tourne toujours sur le port 4444.
 
 .. note :: Assurez vous de ne part avoir de serveur qui tourne sur le port par défaut. Sinon, changez de port par défaut.
 
@@ -267,7 +267,7 @@ On peut maintenant faire des vrais tests pour notre application :
 On peut attraper plein de choses avec Selenium et Webdriver.io en utilisant les selecteurs : `<http://webdriver.io/guide/usage/selectors.html>`_
 
 
-On peut finalement rajouter tout nos tests à la batterie de tests de Node en créant un dernier morceau notre fichier avec le nom "test.js". Voir partie suivante pour créer une batterie de tests avec jest.js.
+On peut finalement rajouter tous nos tests à la batterie de tests de Node en créant un dernier morceau notre fichier avec le nom "test.js". Voir partie suivante pour créer une batterie de tests avec jest.js.
 
 
 Côté Serveur
@@ -306,7 +306,7 @@ Pour l'instant on a pas de fonction JS, donc on va faire comme si et reprendre l
   })
 
 
-On installe jest pour le developpement, :command:`npm install --save-dev jest`, puis on mets jest comme commande de test dans :file:`package.json`. Par exemple le mien ressemble à : 
+On installe jest pour le développement, :code:`npm install --save-dev jest`, puis on mets jest comme commande de test dans :file:`package.json`. Par exemple le mien ressemble à : 
 
 .. code-block:: json
 
@@ -331,15 +331,15 @@ On installe jest pour le developpement, :command:`npm install --save-dev jest`, 
   }
 
 
-On peut ensuite utiliser la commande :command:`npm test`  pour exécuter tous les fichiers qui finissent par `test.js` 
+On peut ensuite utiliser la commande :code:`npm test`  pour exécuter tous les fichiers qui finissent par `test.js` 
 
 
 .. note :: on peut aussi utiliser jest en ligne de commande en l'installant de façon globale. Voir `<https://facebook.github.io/jest/docs/en/getting-started.html#running-from-command-line>`_
 
 
-Pour tester des routes maintnant : on utilise en plus supertest `<https://github.com/visionmedia/supertest>`_ 
+Pour tester des routes maintenant : on utilise en plus supertest `<https://github.com/visionmedia/supertest>`_ 
 
-:command:`npm install --save-dev supertest`
+:code:`npm install --save-dev supertest`
 
 .. note :: voir `<http://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/>`_
 
