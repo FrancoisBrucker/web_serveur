@@ -186,7 +186,7 @@ Puis on crée notre vue :file:`home.ejs` dans le répertoire :file:`views`.
 
 
 
-navbar
+Navbar
 ======
 
 Ajout de `<http://materializecss.com>`_ pour que ce soit plus joli ! Par exemple la navbar : `<http://materializecss.com/navbar.html>`_
