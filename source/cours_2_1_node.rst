@@ -4,12 +4,12 @@ Node
 
 https://nodejs.org/en/ est idéal pour créer des petits serveur web, des sites à une seule page ressemblant à une application, ou encore une interface *REST*.
 
-Il est utilisé en conjonction d'autres bibliothèques pour créer des applications *MEAN* (http://bit.ly/1Nr0NUt) . Actuellement, il y a des alternatives sérieuses à A (angular).
+Il est utilisé en conjonction d'autres bibliothèques pour créer des applications *MEAN* (`<https://en.wikipedia.org/wiki/MEAN_(software_bundle)>`_) . Actuellement, il y a des alternatives sérieuses à A (angular).
 
 Node en console
 ===============
 
-Node peut être vu comme un interpréteur javascript. Il incorpore le moteur javascript V8 de google (http://bit.ly/2Cfjh7L).
+Node peut être vu comme un interpréteur javascript. Il incorpore le moteur javascript V8 de google (`<https://fr.wikipedia.org/wiki/V8_(moteur_JavaScript)>`_).
 
 Tapez :code:`Node` dans un terminal. Vous vous retrouverez dans un interpréteur javascript. Idéal pour tester des choses, en particulier pour reprendre les exemples de https://www.destroyallsoftware.com/talks/wat
 
