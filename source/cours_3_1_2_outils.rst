@@ -2,7 +2,7 @@
 Outils de développement continu
 *******************************
 
-Cet partie traîte les loggeurs et les tests unitaires/fonctionnels.
+Cette partie traîte les loggeurs et les tests unitaires/fonctionnels.
 
 Logger
 =======
