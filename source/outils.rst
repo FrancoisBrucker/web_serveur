@@ -51,7 +51,7 @@ Installation:
 Cours 3
 -------
 
-.. todo:: Ajouter les logiciels nécessaires.
+On utilisera node et les bibliothèques de npm comme dans le cours 2. Voir la partie "Préparation" pour plus de détails.
 
 
 La documentation

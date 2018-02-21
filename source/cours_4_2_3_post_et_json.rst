@@ -113,7 +113,7 @@ On va utiliser une autre méthode, avec un bouton adapté.
 POST client 
 ===========
 
-Mise en place de jquery 
+Mise en place de jQuery 
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 L'objectif est que lorsque l'on va appuyer sur notre bouton, on veut envoyer les données à notre serveur. Pour cela on va utiliser `<http://jquery.com>`_ la bibliothèque à tout faire pour le javascript en front.
@@ -125,7 +125,7 @@ Javascript est exécuté lorsqu'il arrive. Il faut que tout soit chargé côté 
 
 .. code-block:: html
 
-    <!-- déclaration de jquery avant ça -->
+    <!-- déclaration de jQuery avant ça -->
   <script>
       $(function() {
           // mettre votre code client ici
@@ -134,7 +134,7 @@ Javascript est exécuté lorsqu'il arrive. Il faut que tout soit chargé côté 
 
 Le code ci dessus exécute une fonction anonyme (avec uniquement un commentaire pour l'instant) une fois que le document est chargé (voir `<http://learn.jquery.com/using-jquery-core/document-ready/>`_). Ici, la console est celle de votre navigateur, puisque ce code est exécuté côté front.
 
-Le signe :code:`$` est la marque de JQuery. Tout ce qui utilise JQuery commence par :code:`$`. Pour plus d'infos, lisez la doc : `<http://learn.jquery.com>`_.
+Le signe :code:`$` est la marque de jQuery. Tout ce qui utilise jQuery commence par :code:`$`. Pour plus d'infos, lisez la doc : `<http://learn.jquery.com>`_.
 
 Bind du bouton
 ^^^^^^^^^^^^^^
@@ -159,8 +159,8 @@ Le code suivant le fait :
 
 Quelques remarques :
   * On stoppe l'exécution normale du formulaire avec :code:`event.preventDefault()`,
-  * On utilise la localisation d'éléments en JQuery comme on le ferait en CSS. Par exemple :code:`$("input[name=firstname]")` rend l'objet de type input ayant un attribut name valant firstname.
-  * Une fois l'élément récupéré, JQuery met à notre disposition de nombreuses méthodes, comme ici :code:`val()`.
+  * On utilise la localisation d'éléments en jQuery comme on le ferait en CSS. Par exemple :code:`$("input[name=firstname]")` rend l'objet de type input ayant un attribut name valant firstname.
+  * Une fois l'élément récupéré, jQuery met à notre disposition de nombreuses méthodes, comme ici :code:`val()`.
 
 
 

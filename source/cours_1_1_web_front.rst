@@ -163,8 +163,7 @@ JS (côté front)
 
 Permet la modification de l'arbre DOM.
 
-Le script est exécuté lorsqu'il est lu : il est souvent exécuté à la fin du html ou via un
- évènement lancé après que la page soit chargée.
+Le script est exécuté lorsqu'il est lu : il est souvent exécuté à la fin du html ou via un évènement lancé après que la page soit chargée.
 
 
 Le javascript permet de modifier cet arbre DOM via des évènements : https://www.w3schools.com/jsref/dom_obj_event.asp.
@@ -236,18 +235,18 @@ Comme c'est compliqué comme ça, on utilise souvent (toujours ?) des bibliothè
 Une nouvelle tendance émerge comme utiliser d'autres langages puis on les "compile" en javascript : https://www.transcrypt.org
 
 
-JS et JQuery
-------------
+Javascript et jQuery
+--------------------
 
 
 .. note::
 
-    * Commencer par n'installer que JQuery
+    * Commencer par n'installer que jQuery
     * aller dans les outils de développement et montrer ce que l'on a
-    * jouer avec JQuery :code:`$("p").html()` un peu.
+    * jouer avec jQuery :code:`$("p").html()` un peu.
     * dire qu'il faut que tout soit chargé avant que ça marche.
 
-Ajout de la bibliothèque jquery (http://jquery.com) directement depuis un CDN
+Ajout de la bibliothèque jQuery (http://jquery.com) directement depuis un CDN
 (https://fr.wikipedia.org/wiki/Content_delivery_network) et d'un peu de code javascript avec la balise :code:`<script></script>`.
 
 Notez le côté purement fonctionnel de la programmation (ici fin de chargement, entrée/sortie d'un sélecteur).
