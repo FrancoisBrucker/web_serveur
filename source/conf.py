@@ -123,12 +123,20 @@ todo_include_todos = True
 # a list of builtin themes.
 #
 html_theme = 'alabaster'
+#html_theme = 'classic'
+#html_theme = 'sphinxdoc'
+#html_theme = 'scrolls'
+#html_theme = 'agogo'
+#html_theme = 'traditional'
+#html_theme = 'nature'
+#html_theme = 'haiku'
+#html_theme = 'pyramid'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {'fixed_sidebar': 'true'}
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []
