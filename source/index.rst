@@ -57,10 +57,11 @@ Cours 4
 .. toctree::
     :maxdepth: 2
 
-    cours_4_2_3_post_et_json
+    cours_4_1_identification
+    cours_4_2_post_et_json
     cours_4_3_1_crud
     cours_4_3_2_webstorage
-    cours_4_1_identification
+
 
 
 *****

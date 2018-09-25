@@ -17,8 +17,10 @@ Il vous faudra :
     * Des outils de développement existent pour la plupart des autres navigateurs.
 
 * Un éditeur de texte :
+
   * 2016-2017 : On utilisera *Brackets* : http://brackets.io
-  * 2017-2018 : On utilisera *Atom* : https://atom.io (https://davidl.fr/blog/atom.html) (en fait *Visual Studio Code* https://code.visualstudio.com/)
+  * 2017-2018 : On utilisera *Visual Studio Code* https://code.visualstudio.com/
+  * 2018-2019 : On utilisera *Atom* : https://atom.io (https://davidl.fr/blog/atom.html)
 
 
 
