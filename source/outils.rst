@@ -18,9 +18,9 @@ Il vous faudra :
 
 * Un éditeur de texte :
 
-  * 2016-2017 : On utilisera *Brackets* : http://brackets.io
-  * 2017-2018 : On utilisera *Visual Studio Code* https://code.visualstudio.com/
   * 2018-2019 : On utilisera *Atom* : https://atom.io (https://davidl.fr/blog/atom.html)
+  * 2017-2018 : On utilisera *Visual Studio Code* https://code.visualstudio.com/
+  * 2016-2017 : On utilisera *Brackets* : http://brackets.io
 
 
 
@@ -28,6 +28,20 @@ Vous pouvez venir avec vos propres outils, mas dans ce cas là vous êtes sensé
 
 
 On utilisera peut-être (mais c'est pas sûr) telnet. Par défaut sous OSX et linux, on peut l'activer sous Windows 10 : https://www.rootusers.com/how-to-enable-the-telnet-client-in-windows-10/).
+
+
+git
+===
+
+On utilisera git comme gestionnaire de source. quelques liens utiles :
+
+* https://github.com/ : faites vous un compte là bas. On s'en servira pour transférer tous nos programmes vers l'ovh.
+* https://git-scm.com/book/fr/v2 En particulier les pages :
+
+  * https://git-scm.com/book/fr/v2/D%C3%A9marrage-rapide-Param%C3%A9trage-%C3%A0-la-premi%C3%A8re-utilisation-de-Git
+  * https://git-scm.com/book/fr/v2/Les-bases-de-Git-D%C3%A9marrer-un-d%C3%A9p%C3%B4t-Git
+
+* http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/fr/
 
 Cours par cours
 ===============
