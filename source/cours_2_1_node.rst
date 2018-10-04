@@ -4,7 +4,7 @@ Node
 
 https://nodejs.org/en/ est idéal pour créer des petits serveur web, des sites à une seule page ressemblant à une application, ou encore une interface *REST*.
 
-Il est utilisé en conjonction d'autres bibliothèques pour créer des applications *MEAN* (`<https://en.wikipedia.org/wiki/MEAN_(software_bundle)>`_) . Actuellement, il y a des alternatives sérieuses à A (angular).
+Il est utilisé en conjonction d'autres bibliothèques pour créer des applications *MEAN* (`<https://en.wikipedia.org/wiki/MEAN_(software_bundle)>`_) . Actuellement, il y a des alternatives sérieuses à A (angular), comme react.js mais il est bien revenu.
 
 Node en console
 ===============

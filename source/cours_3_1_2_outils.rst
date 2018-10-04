@@ -275,6 +275,9 @@ Côté Serveur
 
 `<https://facebook.github.io/jest/>`_
 
+ou mocha.
+
+
 Tester le JS et les routes.
 
 
