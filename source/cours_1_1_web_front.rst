@@ -360,7 +360,7 @@ Puis :
 Si on oublie :code:`--save` le package est installé mais pas ajouté dans le fichier de config (regardez le fichier de configuration). Il est toujours bon de se souvenir des packages que l'on installe (on le verra sur l'ovh). 
 
 .. note:: 
-    Il y a de tout sur :code:`npm`. Quasiment tout le monde peut poster des packages. Donc Le meilleur y cotoie le pire, comme https://github.com/kevva/is-negative . Je vous rassure, il y a aussi https://github.com/kevva/is-positive mais bizarrement pas https://github.com/kevva/is-zero.
+Il y a de tout sur :code:`npm`. Quasiment tout le monde peut poster des packages. Donc Le meilleur y cotoie le pire, comme https://github.com/kevva/is-negative . Je vous rassure, il y a aussi https://github.com/kevva/is-positive mais bizarrement pas https://github.com/kevva/is-zero.
     
     
 Le lien vers bulma devient alors : :code:`<link href="./node_modules/bulma/css/bulma.css" rel="stylesheet">`
@@ -378,28 +378,28 @@ Tests
     regardez en particulier la courbe décroissante.
 
 Côté Client
-^^^^^^^^^^^  
+-----------
 
 
 Tests côté front
-================ 
+================
 
 On fera plutôt des tests fonctionnels en racontant des petites histoires que doit satisfaire notre site, mais on peut aussi voir si nos balises html se placent bien.
 
 
 webdriver.io
-^^^^^^^^^^^^ 
+------------
 
 On peut tester le rendu client en simulant un navigateur.
 
 Pour cela on utilise Selenium `<http://www.seleniumhq.org>`_ et ses webdrivers qui simulent un browser. Tout ceci fonctionne en java, donc assurez vous d'avoir un java qui corresponde.
-Étapes à suivre : 
+Étapes à suivre :
 
 #. installation de java (si nécessaire. Tapez java dans un terminal/powershell et si ça rate, c'est qu'il faut l'installer) : `<https://www.java.com/fr/download/faq/develop.xml>`_ et suivez le lien pour télécharger le jdk.
 #. récupérer le fichier jar de Selenium standalone server : `<http://www.seleniumhq.org/download/>`_.
 #. ajouter un driver. Nous utiliserons celui de Chrome : `<https://sites.google.com/a/chromium.org/chromedriver/>`_. Il y en a d'autres possibles (par exemple pour Firefox : `<https://github.com/mozilla/geckodriver/releases>`_).
 
-Une fois Selenium et le driver placé dans un dossier Selenium. Je l'ai placé dans le dossier parent de l'application. On peut tester pour voir si ça marche. En utilisant ce que j'ai téléchargé et mis dans le même dossier : :code:`java -Dwebdriver.chrome.driver=./chromedriver -jar selenium-server-standalone-3.14.jar` 
+Une fois Selenium et le driver placé dans un dossier Selenium. Je l'ai placé dans le dossier parent de l'application. On peut tester pour voir si ça marche. En utilisant ce que j'ai téléchargé et mis dans le même dossier : :code:`java -Dwebdriver.chrome.driver=./chromedriver -jar selenium-server-standalone-3.14.jar`
 
 
 sous windows la commande devient : :code:`java "-Dwebdriver.chrome.driver=chromedriver.exe" -jar "selenium-server-standalone-3.14.0.jar"`
@@ -409,7 +409,7 @@ sous windows la commande devient : :code:`java "-Dwebdriver.chrome.driver=chrome
 
 Un serveur web Selenium est lancé. Il est sur le port 4444 par défaut (lisez les logs).
 
-.. note :: Java est toujours verbeux dans ses logs. Apprenez à les lire. 
+.. note :: Java est toujours verbeux dans ses logs. Apprenez à les lire.
 
 Et maintenant, il nous reste à installer `<http://webdriver.io>`_ pour utiliser Selenium avec Node : :code:`npm install --save-dev webdriverio`
 
@@ -417,10 +417,10 @@ Et maintenant, il nous reste à installer `<http://webdriver.io>`_ pour utiliser
 
 
 
-Et on fait un premier essai avec le tout : :file:`selenium.test.js` dans un repertoire de test :
+Et on fait un premier essai avec le tout dans : :code:`selenium.test.js` dans un repertoire de test :
 
-.. code-block:: js 
- 
+.. code-block:: js
+
     var webdriverio = require('webdriverio');
 
     var options = {
@@ -435,7 +435,7 @@ Et on fait un premier essai avec le tout : :file:`selenium.test.js` dans un repe
     .url('https://www.google.fr')
     .saveScreenshot("snapshot.png")
     .catch(function(err) {
-        console.log(err);}) 
+        console.log(err);})
     .end();
 
 
@@ -445,9 +445,9 @@ Avant d'exécuter le fichier avec :code:`node ./tests/selenium.test.js` On s'ass
 
 .. note :: Assurez vous de ne part avoir de serveur qui tourne sur le port par défaut. Sinon, changez de port par défaut.
 
-On peut maintenant faire la même chose pour notre fichier : 
+On peut maintenant faire la même chose pour notre fichier :
 
-.. code-block:: js 
+.. code-block:: js
 
     var webdriverio = require('webdriverio');
     var path = require('path');
@@ -459,14 +459,14 @@ On peut maintenant faire la même chose pour notre fichier :
         }
 
     var toUpload = path.join(__dirname, '..', '/index.html')
-    
+
     webdriverio
         .remote(options)
         .init()
         .url('file://' + toUpload)
         .saveScreenshot("snapshot.png")
         .catch(function(err) {
-            console.log(err);}) 
+            console.log(err);})
         .end();
 
 
@@ -478,8 +478,8 @@ Pour l'instant ce ne sont pas de vrais tests. Pour cela, on va utiliser une bibl
 
 Commençons par voir ce que l'on veut tester :
 
- 
-.. code-block:: js 
+
+.. code-block:: js
 
 	var webdriverio = require('webdriverio');
 	var path = require('path');
@@ -503,10 +503,10 @@ Commençons par voir ce que l'on veut tester :
 	})
 	.catch(function(err) {
 	    console.log(err);
-	    }) 
+	    })
 
 	.end()
-    
+
 
 .. note :: Attention au .end(). Tout est asynchrone donc si on ajoute une ligne avec le .end(), il risque d'être exécuté avant la fin de la requête.
 
@@ -528,7 +528,7 @@ Les tests js et de routes sont lents par rapport aux tests python ou java. C'est
 * ecrire des jolis tests : :code:`npm install chai --save-dev`
 
 
-Le code des tests :code:`mocha` pour le fichier :file:`./tests/index.test.js` : 
+Le code des tests :code:`mocha` pour le fichier : :code:`./tests/index.test.js` :
 
 https://medium.com/@ChrisDobler/getting-started-guide-to-browser-testing-with-webdriver-io-and-mocha-and-chai-323c2ff3c773
 
@@ -539,7 +539,7 @@ A expliquer :
 * after est exécuté après les tests. On log les erreurs et on stope le browser
 
 
-.. code-block:: js 
+.. code-block:: js
 
     var webdriverio = require('webdriverio');
     var path = require('path');
@@ -555,7 +555,7 @@ A expliquer :
 
     let toUpload = path.join(__dirname, '..', 'index.html')
 
-    describe('index tests', function() {    
+    describe('index tests', function() {
         before(function(done) {
             browser.init().url('file://' + toUpload)
                 .then(() => {done();})
@@ -564,10 +564,10 @@ A expliquer :
 
           after(function() {
           browser
-              .catch((err) => { console.log(err);}) 
+              .catch((err) => { console.log(err);})
               .end();
           });
-      
+
         it('page title', function(done) {
             browser.getTitle().then((title) => {
               expect(title).to.equal('Maison page');
@@ -581,8 +581,8 @@ A expliquer :
               done();
             }).catch((err) => done(err));
         });
-    
-    });    
+
+    });
 
 
 
@@ -770,12 +770,349 @@ Pour fabriquer des UI, JS est un bon outil, muni des bons frameworks.
 Orienté jeu/2D : Pixijs (http://www.pixijs.com)
 
 
-webpack
+WEBPACK
 =======
+Webpack est un compilateur de Javascript et de CSS. On le qualifie souvent de bundler car il permet de regrouper les fichiers de dépendances souvent nombreux en peu de fichiers; on va l'appliquer à l'exemple simple de cette page web statique qui utilise Bulma, jQuery et une feuille de style qui lui est propre.
 
-https://webpack.js.org
+.. image:: _static/site_demo_bulma.png
 
-Un compilateur de javascript, css, html, et fichiers statiques.
+Actuellement, le code de la page ressemble à ça, et on peut remarquer que tout ce qui est nécessaire (CSS, JS) est mis en vrac. Webpack va nous permettre de tout "bundler" pour rendre l'usage des feuilles de style et des scripts plus propre.
+Ce projet nécessite deux images pour fonctionner, vous pouvez aller les chercher dans le dossier _static du projet (:code:`digit.png` et :code:`plan-origami.png`)
+
+.. code-block:: html
+
+	<!doctype html>
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>Maison page</title>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css" rel="stylesheet">
+            <style>
+                .image-navbar {
+                width: 50px;
+                height: 50px;
+                }
+                .titre-navbar {
+                font-size: 20px;
+                font-weight: bold;
+                            }
+                    .centrer{
+                        text-align: center;
+                    }
+                    .marge-navbar{
+                        margin-top:20px;
+                    }
+                    .conteneur{
+                        padding:20px;
+                    }
+            </style>
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script>
+                $(function() {
+                    //Pour mettre en gras les instructions lors du passage de la souris
+                    $("li").hover(
+                        function() {
+                            $(this).css("font-weight", "bold")
+                        },
+                        function() {
+                            $(this).css("font-weight", "normal")
+                        }
+                    )
+                })
+            </script>
+        </head>
+    <body>
+    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+                <img src="images/digit.png" class="image-navbar">
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item titre-navbar">
+                    Digitale démo webpack
+                </a>
+                <a class="navbar-item">
+                    Lien1
+                </a>
+                <a class="navbar-item">
+                    Lien2
+                </a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary">
+                            <strong>Bouton enregistrement</strong>
+                        </a>
+                        <a class="button is-light">
+                            Bouton login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="conteneur">
+    <div class="title centrer marge-navbar">Comment faire des Origamis Souris</div>
+    <div class="columns">
+        <div class="column is-half is-center">
+            <img src="images/plan-origami.jpg" style="width:2000px;">
+        </div>
+        <div class="column is-half is-center">
+            <ol type="1">
+                <li>Plier la feuille dans les deux diagonales puis ouvrir la feuille.</li><br>
+                <li>Faire pivoter la feuille qui doit se retrouver en forme de losange.</li><br>
+                <li>Plier les pointes "A" et "C" vers le point central puis ouvir la feuille.</li><br>
+                <li>Plier les pointes "A" vers le centre "X", marquer le pli avec l'ongle et procéder de façon identique avec le point "C".</li><br>
+                <li>Replier le point "D" vers le point "X" et marquer le pli avec l'ongle.</li><br>
+                <li>Rabattre le point "B" en suivant la ligne verticale centrale.</li><br>
+                <li>Rabattre les 2 angles du haut vers la ligne centrale.</li><br>
+                <li>Plier vers l'extérieur les angles"1" en suivant une diagonale partant de l'angle "Z".</li><br>
+                <li>Procéder de façon identique avec l'angle "2".</li><br>
+                <li>Retourner le pliage.</li><br>
+                <li>Rabattre la pointe du haut vers le centre comme sur le modèle.</li><br>
+                <li>Retourner le pliage.</li><br>
+                <li>Plier le long de la ligne centrale verticale.</li><br>
+                <li>Contreplier les oreilles pour les ouvrir.</li><br>
+            </ol>
+        </div>
+    </div>
+    </div>
+    </body>
+    </html>
 
 
-.. note:: C'est bon, mangez-en !
+Pour commencer, il faut s'assurer que vous êtes dans un dossier de travail, où npm est initialisé; si ce n'est pas fait, faites :code:`npm init -y`
+
+Dans ce dossier, vous devez faire plusieurs choses :
+  * Créer un dossier :code:`public`, dans lequel vous devrez placer le :code:`index.html` et créer un fichier :code:`bundle.js` (vide pour le moment)
+  * Créer un dossier :code:`src` et y placer un fichier :code:`index.js` (aussi vide pour le moment)
+  * A la racine du dossier, créer un fichier :code:`webpack.config.js`
+  * Enfin, créer un dossier :code:`assets` qui contiendra lui même deux dossiers : :code:`images` et :code:`stylesheets`
+
+Maintenant, nous allons installer Webpack et ce dont nous avons besoin :
+
+.. code-block:: bash
+
+    npm install -g webpack@latest
+    npm install --save-dev webpack@latest webpack-dev-server@latest webpack-cli@latest
+    npm install --save-dev babel-loader babel-core babel-preset-env
+    npm install --save-dev sass-loader node-sass css-loader style-loader autoprefixer postcss-loader
+    npm install --save-dev extract-text-webpack-plugin file-loader copy-webpack-plugin
+
+Normalement, un dossier :code:`node_modules` est apparu et vous pouvez voir dans votre fichier :code:`package.json` que les dépendances sont apparues dans la section :code:`devDependencies`.
+
+Ensuite, on édite le fichier :code:`webpack.config.js`
+
+.. code-block:: js
+
+    const webpack = require("webpack");
+    const path = require("path");
+    const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
+    const CopyWebpackPlugin = require('copy-webpack-plugin');
+    let config = {
+        mode: "development",
+        entry: "./src/index.js",
+        output: {
+            path: path.resolve(__dirname, "./public"),
+            filename: "./bundle.js"
+        },
+        module: {
+            rules: [{
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            },
+                {
+                    test: /\.scss$/,
+                    use: ExtractTextWebpackPlugin.extract({
+                        fallback: 'style-loader',
+                        use: ['css-loader', 'sass-loader'],
+                    })
+                }]
+        },
+        plugins: [
+            new ExtractTextWebpackPlugin("styles.css"),
+            new CopyWebpackPlugin([
+                { from: './assets/images', to: 'images' }
+            ])
+        ]
+    }
+    module.exports = config;
+
+
+Il faut noter que :code:`entry` correspond aux fichiers à compiler (dans notre cas :code:`index.js`) et :code:`output`
+à l'emplacement que nous voulons donner à notre fichier compilé et au nom qu'on veut lui donner (:code:`bundle.js` ici)
+
+Enfin, dans la section script du :code:`package.json`, on ajoute la ligne :code:`"watch": "webpack --watch"`
+
+On installe maintenant les deux dépendances de notre projet (jQuery et Bulma)
+:code:`npm install jquery bulma`
+
+Puis on réduit notre code html en séparant dans chacun des fichiers le contenu adéquat :
+
+Pour le SCSS (CSS pas compilé ...) dans :code:`assets/stylesheets/styles.scss`
+
+.. code-block:: scss
+
+    @import "~bulma/bulma";
+    .image-navbar {
+      width: 50px;
+      height: 50px;
+    }
+    .titre-navbar{
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .centrer{
+      text-align: center;
+    }
+    .marge-navbar{
+      margin-top:20px;
+    }
+    .conteneur{
+      padding:20px;
+    }
+
+Lors de la compilation, Bulma et nos classes CSS seront réunis dans un seul et même fichier.
+
+Pour le HTML dans :code:`src/index.html`
+
+.. code-block:: html
+
+    <!doctype html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Maison page</title>
+        <link href="styles.css" rel="stylesheet">
+        <script src="bundle.js"></script>
+    </head>
+    <body>
+    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://wiki.centrale-marseille.fr/digitale/">
+                <img src="images/digit.png" class="image-navbar">
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item titre-navbar">
+                    Digitale démo webpack
+                </a>
+                <a class="navbar-item">
+                    Lien1
+                </a>
+                <a class="navbar-item">
+                    Lien2
+                </a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary">
+                            <strong>Bouton enregistrement</strong>
+                        </a>
+                        <a class="button is-light">
+                            Bouton login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="conteneur">
+    <div class="title centrer marge-navbar">Comment faire des Origamis Souris</div>
+    <div class="columns">
+        <div class="column is-half is-center">
+            <img src="images/plan-origami.jpg" style="width:2000px;">
+        </div>
+        <div class="column is-half is-center">
+            <ol type="1">
+                <li>Plier la feuille dans les deux diagonales puis ouvrir la feuille.</li><br>
+                <li>Faire pivoter la feuille qui doit se retrouver en forme de losange.</li><br>
+                <li>Plier les pointes "A" et "C" vers le point central puis ouvir la feuille.</li><br>
+                <li>Plier les pointes "A" vers le centre "X", marquer le pli avec l'ongle et procéder de façon identique avec le point "C".</li><br>
+                <li>Replier le point "D" vers le point "X" et marquer le pli avec l'ongle.</li><br>
+                <li>Rabattre le point "B" en suivant la ligne verticale centrale.</li><br>
+                <li>Rabattre les 2 angles du haut vers la ligne centrale.</li><br>
+                <li>Plier vers l'extérieur les angles"1" en suivant une diagonale partant de l'angle "Z".</li><br>
+                <li>Procéder de façon identique avec l'angle "2".</li><br>
+                <li>Retourner le pliage.</li><br>
+                <li>Rabattre la pointe du haut vers le centre comme sur le modèle.</li><br>
+                <li>Retourner le pliage.</li><br>
+                <li>Plier le long de la ligne centrale verticale.</li><br>
+                <li>Contreplier les oreilles pour les ouvrir.</li><br>
+            </ol>
+        </div>
+    </div>
+    </div>
+    </body>
+    </html>
+
+Vous remarquez qu'ici le fichier html a été grandement simplifié. On a externalisé les fichiers js, css; jQuery n'est plus importé ici et le chemin des images a été "rapetissé". Maintenant, le html n'appelle plus qu'un fichier js et un fichier css.
+
+Pour le JavaScript dans :code:`src/index.js`
+
+.. code-block:: js
+
+    require("../assets/stylesheets/styles.scss");
+    require('file-loader?name=[name].[ext]!./index.html');
+    let $ = require('jquery');
+    $(function() {
+    //Pour mettre en gras les instructions lors du passage de la souris
+        $("li").hover(
+            function() {
+                $(this).css("font-weight", "bold")
+            },
+            function() {
+                $(this).css("font-weight", "normal")
+            }
+        )
+    })
+
+
+Il faut voir le SCSS (ou le CSS) et les autres fichiers importants (comme le index.html) comme une dépendance du javascript. Dans le index.js (et seulement là) on mettra tout ce dont on a besoin comme dépendances avant de le compiler dans le dossier :code:`public`. Le dossier public est le dossier qui nous servira pour la production.
+
+Maintenant, on peut tester notre configuration et compiler le contenu de notre fichier :code:`index.js` avec la commande :code:`npm run watch`
+
+L'arborescence devrait ressembler à cela :
+
+.. code-block:: bash
+
+    |
+    ├── assets
+    │   ├── images
+    │   │   ├── digit.png
+    │   │   └── plan-origami.jpg
+    │   └── stylesheets
+    │       └── styles.scss
+    ├── package-lock.json
+    ├── package.json
+    ├── public
+    │   ├── bundle.js
+    │   ├── images
+    │   │   ├── digit.png
+    │   │   └── plan-origami.jpg
+    │   ├── index.html
+    │   └── styles.css
+    ├── src
+    │   ├── index.html
+    │   └── index.js
+    └── webpack.config.js
+
+Enfin, les fichiers que l'on servira au serveur sont dans :code:`public` et nulle part ailleurs.  Le dossier :code:`public` n'est jamais versionné, car il est généré par Webpack. Ce dossier est totalement indépendant du reste du projet.
+
+D'autres point à explorer avec WebPack sont le Hot-Reloading, le Versioning, la "Minifisation" des fichiers css et js mais ils demandent une configuration un peu plus longue. Même si ici on a utilisé Webpack pour le front, on peut aussi utiliser Webpack pour le back; si on l'utilise pour les deux en même temps, on aura deux fichiers de configuration de webpack.
