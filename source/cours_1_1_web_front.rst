@@ -776,7 +776,7 @@ Webpack est un compilateur de Javascript et de CSS. On le qualifie souvent de bu
 
 .. image:: _static/site_demo_bulma.png
 
-Actuellement, le code de la page ressemble à ça, et on peut remarquer que tout ce qui est nécéssaire (CSS, JS) est mis en vrac. Webpack va nous permettre de tout "bundler" pour rendre l'usage des feuilles de style et des scripts plus propre.
+Actuellement, le code de la page ressemble à ça, et on peut remarquer que tout ce qui est necéssaire (CSS, JS) est mis en vrac. Webpack va nous permettre de tout "bundler" pour rendre l'usage des feuilles de style et des scripts plus propre.
 Ce projet nécéssite deux images pour fonctionner, vous pouvez aller les chercher dans le dossier _static du projet (:code:`digit.png` et :code:`plan-origami.png`)
 
 .. code-block:: html
