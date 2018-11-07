@@ -772,7 +772,7 @@ Orienté jeu/2D : Pixijs (http://www.pixijs.com)
 
 WEBPACK
 =======
-Webpack est un compilateur de Javascript, CSS, HTML, et de fichiers statiques; on va l'appliquer à l'exemple simple de cette page web qui utilise Bulma, jQuery et une feuille de style qui lui est propre.
+Webpack est un compilateur de Javascript et de CSS. On le qualifie souvent de bundler car il permet de regrouper les fichiers de dépendances souvent nombreux en peu de fichiers; on va l'appliquer à l'exemple simple de cette page web statique qui utilise Bulma, jQuery et une feuille de style qui lui est propre.
 
 .. image:: _static/site_demo_bulma.png
 
