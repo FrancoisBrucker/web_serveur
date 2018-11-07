@@ -774,56 +774,57 @@ WEBPACK
 =======
 Webpack est un compilateur de Javascript, CSS, HTML, et de fichiers statiques; on va l'appliquer à l'exemple simple de cette page web qui utilise Bulma, jQuery et une feuille de style qui lui est propre.
 
-Actuellement, le code de la page ressemble à ça, et on peut remarquer que tout ce qui est nécéssaire (CSS, JS) est mis en vrac. Webpack va nous permettre de tout "bundler" pour rendre l'usage des feuilles de style et des script plus propre.
-Ce projet nécéssite deux images pour fonctionner, vous pouvez aller les chercher sur internet.
+.. image:: _static/site_demo_bulma.png
 
+Actuellement, le code de la page ressemble à ça, et on peut remarquer que tout ce qui est nécéssaire (CSS, JS) est mis en vrac. Webpack va nous permettre de tout "bundler" pour rendre l'usage des feuilles de style et des scripts plus propre.
+Ce projet nécéssite deux images pour fonctionner, vous pouvez aller les chercher dans le dossier _static du projet (:code:`digit.png` et :code:`plan-origami.png`)
 .. code-block:: html
 
 	<!doctype html>
-        <html>
+    <html>
         <head>
-        <meta charset="utf-8" />
-        <title>Maison page</title>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css" rel="stylesheet">
-        <style>
-        .image-navbar {
-        width: 50px;
-        height: 50px;
-        }
-        .titre-navbar {
-        font-size: 20px;
-        font-weight: bold;
+            <meta charset="utf-8" />
+            <title>Maison page</title>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css" rel="stylesheet">
+            <style>
+                .image-navbar {
+                width: 50px;
+                height: 50px;
+                }
+                .titre-navbar {
+                font-size: 20px;
+                font-weight: bold;
+                            }
+                    .centrer{
+                        text-align: center;
                     }
-            .centrer{
-                text-align: center;
-            }
-            .marge-navbar{
-                margin-top:20px;
-            }
-            .conteneur{
-                padding:20px;
-            }
-        </style>
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script>
-            $(function() {
-                //Pour mettre en gras les instructions lors du passage de la souris
-                $("li").hover(
-                    function() {
-                        $(this).css("font-weight", "bold")
-                    },
-                    function() {
-                        $(this).css("font-weight", "normal")
+                    .marge-navbar{
+                        margin-top:20px;
                     }
-                )
-            })
-        </script>
-    </head>
+                    .conteneur{
+                        padding:20px;
+                    }
+            </style>
+            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+            <script>
+                $(function() {
+                    //Pour mettre en gras les instructions lors du passage de la souris
+                    $("li").hover(
+                        function() {
+                            $(this).css("font-weight", "bold")
+                        },
+                        function() {
+                            $(this).css("font-weight", "normal")
+                        }
+                    )
+                })
+            </script>
+        </head>
     <body>
     <nav class="navbar is-info" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="https://bulma.io">
-                <img src="assets/images/digit.png" class="image-navbar">
+                <img src="images/digit.png" class="image-navbar">
             </a>
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                 <span aria-hidden="true"></span>
@@ -861,7 +862,7 @@ Ce projet nécéssite deux images pour fonctionner, vous pouvez aller les cherch
     <div class="title centrer marge-navbar">Comment faire des Origamis Souris</div>
     <div class="columns">
         <div class="column is-half is-center">
-            <img src="assets/images/plan-origami.jpg" style="width:2000px;">
+            <img src="images/plan-origami.jpg" style="width:2000px;">
         </div>
         <div class="column is-half is-center">
             <ol type="1">
@@ -897,17 +898,15 @@ Dans ce dossier, vous devez faire plusieurs choses :
 
 Maintenant, nous allons installer Webpack et ce dont nous avons besoin :
 
-:code:`npm install -g webpack@latest`
+.. code-block:: bash
 
-:code:`npm install --save-dev webpack@latest webpack-dev-server@latest webpack-cli@latest`
+    npm install -g webpack@latest
+    npm install --save-dev webpack@latest webpack-dev-server@latest webpack-cli@latest
+    npm install --save-dev babel-loader babel-core babel-preset-env
+    npm install --save-dev sass-loader node-sass css-loader style-loader autoprefixer postcss-loader
+    npm install --save-dev extract-text-webpack-plugin file-loader copy-webpack-plugin
 
-:code:`npm install --save-dev babel-loader babel-core babel-preset-env`
-
-:code:`npm install --save-dev sass-loader node-sass css-loader style-loader autoprefixer postcss-loader`
-
-:code:`npm install --save-dev extract-text-webpack-plugin file-loader copy-webpack-plugin`
-
-Normalement, un dossier :code:`node_modules` est apparu et vous pouvez voir dans votre fichier :code:`package.json` que les dépendance sont apparues dans la section :code:`devDependencies`.
+Normalement, un dossier :code:`node_modules` est apparu et vous pouvez voir dans votre fichier :code:`package.json` que les dépendances sont apparues dans la section :code:`devDependencies`.
 
 Ensuite, on édite le fichier :code:`webpack.config.js`
 
@@ -960,8 +959,7 @@ On installe maintenant les deux dépendances de notre projet (jQuery et Bulma)
 
 Puis on réduit notre code html en séparant dans chacun des fichiers le contenu adéquat :
 
-Pour le CSS
-:code:`assets/stylesheets/styles.scss`
+Pour le CSS dans :code:`assets/stylesheets/styles.scss`
 
 .. code-block:: scss
 
@@ -984,7 +982,7 @@ Pour le CSS
       padding:20px;
     }
 
-:code:`src/index.html`
+Pour le HTML dans : :code:`src/index.html`
 
 .. code-block:: html
 
@@ -1065,8 +1063,7 @@ Pour le CSS
 
 Vous remarquez qu'ici le fichier html a été grandement simplifié. On a externalisé les fichiers js, css; on importe plus jQuery et le chemin des images a été "rapetissé". Maintenant, le html n'appelle plus qu'un fichier js et un fichier css.
 
-Pour le JavaScript
-:code:`src/index.js`
+Pour le JavaScript dans :code:`src/index.js`
 
 .. code-block:: js
 
@@ -1116,4 +1113,4 @@ L'arborescense devrait ressembler à cela :
     └── webpack.config.js
 
 
-D'autres point à explorer avec WebPack sont le Hot-Reloading, le Versioning, la "Minifisation" des fichiers css et js mais ils demandent une configuration un peu plus longue. Même si ici on a utilisé Webpack pour le front, on peut aussi utiliser Webpack pour le back; si on l'utilise pour les deux en même temps, on aura deux fichiers de configuraiton de webpack.
+D'autres point à explorer avec WebPack sont le Hot-Reloading, le Versioning, la "Minifisation" des fichiers css et js mais ils demandent une configuration un peu plus longue. Même si ici on a utilisé Webpack pour le front, on peut aussi utiliser Webpack pour le back; si on l'utilise pour les deux en même temps, on aura deux fichiers de configuration de webpack.
