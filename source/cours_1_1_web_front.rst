@@ -776,8 +776,8 @@ Webpack est un compilateur de Javascript et de CSS. On le qualifie souvent de bu
 
 .. image:: _static/site_demo_bulma.png
 
-Actuellement, le code de la page ressemble à ça, et on peut remarquer que tout ce qui est necéssaire (CSS, JS) est mis en vrac. Webpack va nous permettre de tout "bundler" pour rendre l'usage des feuilles de style et des scripts plus propre.
-Ce projet nécéssite deux images pour fonctionner, vous pouvez aller les chercher dans le dossier _static du projet (:code:`digit.png` et :code:`plan-origami.png`)
+Actuellement, le code de la page ressemble à ça, et on peut remarquer que tout ce qui est nécessaire (CSS, JS) est mis en vrac. Webpack va nous permettre de tout "bundler" pour rendre l'usage des feuilles de style et des scripts plus propre.
+Ce projet nécessite deux images pour fonctionner, vous pouvez aller les chercher dans le dossier _static du projet (:code:`digit.png` et :code:`plan-origami.png`)
 
 .. code-block:: html
 
@@ -1062,7 +1062,7 @@ Pour le HTML dans :code:`src/index.html`
     </body>
     </html>
 
-Vous remarquez qu'ici le fichier html a été grandement simplifié. On a externalisé les fichiers js, css; on importe plus jQuery et le chemin des images a été "rapetissé". Maintenant, le html n'appelle plus qu'un fichier js et un fichier css.
+Vous remarquez qu'ici le fichier html a été grandement simplifié. On a externalisé les fichiers js, css; jQuery n'est plus importé ici et le chemin des images a été "rapetissé". Maintenant, le html n'appelle plus qu'un fichier js et un fichier css.
 
 Pour le JavaScript dans :code:`src/index.js`
 
@@ -1084,11 +1084,11 @@ Pour le JavaScript dans :code:`src/index.js`
     })
 
 
-Il faut voir le SCSS (ou le CSS) et les autres fichiers importants (comme le index.html) comme une dépendance du javascript. Dans le index.js (et seulement là) on mettra tout ce dont on a besoin comme dépendance avant de le compiler dans le dossier :code:`public`. Le dossier public est le dossier qui nous servira pour la production.
+Il faut voir le SCSS (ou le CSS) et les autres fichiers importants (comme le index.html) comme une dépendance du javascript. Dans le index.js (et seulement là) on mettra tout ce dont on a besoin comme dépendances avant de le compiler dans le dossier :code:`public`. Le dossier public est le dossier qui nous servira pour la production.
 
 Maintenant, on peut tester notre configuration et compiler le contenu de notre fichier :code:`index.js` avec la commande :code:`npm run watch`
 
-L'arborescense devrait ressembler à cela :
+L'arborescence devrait ressembler à cela :
 
 .. code-block:: bash
 
