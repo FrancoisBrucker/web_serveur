@@ -778,6 +778,7 @@ Actuellement, le code de la page ressemble à ça, et on peut remarquer que tout
 Ce projet nécéssite deux images pour fonctionner, vous pouvez aller les chercher sur internet.
 
 .. code-block:: html
+
 	<!doctype html>
         <html>
         <head>
@@ -913,6 +914,7 @@ Ensuite, on édite le fichier :code:`webpack.config.js`
 :code:`webpack.config.js`
 
 .. code-block:: js
+
     const webpack = require("webpack");
     const path = require("path");
     const ExtractTextWebpackPlugin = require("extract-text-webpack-plugin");
@@ -962,6 +964,7 @@ Pour le CSS
 :code:`assets/stylesheets/styles.scss`
 
 .. code-block:: scss
+
     @import "~bulma/bulma";
     .image-navbar {
       width: 50px;
@@ -984,6 +987,7 @@ Pour le CSS
 :code:`src/index.html`
 
 .. code-block:: html
+
     <!doctype html>
     <html>
     <head>
@@ -1065,6 +1069,7 @@ Pour le JavaScript
 :code:`src/index.js`
 
 .. code-block:: js
+
     require("../assets/stylesheets/styles.scss");
     require('file-loader?name=[name].[ext]!./index.html');
     let $ = require('jquery');
@@ -1087,26 +1092,28 @@ Maintenant, on peut tester notre configuration et compiler le contenu de notre f
 
 L'arborescense devrait ressembler à cela :
 
-| project
-├── assets
-│   ├── images
-│   │   ├── digit.png
-│   │   └── plan-origami.jpg
-│   └── stylesheets
-│       └── styles.scss
-├── package-lock.json
-├── package.json
-├── public
-│   ├── bundle.js
-│   ├── images
-│   │   ├── digit.png
-│   │   └── plan-origami.jpg
-│   ├── index.html
-│   └── styles.css
-├── src
-│   ├── index.html
-│   └── index.js
-└── webpack.config.js
+.. code-block:: bash
+
+    |
+    ├── assets
+    │   ├── images
+    │   │   ├── digit.png
+    │   │   └── plan-origami.jpg
+    │   └── stylesheets
+    │       └── styles.scss
+    ├── package-lock.json
+    ├── package.json
+    ├── public
+    │   ├── bundle.js
+    │   ├── images
+    │   │   ├── digit.png
+    │   │   └── plan-origami.jpg
+    │   ├── index.html
+    │   └── styles.css
+    ├── src
+    │   ├── index.html
+    │   └── index.js
+    └── webpack.config.js
 
 
 D'autres point à explorer avec WebPack sont le Hot-Reloading, le Versioning, la "Minifisation" des fichiers css et js mais ils demandent une configuration un peu plus longue. Même si ici on a utilisé Webpack pour le front, on peut aussi utiliser Webpack pour le back; si on l'utilise pour les deux en même temps, on aura deux fichiers de configuraiton de webpack.
