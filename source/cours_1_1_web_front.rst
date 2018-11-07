@@ -778,6 +778,7 @@ Webpack est un compilateur de Javascript, CSS, HTML, et de fichiers statiques; o
 
 Actuellement, le code de la page ressemble à ça, et on peut remarquer que tout ce qui est nécéssaire (CSS, JS) est mis en vrac. Webpack va nous permettre de tout "bundler" pour rendre l'usage des feuilles de style et des scripts plus propre.
 Ce projet nécéssite deux images pour fonctionner, vous pouvez aller les chercher dans le dossier _static du projet (:code:`digit.png` et :code:`plan-origami.png`)
+
 .. code-block:: html
 
 	<!doctype html>
