@@ -911,8 +911,6 @@ Normalement, un dossier :code:`node_modules` est apparu et vous pouvez voir dans
 
 Ensuite, on édite le fichier :code:`webpack.config.js`
 
-:code:`webpack.config.js`
-
 .. code-block:: js
 
     const webpack = require("webpack");
@@ -951,7 +949,7 @@ Ensuite, on édite le fichier :code:`webpack.config.js`
 
 
 Il faut noter que :code:`entry` correspond aux fichiers à compiler (dans notre cas :code:`index.js`) et :code:`output`
-à l'emplacement que nous voulons donner à notre fichier compilé et au nom qu'on veut lui donner.
+à l'emplacement que nous voulons donner à notre fichier compilé et au nom qu'on veut lui donner (:code:`bundle.js` ici)
 
 Enfin, dans la section script du :code:`package.json`, on ajoute la ligne :code:`"watch": "webpack --watch"`
 
@@ -960,7 +958,7 @@ On installe maintenant les deux dépendances de notre projet (jQuery et Bulma)
 
 Puis on réduit notre code html en séparant dans chacun des fichiers le contenu adéquat :
 
-Pour le CSS dans :code:`assets/stylesheets/styles.scss`
+Pour le SCSS (CSS pas compilé ...) dans :code:`assets/stylesheets/styles.scss`
 
 .. code-block:: scss
 
@@ -983,7 +981,9 @@ Pour le CSS dans :code:`assets/stylesheets/styles.scss`
       padding:20px;
     }
 
-Pour le HTML dans : :code:`src/index.html`
+Lors de la compilation, Bulma et nos classes CSS seront réunis dans un seul et même fichier.
+
+Pour le HTML dans :code:`src/index.html`
 
 .. code-block:: html
 
@@ -1113,5 +1113,6 @@ L'arborescense devrait ressembler à cela :
     │   └── index.js
     └── webpack.config.js
 
+Enfin, les fichiers que l'on servira au serveur sont dans :code:`public` et nulle part ailleurs.  Le dossier :code:`public` n'est jamais versionné, car il est généré par Webpack. Ce dossier est totalement indépendant du reste du projet.
 
 D'autres point à explorer avec WebPack sont le Hot-Reloading, le Versioning, la "Minifisation" des fichiers css et js mais ils demandent une configuration un peu plus longue. Même si ici on a utilisé Webpack pour le front, on peut aussi utiliser Webpack pour le back; si on l'utilise pour les deux en même temps, on aura deux fichiers de configuration de webpack.
