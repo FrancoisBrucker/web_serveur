@@ -10,7 +10,7 @@ On recommence un petit site avec ce qu'on a appris la dernière fois. On ajoute 
 
 #. :code:`npm init` (on va appeler notre fichier de départ *server*),
 #. :code:`npm install express --save`,
-#. :code:`npm install ejs --save` (Plus de détails sur ejs dans le prochain point)
+#. :code:`npm install ejs --save`,
 #. création des dossiers annexes:
 
   * :file:`assets` pour les fichiers statiques. On y met une image pour les 404 appelée :file:`404.jpg` (prenez par exemple l'image de `<https://fr.wikipedia.org/wiki/Peugeot_404>`_)
@@ -30,12 +30,6 @@ On doit obtenir l'architecture de dossiers suivante (en utilisant la commande tr
   ├── ./package.json
   └── ./views
       └── ./views/partials
-
-
-ejs
-^^^^^^^^^
-
-Présentatiob test de ejs
 
 server.js
 ^^^^^^^^^
