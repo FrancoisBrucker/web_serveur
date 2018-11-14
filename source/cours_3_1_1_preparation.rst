@@ -652,9 +652,9 @@ Comme toujours, on commence par :
 
  :code:`npm install helmet --save`,
 
-en-tête http
+entête http
 ^^^^^^^^ 
-Les en-têtes http contiennent de nombreuses données, il faut donc y attacher une importance particulière.
+Les entêtes http contiennent de nombreuses données, il faut donc y attacher une importance particulière.
 
 Voilà quoi ressemble une entête http sans Helmet (vous pouvez voir vos entêtes http lorsque vous faites une requête, soit directement sur le navigateur: https://o7planning.org/fr/11631/comment-afficher-les-en-tetes-http-dans-google-chrome pour chrome, ou sur powershell, avec la commancd **curl**): 
 
@@ -670,7 +670,7 @@ Voilà quoi ressemble une entête http sans Helmet (vous pouvez voir vos entête
 
 
 
-le code suivant permet de modifier le contenu des ent-têtes http. Copiez le dans le fichier server.js.
+le code suivant permet de modifier le contenu des entêtes http. Copiez le dans le fichier server.js.
 
 .. code-block:: js
 
@@ -740,7 +740,7 @@ app.use(helmet.xssFilter());
 
 **Attention :**
 
-La fonction XSS-filter peut poser certains soucis avec des vieilles version d'internet explorer par exemple, voire faciliter les attaques XSS ironiquement !
+La fonction XSS-filter peut poser certains soucis avec des vieilles versions d'internet explorer par exemple, voire faciliter les attaques XSS ironiquement !
 Faites donc attention en utilisant cette fonction.
 
 C'était un petit survol d'Helmet afin de vous montrer comment gérer la sécurité de son site, comme je l'ai dit précedemment, il existe d'autres fonctionnalités afin de rendre votre site encore plus sécurisé!
