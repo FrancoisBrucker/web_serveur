@@ -474,7 +474,7 @@ Et le :file:`server.js`
 Les Logs
 ========
 
-Last but not least, parlons un peu des fichiers logs. Formellement, les fichiers logs sont définis au sens large comme " Un dispositif, permettant de stocker un historique des évènements attachés à un processus". 
+Parlons un peu des fichiers logs. Formellement, les fichiers logs sont définis au sens large comme " Un dispositif, permettant de stocker un historique des évènements attachés à un processus". 
 
 Dans le cas de notre site, ils constituent en quelque sorte le journal d'accès à notre serveur.
 
@@ -644,7 +644,7 @@ Si tout se passe bien, votre fichier log devrait se remplir d'un nouveau log au 
 Sécurité
 ======
 
-A present, nous allons parler sécurité.
+Last but not least, discutons à présent sécurité.
 La **sécurité** d'un site est un problème très important à prendre en compte lorsque l'on en crée un, sans quoi un utilisateur malveillant pourrait récupérer les données contenues sur vos pages !
 Node.js propose un module permettant de mettre en place quelques options de sécurité (nous n'en verrons que quelques unes, mais vous pouvez aller voir par vous même les autres !),  il s'agit de **Helmet**.
 
