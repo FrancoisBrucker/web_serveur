@@ -639,3 +639,111 @@ Celle-ci ajoute les middlewares pour pouvoir exploiter Winston avec Express. Et 
   app.use(newLogger) // On utilise notre logger à chaque requête (Applique un next par défaut)
   
 Si tout se passe bien, votre fichier log devrait se remplir d'un nouveau log au format json à chaque nouvelle requète. Dans le log, on trouve tout un tas de données (Pas toute utiles, mais l'administrateur peut trier ensuite) sur la requète, comme sa date, son url, etc.
+
+
+Sécurité
+======
+
+A present, nous allons parler sécurité.
+La **sécurité** d'un site est un problème très important à prendre en compte lorsque l'on en crée un, sans quoi un utilisateur malveillant pourrait récupérer les données contenues sur vos pages !
+Node.js propose un module permettant de mettre en place quelques options de sécurité (nous n'en verrons que quelques unes, mais vous pouvez aller voir par vous même les autres !),  il s'agit de **Helmet**.
+
+Comme toujours, on commence par : 
+
+ :code:`npm install helmet --save`,
+
+en-tête http
+^^^^^^^^ 
+Les en-têtes http contiennent de nombreuses données, il faut donc y attacher une importance particulière.
+
+Voilà quoi ressemble une entête http sans Helmet (vous pouvez voir vos entêtes http lorsque vous faites une requête, soit directement sur le navigateur: https://o7planning.org/fr/11631/comment-afficher-les-en-tetes-http-dans-google-chrome pour chrome, ou sur powershell, avec la commancd **curl**): 
+
+.. code-block:: js
+
+- HTTP/1.1 200 OK
+- X-Powered-By: Express
+- Content-Type: text/html; charset=utf-8
+- Content-Length: 20
+- ETag: W/"14-SsoazAISF4H46953FT6rSL7/tvU"
+- Date: Wed, 01 Nov 2017 13:36:10 GMT
+- Connection: keep-alive
+
+
+
+le code suivant permet de modifier le contenu des ent-têtes http. Copiez le dans le fichier server.js.
+
+.. code-block:: js
+
+   var helmet = require('helmet')
+
+    app.use(helmet());  
+
+Voici notre nouvelle entête:
+
+.. code-block:: js
+
+- HTTP/1.1 200 OK
+- X-DNS-Prefetch-Control: off
+- X-Frame-Options: SAMEORIGIN
+- Strict-Transport-Security: max-age=15552000; includeSubDomains
+- X-Download-Options: noopen
+- X-Content-Type-Options: nosniff
+- X-XSS-Protection: 1; mode=block
+- Content-Type: text/html; charset=utf-8
+- Content-Length: 20
+- ETag: W/"14-SsoazAISF4H46953FT6rSL7/tvU"
+- Date: Wed, 01 Nov 2017 13:50:42 GMT
+- Connection: keep-alive
+ 
+ Cette fonction permet donc de gérer les données apparaissant dans une en-tête http :
+- Elle permet notamment de cacher le fait qu'on ait utilisé express ici pour faire notre site.
+- elle permet d'arrêter le DNS-Fetching. Je vous invite à cliquer sur le lien pour en savoir plus: "https://www.alsacreations.com/astuce/lire/1567-prefetch-prerender-dns-prefetch-link.html
+
+
+ 
+Comme on peut le voir, il y a d'autres modifications effectuées. Vous pouvez aller voir tout ça sur le web.
+
+Content Security Policy
+^^^^^^^^ 
+
+On peut à l'aide d'Helmet, définir des options de csp:
+
+.. code-block:: text
+
+const helmet = require('helmet')
+
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    
+    styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
+  }
+}))
+
+
+
+Par exemple, la ligne **defaultSrc** permet de définir des contraintes sur les fichiers que l'on peut charger, à partir de leur emplacement. Ici le "self" n'autorise des fichiers que sur notre domaine.
+Il existe beaucoup d'autres options, permettant de gérer des provenances de fichiers par exemple, mais je ne les citerai pas ici, car il y en a un grand nombre.
+
+
+XSS
+^^^^^^^^ 
+
+Enfin, un des derniers problèmes dont nous allons parler est l'injection de code ou XSS : Via l'url, un utilisateur malveillant peut injecter du code qui va effectuer des actions sur votre serveur comme par exemple récupérer des données.
+Pour l'éviter , Helmet propose la fonction **xssFilter()**.
+
+Il vous suffit de rentrer ce code dans server.js :
+
+.. code-block:: js
+
+app.use(helmet.xssFilter());
+
+**Attention :**
+
+La fonction XSS-filter peut poser certains soucis avec des vieilles version d'internet explorer par exemple, voire faciliter les attaques XSS ironiquement !
+Faites donc attention en utilisant cette fonction.
+
+C'était un petit survol d'Helmet afin de vous montrer comment gérer la sécurité de son site, comme je l'ai dit précedemment, il existe d'autres fonctionnalités afin de rendre votre site encore plus sécurisé!
+
+
+
