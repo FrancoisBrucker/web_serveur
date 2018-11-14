@@ -710,15 +710,15 @@ On peut à l'aide d'Helmet, définir des options de csp:
 
 .. code-block:: text
 
-const helmet = require('helmet')
+ const helmet = require('helmet')
 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    
-    styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
-  }
-}))
+ app.use(helmet.contentSecurityPolicy({
+   directives: {
+     defaultSrc: ["'self'"],
+
+     styleSrc: ["'self'", 'maxcdn.bootstrapcdn.com']
+   }
+ }))
 
 
 
