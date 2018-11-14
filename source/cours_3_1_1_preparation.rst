@@ -479,7 +479,7 @@ Last but not least, parlons un peu des fichiers logs. Formellement, les fichiers
 Dans le cas de notre site, ils constituent en quelque sorte le journal d'accès à notre serveur.
 
 Ils sont un élément essentiel côté administrateur, pour de mutiples raisons :
-#. Comprendre la provenance d’erreurs
-#. Témoin de l’activité d’un site
-#. Statistiques de connexion
-#. Etc.
+ * Comprendre la provenance d’erreurs,
+ * Témoin de l’activité d’un site,
+ * Statistiques de connexion,
+ * Etc.
