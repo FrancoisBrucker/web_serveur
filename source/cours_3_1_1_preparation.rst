@@ -470,3 +470,8 @@ Et le :file:`server.js`
     port = 8080
     app.listen(port);
     console.log("c'est parti: http://localhost:" + port.toString())
+    
+Les Logs
+========
+
+Last but not least, parlons un peu des fichiers logs. Formellement, les fichiers logs sont définis au sens large comme " Un dispositif, permettant de stocker un historique des évènements attachés à un processus". Dans le cas de notre site, ils constituent en quelque sorte le journal d'accès à notre serveur.
