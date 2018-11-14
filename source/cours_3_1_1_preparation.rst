@@ -474,4 +474,12 @@ Et le :file:`server.js`
 Les Logs
 ========
 
-Last but not least, parlons un peu des fichiers logs. Formellement, les fichiers logs sont définis au sens large comme " Un dispositif, permettant de stocker un historique des évènements attachés à un processus". Dans le cas de notre site, ils constituent en quelque sorte le journal d'accès à notre serveur.
+Last but not least, parlons un peu des fichiers logs. Formellement, les fichiers logs sont définis au sens large comme " Un dispositif, permettant de stocker un historique des évènements attachés à un processus". 
+
+Dans le cas de notre site, ils constituent en quelque sorte le journal d'accès à notre serveur.
+
+Ils sont un élément essentiel côté administrateur, pour de mutiples raisons :
+#. Comprendre la provenance d’erreurs
+#. Témoin de l’activité d’un site
+#. Statistiques de connexion
+#. Etc.
