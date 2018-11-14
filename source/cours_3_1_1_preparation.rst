@@ -488,6 +488,9 @@ Durant les chapitres précédents, nous avons utilisé les logs pour affichers q
 
 :code:`npm install winston --save`
 
+Premiers exemples
+^^^^^^^^^^^^^^^^^
+
 Ouvrez votre fichier server.js, et collez y le code suivant, avant de relancer votre serveur :
 
 .. code-block:: js
@@ -587,4 +590,52 @@ Selon le niveau attribué au logger, tous les messages envoyés à celui-ci d'un
 
 Celà permet d'attribuer un niveau de gravité aux messages, pour les interpréter et les traiter différemment. Ainsi, un message d'erreur (important !) sera toujours traité, car de niveau 0, alors qu'un message debug pas forcément, selon le niveau du logger. 
 
+Application à notre site web
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+
 Ces quelques exemples vous montrent que l'on peut facilement modifier l'apparence et la destination de sortie de nos logs grâce à Winston. C'est bien, mais pour l'instant celà reste un peu indépendant de notre site web ! En effet, nos messages sont affichés avant même de lancer notre site. Or en pratique, ils nous informent sur son activité.
+
+Pour celà, nous allons télécharger un complément à notre librairie Winston : 
+:code:`npm install express-winston --save`
+
+Celle-ci ajoute les middlewares pour pouvoir exploiter Winston avec Express. Et pour illustrer cela, nous allons utiliser un des points forts de express-winston, à savoir afficher des logs d'informations sur les requêtes HTTP effectuées sur notre site (A ajouter dans server.js):
+
+.. code-block:: js
+
+ const {createLogger, format, transports} = require('winston'); 
+ var expressWinston = require('express-winston'); 
+
+ const fs = require('fs'); 
+ const path = require('path'); 
+
+ const env = process.env.NODE_ENV || 'development'; // Mode développement
+ const logDir = 'log'; 
+
+ if (!fs.existsSync(logDir)) { 
+   fs.mkdirSync(logDir);}
+
+ const filename = path.join(logDir, 'Resultats.log');
+
+ // Notre middleware 
+
+ const newLogger = expressWinston.logger({    	 	
+  transports: [ 
+      new transports.Console(), 
+      new transports.File({
+       filename,
+       level: env === 'development' ? 'debug' : 'info',
+       }) 
+      ],  	
+     format: format.combine( // Affichage
+      format.timestamp({format: 'YYYY-MM-DD HH:mm:ss' }), 
+      format.json(), // Format json en sortie
+  ),
+
+  // Quelques fonctionnalités en plusm spécifiques à winston-express
+     msg: "Vous avez fait une requête HTTP", // Petit message dans notre log
+     expressFormat: false, // Le format voulu est json
+     });
+
+  app.use(newLogger) // On utilise notre logger à chaque requête (Applique un next par défaut)
+  
+Si tout se passe bien, votre fichier log devrait se remplir d'un nouveau log au format json à chaque nouvelle requète. Dans le log, on trouve tout un tas de données (Pas toute utiles, mais l'administrateur peut trier ensuite) sur la requète, comme sa date, son url, etc.
