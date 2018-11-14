@@ -483,3 +483,108 @@ Ils sont un élément essentiel côté administrateur, pour de mutiples raisons 
  * Témoin de l’activité d’un site,
  * Statistiques de connexion,
  * Etc.
+ 
+Durant les chapitres précédents, nous avons utilisé les logs pour affichers quelques informations en console (Lancement du serveur, etc.). C'est sympa, mais l'on peut faire beaucoup plus de choses, on va le voir avec la bibliothèque Winston.
+
+:code:`npm install winston --save`
+
+Ouvrez votre fichier server.js, et collez y le code suivant, avant de relancer votre serveur :
+
+.. code-block:: js
+
+ // On importe Winston
+ const { createLogger, format, transports } = require('winston');
+
+ // On crée ici notre logger, et l'on va le customiser via ses paramètres
+ const logger = createLogger({
+   level: 'debug',   // Niveau de log (Nous en parlerons après)	
+   format: format.combine(format.colorize(), format.simple()), // Format de sortie (Couleur, format de données ...)
+   transports: [new transports.Console()] // Destination du fichier  log (console, fichier...)
+ });
+
+ // On utilise notre logger ainsi crée pour afficher du texte
+ logger.info('Hello world');
+ logger.debug('Debugging info');	 
+ 
+Vous devriez obtenir dans votre console des logs similaires à ceux que vous avez déjà vus. Jusque là rien de nouveau donc, mais vous constatez dans les commentaires du code que l'on peut personnaliser pas mal de choses.
+
+Par exemple, ajoutons un peu de couleur (Remplacez le code précédent par celui-ci), et la date aux début de nos logs :
+
+.. code-block:: js
+
+ const { createLogger, format, transports } = require('winston');
+
+ const logger = createLogger({
+   level: 'debug',
+   format: format.combine( // Ici tout se passe dans le format
+     format.colorize(), // On ajoute de la couleur
+     format.timestamp({ // Gestion de la date
+       format: 'YYYY-MM-DD HH:mm:ss' // Format de la date
+     }),
+     format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`) // Ajout de la date en début de fichier
+   ),
+   transports: [new transports.Console()]
+ });
+
+ logger.info('Hello world');
+ logger.debug('Debugging info');
+
+Créons également une nouvelle direction de sortie pour nos fichiers logs (En plus de la console) :
+
+.. code-block:: js
+
+ const { createLogger, format, transports } = require('winston');
+
+ // Pour préparer notre fichier de réception des logs
+ const fs = require('fs');
+ const path = require('path');
+ const logDir = 'log';
+
+ // On crée le fichier si il n'existe pas
+ if (!fs.existsSync(logDir)) {
+   fs.mkdirSync(logDir);
+ }
+
+ const filename = path.join(logDir, 'results.log');
+
+ const logger = createLogger({
+   // Nous ne voulons pas la couleur dans notre fichier texte : On ne la défini plus dans les paramètres généraux
+   level: 'debug',
+   format: format.combine(
+     format.timestamp({
+       format: 'YYYY-MM-DD HH:mm:ss'
+     }),
+     format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+   ),
+   transports: [
+     // En console, nous voulons toujours de la couleur ! On le précise ici
+     new transports.Console({
+       format: format.combine(
+         format.colorize(),
+         format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+       )
+     }),
+     // Nouvelle direction de transport : Notre fichier
+     new transports.File({ filename })
+   ]
+ });
+ 
+ logger.info('Hello world');
+ logger.debug('Debugging info');
+
+Dans les codes d'exemples précédents, vous voyez apparaître le paramètre "level" dans notre logger, initialisé à "debug". Vous voyez également des "logger.info" et "logger.debug" dans l'affichage des logs. 
+
+En fait, il existe plusieurs niveaux de logs, définis selon des conventions. Par défaut, Winston utilise les mêmes que npm, à savoir :
+
+ * :code:`error` - Niveau 0,
+ * :code:`warn` - Niveau 1,
+ * :code:`info` - Niveau 2,
+ * :code:`verbose` - Niveau 3,
+ * :code:`debug` - Niveau 4,
+ * :code:`silly` - Niveau 5
+
+Selon le niveau attribué au logger, tous les messages envoyés à celui-ci d'un niveau inférieur ou égal seront traités, pas les autres. Essayez ainsi de passer dans les exemples précédents la valeur du level de "debug" (4) à "info" (2), et vous verrez que la commande "logger.debug" ne sera plus traitée ! 
+
+Celà permet d'attribuer un niveau de gravité aux messages, pour les interpréter et les traiter différemment. Ainsi, un message d'erreur (important !) sera toujours traité, car de niveau 0, alors qu'un message debug pas forcément, selon le niveau du logger. 
+
+Ces quelques exemples vous montrent que l'on peut facilement modifier l'apparence et la destination de sortie de nos logs grâce à Winston. C'est bien, mais pour l'instant celà reste un peu indépendant de notre site web ! En effet, nos messages sont affichés avant même de lancer notre site. Or en pratique, ils nous informent sur son activité.
