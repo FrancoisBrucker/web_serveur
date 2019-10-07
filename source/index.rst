@@ -19,9 +19,11 @@ Table des matières
 ******************
 
 .. toctree::
-   :maxdepth: 2
+    :maxdepth: 2
 
-   outils
+    outils
+    ssh_premier_projet
+    
 
 Cours 1
 ^^^^^^^

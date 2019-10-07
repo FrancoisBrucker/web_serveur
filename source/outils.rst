@@ -1,26 +1,26 @@
-**********
-Les outils
-**********
+******
+Outils
+******
 
 Les indispensables
 ==================
 
 Il vous faudra :
 
-* un **terminal** :
-    * Par défaut sous linux,
-    * :file:`/Applications/Utilitaires/Terminal` sous OSX
-    * Powershell sous Windows 10 est plus ou moins équivalent. Sinon, vous pouvez l'activer : http://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/.
+* un **terminal** (micro tuto : https://www.youtube.com/watch?v=t7Ci2hwUpIM):
+  * Par défaut sous linux,
+  * :file:`/Applications/Utilitaires/Terminal` sous OSX
+  * Powershell sous Windows 10.
 
 * Un navigateur muni d'outils de développement :
-    * On utilisera *Chrome* pour ce cours: https://www.google.fr/chrome,
+    * On utilisera `chrome <https://www.google.fr/chrome>`_ pour ce cours
     * Des outils de développement existent pour la plupart des autres navigateurs.
 
 * Un éditeur de texte :
-
-  * 2018-2019 : On utilisera *Atom* : https://atom.io (https://davidl.fr/blog/atom.html)
-  * 2017-2018 : On utilisera *Visual Studio Code* https://code.visualstudio.com/
-  * 2016-2017 : On utilisera *Brackets* : http://brackets.io
+    * 2019-2020 : On utilisera `Webstorm <https://www.jetbrains.com/webstorm/>`_
+    * 2018-2019 : On utilisera *Atom* : https://atom.io (https://davidl.fr/blog/atom.html)
+    * 2017-2018 : On utilisera *Visual Studio Code* https://code.visualstudio.com/
+    * 2016-2017 : On utilisera *Brackets* : http://brackets.io
 
 
 
@@ -29,19 +29,74 @@ Vous pouvez venir avec vos propres outils, mas dans ce cas là vous êtes sensé
 
 On utilisera peut-être (mais c'est pas sûr) telnet. Par défaut sous OSX et linux, on peut l'activer sous Windows 10 : https://www.rootusers.com/how-to-enable-the-telnet-client-in-windows-10/).
 
+Installeur de package
+=====================
+
+Nous aurons besoin de nombreuses bibliothèques, applis au cours de ce cours. Il faut un moyen d'installer tout ça rapidement.
+
+* `brew <https://brew.sh/>`_ sous osx
+* `scoop <https://scoop.sh/>`_ sous w10
+* apt-get sous linux (par défaut). Voir :  https://vitux.com/how-to-use-apt-get-package-manager-on-ubuntu-command-line/
+
+
+Sous windows installez également wsl, qui nous servira de roue de secours lorsque plus rien de logique ne fonctionnera : https://docs.microsoft.com/fr-fr/windows/wsl/about choisissez une distribution debian, puis `apt-get  install curl git` dans un terminal puis vous pouvez installer brew pour wsl (https://docs.brew.sh/Homebrew-on-Linux) 
+
 
 git
 ===
 
+On utilisera git et github comme gestionnaire de sources.
+
+installation
+------------
+
+faites vous un compte sur https://github.com/ Ajoutez y votre clé publique pour vous y connecter.
+
+* osx : :code:`brew install openssh` 
+* w10 : :code:`scoop install git`
+
+    
+utilisation
+-----------     
+
 On utilisera git comme gestionnaire de source. quelques liens utiles :
 
-* https://github.com/ : faites vous un compte là bas. On s'en servira pour transférer tous nos programmes vers l'ovh.
-* https://git-scm.com/book/fr/v2 En particulier les pages :
+* initialisation de git/github : https://kbroman.org/github_tutorial/pages/first_time.html (faites tout sauf le lien avec l'éditeur de texte)
+* `créer/cloner un dépot <https://git-scm.com/book/fr/v2/Les-bases-de-Git-D%C3%A9marrer-un-d%C3%A9p%C3%B4t-Git>`_: 
+* `associer un éditeur de texte pour le message de commit <https://help.github.com/en/articles/associating-text-editors-with-git>`_ 
 
-  * https://git-scm.com/book/fr/v2/D%C3%A9marrage-rapide-Param%C3%A9trage-%C3%A0-la-premi%C3%A8re-utilisation-de-Git
-  * https://git-scm.com/book/fr/v2/Les-bases-de-Git-D%C3%A9marrer-un-d%C3%A9p%C3%B4t-Git
+Bouquin généraux : 
+    * http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/fr/
+    * https://fr.wikibooks.org/wiki/Git/Principes
+    * https://git-scm.com/book/fr/v2
 
-* http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/fr/
+
+ssh
+===
+
+osx
+--- 
+
+    :code:`brew install openssh` 
+
+w10
+---
+
+    :code:`scoop install openssh`
+
+
+Il faut aussi mettre à jour les service ssh de windows même : `scoop install win32-openssh`. Une fois installé win32-openssh, scoop vous indique comment créer le service ssh-agent. Il s’agit d’exécuter une ligne commençant par sudo. Exécutez la ligne **en enlevant le mot sudo** (exécuter juste le programme) dans un powershell ouvert en mode administrateur.
+
+Une fois ceci fait, vous pourrez :dans un powershell (peut-être en administrateur si une ligne ne fonctionne pas) :
+    * exécuter le service avec la commande : :code:`Start-Service ssh-agent`
+    * permettre à l’agent de se lancer au boot de façon automatique : :code:`Set-Service -Name ssh-agent   * StartupType 'Automatic'`
+
+utilisation
+-----------
+
+* cous debian : https://formation-debian.viarezo.fr/ssh.html
+* Je ne saispas ce que ça vaut (dites-moi) : https://www.youtube.com/watch?v=QGixbJ9prEc&list=PLQqbP89HgbbYIarPqOU8DdC2jC3P3L7a6
+
 
 Cours par cours
 ===============
