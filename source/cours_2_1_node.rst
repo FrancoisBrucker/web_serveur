@@ -72,6 +72,57 @@ Détails, en utilisant la `documentation <https://nodejs.org/en/docs/>`_ de node
 
 Tout est orienté autours d'évènements auxquels le serveur doit répondre.
 
+
+sur le serveur distant
+======================
+
+écrire le code en vim
+--------------------- 
+
+
+Faire un peu de vim :
+    * tuto : https://www.youtube.com/watch?v=ggSyF1SVFr4 (je ne sais pas ce que ça vaut)
+    * https://danielmiessler.com/study/vim/
+    * https://www.cs.cmu.edu/~15131/f17/topics/vim/vim-cheatsheet.pdf
+
+
+configuration du serveur
+------------------------
+
+On a un https://www.nginx.com/ qui tourne.
+
+son boulot :
+    * lire les requête et les envoyer au bon endroit (port)
+    * servir des fichiers statiques(html css, images, ...)
+    
+Un tuto : https://www.grafikart.fr/tutoriels/nginx-692
+
+Allez voir sur le serveur : 
+    * :code:`/etc/nginx/nginx.conf` : configuration générale
+    * :code:`/etc/nginx/conf.d/` puis :code:`nodejs.conf` par exemple
+        * routes normales : commençant par :code:`/` : le reste est passé au port
+        * routes statiques : commençant par :code:`/static/` : le reste est un fichier à partir du répertoire :code:`www` de l'utilisateur. Voir fichier :code:`static.conf`
+
+exécuter node
+-------------
+
+
+* trouver le port 
+* exécuter en screen executer la commande : `/usr/bin/screen -d -m -S node node exemple.js`
+    * en utilisant man et `/`
+    * -S : When creating a new session, this option can be used to specify a meaningful name for the session. This name  identifies
+            the session for "screen -list" and "screen -r" actions. It substitutes the default [tty.host] suffix.
+    * -d -m :  Start  screen  in  "detached"  mode.  This  creates a new session but doesn't attach to it. This is useful for system startup scripts.
+* http://node.raifort.ovh1.ec-m.fr/
+
+screen manual : https://linuxize.com/post/how-to-use-linux-screen/
+
+* :code:`screen -ls` : trouve les différents screen
+* :code:`screen -X -S [session # you want to kill] quit` : tue le screen
+
+:code:`ps aux| grep raifort` puis kill (sans -9) le numéro du process (le 1er numéro)
+
+
 Globaux et Asynchrones
 ======================
 
@@ -168,11 +219,21 @@ Avant de passer à un framework permettant de le faire, voyons comment faire en 
 	console.log("c'est parti")
 
 
+.. code-block:: sh
+    node routes.js
+
+Le serveur précédent est instalé sur le port 3000 de localhost répond à trois routes :
+    * http://localhost:3000/
+    * http://localhost:3000/home
+    * http://localhost:3000/contact
+    
 Dans la partie suivante, on utilisera le framework *express* pour gérer tout cela de façon un peu plus élégante.
 
 
 Servir des fichiers
 ===================
+
+On simule 
 
 
 .. code-block:: javascript
