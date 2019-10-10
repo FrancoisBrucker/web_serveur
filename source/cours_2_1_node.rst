@@ -220,6 +220,7 @@ Avant de passer à un framework permettant de le faire, voyons comment faire en 
 
 
 .. code-block:: sh
+
     node routes.js
 
 Le serveur précédent est instalé sur le port 3000 de localhost répond à trois routes :
@@ -233,11 +234,16 @@ Dans la partie suivante, on utilisera le framework *express* pour gérer tout ce
 Servir des fichiers
 ===================
 
-On simule 
+On simule un petit serveur web qui charge des fichiers. On utilisera quasi jamais ça en production. Les fichiers html étant des fichiers statiques, et donc mieux servis par nginx que par node.
+
+chargement d'un fichier local
+-----------------------------
 
 
 .. code-block:: javascript
-
+    :caption: servir_fichier.js
+    
+    
     var http = require('http')
     var fs = require('fs')
 
@@ -248,44 +254,15 @@ On simule
         var readStream = fs.createReadStream(__dirname + "/index.html", "utf8")
         readStream.pipe(response)
     })
+    
+    server.listen(3000, 'localhost')
 
 Le nom `__dirname` est un globals de node (https://nodejs.org/docs/latest/api/globals.html). Il permet de connaitre le répertoire du module courant (ici, notre application) 
 
-Routes_2.js
-^^^^^^^^^^^ 
-
-.. code-block:: javascript
-
-	const http = require('http')
-	const fs = require('fs')
-
-		var server = http.createServer((request, response) =>{
-		    // http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3
-		    response.statusCode = 200;
-		    response.setHeader('Content-Type', 'text/html');
-
-		    if (request.url === "/" || request.url === "/home") {
-		       fs.createReadStream(__dirname + "/html/index.html", "utf8").pipe(response)     
-			}
-		    else if (request.url === "/contact") {
-		       fs.createReadStream(__dirname + "/html/contact.html", "utf8").pipe(response)      		    
-			}
-		    else {
-		      response.statusCode = 404;
-			  fs.createReadStream(__dirname + "/html/404.html", "utf8").pipe(response)      		    
-			}
-		})
-
-		server.listen(3000, 'localhost')
-		console.log("c'est parti")
-
-
-
-Index.html
-^^^^^^^^^^ 
 
 .. code-block:: html
-
+    :caption: index.html
+    
     <!doctype html>
     <html>
         <head>
@@ -318,82 +295,8 @@ Index.html
     </html>
 
 
-Contact.html
-^^^^^^^^^^^^ 
-
-.. code-block:: html
-
-    <html>
-        <head>
-            <meta charset="utf-8" />
-            <title>Contact</title>
-
-            <style>
-                html, body {
-                    margin:0;
-                    padding:0;
-                
-                    background: skyblue;
-                    color: #FFFFFF;
-                    font-size: 2em;
-                    text-align: center;
-                }
-            
-                img {
-                    display: block;
-                    width: 452px;
-                    height: 600px;
-                    margin: auto;
-                }
-            </style>
-        </head>
-        <body>
-            <h1>Contact</h1>
-            
-            <img src="https://www.mauvais-genres.com/6047/full-contact-affiche-40x60-fr-90-jean-claude-van-damne-movie-poster-.jpg" />
-        </body>
-    </html>
-
-
-404.html
-^^^^^^^^ 
-
-.. code-block:: html
-
-	<html>
-	    <head>
-	        <meta charset="utf-8" />
-	        <title>404</title>
-
-	        <style>
-	            html, body {
-	                margin:0;
-	                padding:0;
-
-	                background: skyblue;
-	                color: #FFFFFF;
-	                font-size: 2em;
-	                text-align: center;
-	            }
-
-	            img {
-	                display: block;
-	                width: 580px;
-	                height: 419px;
-	                margin: auto;
-	            }
-	        </style>
-	    </head>
-	    <body>
-	        <h1>Oooops !</h1>
-	        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Peugeot404-berline.jpg/1200px-Peugeot404-berline.jpg" />
-
-
-	    </body>
-	</html>
-
-Streaming
-=========
+streaming
+---------
 
 Les fichiers précédents ne sont pas volumineux, ils sont donc quasi-immédiatement chargés, mais pour de gros fichiers, le chargement peut être long, node organise ainsi tout chargement en stream pour permettre de servir du contenu le plus tôt possible. 
 
@@ -401,7 +304,8 @@ L'exemple suivant récupère un gros fichier de l'internet.
 
 
 .. code-block:: javascript
-
+    :caption: gutemberg.js
+    
     var http = require('http')
 
     // le streaming permet de commencer à envoyer des données alors que le fichier n'est pas fini.
@@ -429,42 +333,10 @@ Odds and ends
 
 .. note:: À sauter si on est en retard.
 
-Scope de variables
-^^^^^^^^^^^^^^^^^^
-
-.. note:: Pas forcément pertinent dans ce cours, on pourra passer outre si on est en retard.
-
-
-En javascript, on peut utiliser des variables définies dans des *scopes* plus haut sans les redéfinir. Dans le code ci-après :code:`delta1` et :code:`delta2` sont ainsi mis à jour (pour avoir le même comportement en python par exemple, on aurait dû utiliser le mot clé *global*)
-
-.. code-block:: javascript
-
-    var delta_1 = 0  // ces variables vont être utilisées autre part.
-    var delta_2 = 0  // un peu comme une variable "globale" (attention au scope)
-
-    setInterval(() => {  // encore une autre façon d'écrire une fonction
-        if (delta_1 == 3) {  // mieux vaut supprimer le timer dans le timer considéré.
-            clearInterval(timer1)
-            delta_1 += 1
-        }
-        else {
-            delta_1 += 1
-        }
-
-        if (delta_2 == 10) {
-            clearInterval(timer2)
-            delta_2 += 1
-        }
-        else {
-            delta_2 += 1
-        }
-
-    }, 1000)
-
 
 
 Modules
-^^^^^^^
+-------
 
 .. note:: Comme la partie précédente, on pourra passer notre chemin sur cette partie.
 
@@ -502,3 +374,50 @@ On l'utilise dans le code suivant, qui est un fichier dans le même répertoire 
     console.log(monModule.reponse)
 
 
+
+La gestion des exports est le plus souvent utilisé comme on l'a vu en front en créant un objet ayant déjà tous ces attributs :
+
+.. code-block:: javascript
+
+    module.exports = {
+        klaxon : () => {
+            console.log("tuuuut !");
+        },
+
+        reponse: 42,
+    }
+    
+    
+scope de variables
+------------------
+
+.. note:: Pas forcément pertinent dans ce cours, on pourra passer outre si on est en retard.
+
+
+En javascript, on peut utiliser des variables définies dans des *scopes* plus haut sans les redéfinir. Dans le code ci-après :code:`delta1` et :code:`delta2` sont ainsi mis à jour (pour avoir le même comportement en python par exemple, on aurait dû utiliser le mot clé *global*)
+
+.. code-block:: javascript
+
+    var delta_1 = 0  // ces variables vont être utilisées autre part.
+    var delta_2 = 0  // un peu comme une variable "globale" (attention au scope)
+
+    setInterval(() => {  // encore une autre façon d'écrire une fonction
+        if (delta_1 == 3) {  // mieux vaut supprimer le timer dans le timer considéré.
+            clearInterval(timer1)
+            delta_1 += 1
+        }
+        else {
+            delta_1 += 1
+        }
+
+        if (delta_2 == 10) {
+            clearInterval(timer2)
+            delta_2 += 1
+        }
+        else {
+            delta_2 += 1
+        }
+
+    }, 1000)
+
+    

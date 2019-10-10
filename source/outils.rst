@@ -7,7 +7,7 @@ Les indispensables
 
 Il vous faudra :
 
-* un **terminal** (micro tuto : https://www.youtube.com/watch?v=t7Ci2hwUpIM):
+* un **terminal** :
   * Par défaut sous linux,
   * :file:`/Applications/Utilitaires/Terminal` sous OSX
   * Powershell sous Windows 10.
@@ -28,6 +28,18 @@ Vous pouvez venir avec vos propres outils, mas dans ce cas là vous êtes sensé
 
 
 On utilisera peut-être (mais c'est pas sûr) telnet. Par défaut sous OSX et linux, on peut l'activer sous Windows 10 : https://www.rootusers.com/how-to-enable-the-telnet-client-in-windows-10/).
+
+utilisation
+-----------
+
+terminal :
+    * micro tuto : https://www.youtube.com/watch?v=t7Ci2hwUpIM,
+    * l'excellent https://informatique.centrale-marseille.fr/tutos/post/initiation-linux.html
+powershell :
+    * https://www.guru99.com/powershell-tutorial.html (je ne sais pas ce que ça vaut. dites moi)
+
+outils de développement :
+    * https://developers.google.com/web/tools/chrome-devtools
 
 Installeur de package
 =====================
