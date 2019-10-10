@@ -73,13 +73,21 @@ git
 
 On utilisera git et github comme gestionnaire de sources.
 
-installation
-------------
+github
+------ 
 
-faites vous un compte sur https://github.com/ Ajoutez y votre clé publique pour vous y connecter.
+Faites vous un compte sur https://github.com/ Ajoutez y votre clé publique pour vous y connecter.
 
-* osx : :code:`brew install git` 
-* w10 : tiré de https://dev.to/qm3ster/setting-up-gitsshgpg-on-windows-5c85 
+osx
+---
+
+    :code:`brew install git` 
+
+w10
+---
+
+    tiré de https://dev.to/qm3ster/setting-up-gitsshgpg-on-windows-5c85 
+    
     * :code:`scoop install git-with-openssh`
     * exécuter la commande en mode administrateur : :code:`[environment]::setenvironmentvariable('GIT_SSH', (resolve-path (scoop which ssh)), 'USER')`
     * ouvrez une nouvelle fenêtre powershell et git devrait fonctionner.
@@ -93,21 +101,8 @@ git est très puissant. En utilisation courante, on ne va utiliser que 2% de ses
     * https://fr.wikibooks.org/wiki/Git/Principes
     * https://git-scm.com/book/fr/v2
 
-
-
-
-Cours par cours
-===============
-
-Cours 1
--------
-
-Web front et qu'est-ce qu'un serveur. On téléchargera les bibliothèques nécessaires.
-
-Partage de code : on utilisera https://codeshare.io ou le pad de l'ECM : https://outils.centrale-marseille.fr/pad/p/cours_serveur_web pour communiquer le code, les ajouts nécessaires, etc.
-
-Cours 2
--------
+node
+====
 
 La bibliothèque de développement *node* (version 7.4 à l'heure où je tape ces lignes, version 9.5 à l'heure où je les corrige) disponible à https://nodejs.org. On installera d'autres package lors du cours.
 
@@ -117,10 +112,13 @@ Installation:
 * Sous linux, on pourra suivre https://nodejs.org/en/download/package-manager/,
 * Sous OSX, je vous conseille de passer par *brew*: :code:`brew install node`. Brew (http://brew.sh) est un outil magnifique qui permet d'installer sans douleur la quasi totalité des logiciels unix (il y a forcément un package pour ça).
 
-Cours 3
--------
 
-On utilisera node et les bibliothèques de npm comme dans le cours 2. Voir la partie "Préparation" pour plus de détails.
+odds & ends
+===========
+
+
+Un pad pour les divers copier/coller : https://outils.centrale-marseille.fr/pad/
+
 
 
 La documentation
