@@ -18,32 +18,30 @@ Node et serveur web
 
 Node est surtout utilisé pour créer des serveurs web. Essayons l'exemple minimal d'un serveur node de https://nodejs.org/api/synopsis.html
 
-Example.js
-^^^^^^^^^^
-
 .. code-block:: javascript
+    :caption: exemple.js
 
-  const http = require('http');
+    const http = require('http');
 
-  const hostname = '127.0.0.1';
-  const port = 3000;
+    const hostname = '127.0.0.1';
+    const port = 3000;
 
-  const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World\n');
-  });
+    const server = http.createServer((req, res) => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'text/plain');
+        res.end('Hello World\n');
+    });
 
-  server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-  });
+    server.listen(port, hostname, () => {
+        console.log(`Server running at http://${hostname}:${port}/`);
+    });
 
 
 On exécute ce fichier en console :
 
 .. code-block:: sh
 
-  node example.js
+  node exemple.js
 
 
 Et on peut ensuite voir le résultat dans un naviguateur à l'url : http://localhost:3000.
@@ -53,38 +51,43 @@ Le code précédent crée un serveur *http* qui répond toujours la même chose 
 
 Regardons le code de près :
 
-  * `const` : déclaration de constantes. Changer port par exemple produit une erreur.
-  * `require` : importation d'une bibliothèque (ici de Node mais on créera les nôtres bientôt) et affectation de celle-ci à une constante.
-  * les fonctions peuvent se créer à la volée avec : :code:`nomFonction((parameters)=>{})`
+  * :code:`const` : déclaration de constantes. Changer port par exemple produit une erreur.
+  * :code:`require` : importation d'une bibliothèque (ici de nodejs mais on créera les nôtres bientôt) et affectation de celle-ci à une constante.
+  * les fonctions peuvent se créer à la volée avec : :code:`nomFonction((paramètres) => {})`
   * création d'un objet serveur avec une fonction ayant 2 paramètres, la requête et la réponse (voir doc).
-  * `listen` : lien entre le serveur et le couple adresse + port.
+  * :code:`listen` : lien entre le serveur et le couple adresse + port.
 
 
-On peut afficher l'url de la requete : On récupère les variables *hostname* et *port* dépendantes du hostname et on les affiche dans la console.
+On peut afficher l'url de la requête : On récupère les variables *hostname* et *port* et on les affiche dans la console.
   
-  * Détails :
+Détails, en utilisant la `documentation <https://nodejs.org/en/docs/>`_ de nodejs :
 
-    * http : C'est un protocole pour les échanges et le codage des données.
-    * http.createServer : demande un requestListener qui est ajouté à l'événement request.
-    * event request : deux paramètres http.IncomingMessage  et http.ServerResponse. Il est émit à chaque fois qu'un *request* est demandé
-    * http.IncomingMessage a un attribut url : il sert à générer le *Readable Stream interface* et beaucoup d'autres choses (événements, méthodes, ...).
+    * :code:`http` : C'est le module s'occupant des échanges et du codage des données.
+    * :code:`http.createServer` : demande un `requestListener <https://www.w3schools.com/nodejs/func_http_requestlistener.asp>`_ qui est ajouté à l'événement request.
+    * event request : deux paramètres :code:`http.IncomingMessage`  et :code:`http.ServerResponse`. Il est émit à chaque fois qu'un *request* est demandé
+    * :code:`http.IncomingMessage` a un attribut url : il sert à générer le *Readable Stream interface* et beaucoup d'autres choses (événements, méthodes, ...).
 
-Tout est orienté autour d'évènements.
+.. note:: La `documentation <https://nodejs.org/api/>`_ de nodejs est très bien faite. Trouvez tous les éléments mentionnés ci-dessus.
+
+
+Tout est orienté autours d'évènements auxquels le serveur doit répondre.
 
 Globaux et Asynchrones
 ======================
 
-**RTFM -- Merci de lire la notice** : https://nodejs.org/api/
+    **RTFM -- Merci de lire la notice** : https://nodejs.org/api/
 
 Node est un interpréteur javascript, mais sa grande force est dans ses modules et son fonctionnement purement asynchrone :
 
-*Lorsque cet évènement se produit ou lorsque j'ai fini de faire quelque chose, j'exécute une fonction.*
+    *Lorsque cet évènement se produit ou lorsque j'ai fini de faire quelque chose, j'exécute une fonction.*
 
 
 Création de fonctions à la volée
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------------
 
-Ceci est possible car en javascript, comme en python, un fonction peut être une assignée à une variable que l'on peut ensuite exécuter.
+Ceci est possible car en javascript, comme en python, un fonction peut être une assignée à une variable que l'on peut ensuite exécuter. Tester le code suivant dans l'interpréteur :code:`node`. 
+    
+    Ouvrez une console (ou un powershell) et tapez :code:`node` puis la touche entrée. Il vous suffit ensuite de copier/coller le code dans le terminal.
 
 .. code-block:: javascript
 
@@ -108,7 +111,7 @@ Ceci est possible car en javascript, comme en python, un fonction peut être une
     affiche_2()
 
 Événements
-^^^^^^^^^^
+----------
 
 On fait un exemple avec les intervalles. On utilise la méthode :code:`setInterval` utilisable par défaut en node.
 

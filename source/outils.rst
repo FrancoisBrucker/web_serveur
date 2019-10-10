@@ -42,35 +42,6 @@ Nous aurons besoin de nombreuses bibliothèques, applis au cours de ce cours. Il
 Sous windows installez également wsl, qui nous servira de roue de secours lorsque plus rien de logique ne fonctionnera : https://docs.microsoft.com/fr-fr/windows/wsl/about choisissez une distribution debian, puis `apt-get  install curl git` dans un terminal puis vous pouvez installer brew pour wsl (https://docs.brew.sh/Homebrew-on-Linux) 
 
 
-git
-===
-
-On utilisera git et github comme gestionnaire de sources.
-
-installation
-------------
-
-faites vous un compte sur https://github.com/ Ajoutez y votre clé publique pour vous y connecter.
-
-* osx : :code:`brew install openssh` 
-* w10 : :code:`scoop install git`
-
-    
-utilisation
------------     
-
-On utilisera git comme gestionnaire de source. quelques liens utiles :
-
-* initialisation de git/github : https://kbroman.org/github_tutorial/pages/first_time.html (faites tout sauf le lien avec l'éditeur de texte)
-* `créer/cloner un dépot <https://git-scm.com/book/fr/v2/Les-bases-de-Git-D%C3%A9marrer-un-d%C3%A9p%C3%B4t-Git>`_: 
-* `associer un éditeur de texte pour le message de commit <https://help.github.com/en/articles/associating-text-editors-with-git>`_ 
-
-Bouquin généraux : 
-    * http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/fr/
-    * https://fr.wikibooks.org/wiki/Git/Principes
-    * https://git-scm.com/book/fr/v2
-
-
 ssh
 ===
 
@@ -87,15 +58,42 @@ w10
 
 Il faut aussi mettre à jour les service ssh de windows même : `scoop install win32-openssh`. Une fois installé win32-openssh, scoop vous indique comment créer le service ssh-agent. Il s’agit d’exécuter une ligne commençant par sudo. Exécutez la ligne **en enlevant le mot sudo** (exécuter juste le programme) dans un powershell ouvert en mode administrateur.
 
-Une fois ceci fait, vous pourrez :dans un powershell (peut-être en administrateur si une ligne ne fonctionne pas) :
+Une fois ceci fait, vous pourrez : dans un powershell en mode administrateur  :
     * exécuter le service avec la commande : :code:`Start-Service ssh-agent`
     * permettre à l’agent de se lancer au boot de façon automatique : :code:`Set-Service -Name ssh-agent   * StartupType 'Automatic'`
 
 utilisation
 -----------
 
-* cous debian : https://formation-debian.viarezo.fr/ssh.html
-* Je ne saispas ce que ça vaut (dites-moi) : https://www.youtube.com/watch?v=QGixbJ9prEc&list=PLQqbP89HgbbYIarPqOU8DdC2jC3P3L7a6
+* cours debian : https://formation-debian.viarezo.fr/ssh.html
+* Je ne sais pas ce que ça vaut (dites-moi) : https://www.youtube.com/watch?v=QGixbJ9prEc&list=PLQqbP89HgbbYIarPqOU8DdC2jC3P3L7a6
+
+git
+===
+
+On utilisera git et github comme gestionnaire de sources.
+
+installation
+------------
+
+faites vous un compte sur https://github.com/ Ajoutez y votre clé publique pour vous y connecter.
+
+* osx : :code:`brew install git` 
+* w10 : tiré de https://dev.to/qm3ster/setting-up-gitsshgpg-on-windows-5c85 
+    * :code:`scoop install git-with-openssh`
+    * exécuter la commande en mode administrateur : :code:`[environment]::setenvironmentvariable('GIT_SSH', (resolve-path (scoop which ssh)), 'USER')`
+    * ouvrez une nouvelle fenêtre powershell et git devrait fonctionner.
+
+utilisation
+-----------
+
+git est très puissant. En utilisation courante, on ne va utiliser que 2% de ses capacités. On montrera petit à petit l'utilisation de git. Mais pour la doc complète, elle est là :
+
+    * http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/fr/
+    * https://fr.wikibooks.org/wiki/Git/Principes
+    * https://git-scm.com/book/fr/v2
+
+
 
 
 Cours par cours

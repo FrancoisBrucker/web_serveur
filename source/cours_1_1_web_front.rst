@@ -2,238 +2,129 @@
 Web front
 *********
 
+On supposera que vous avez suivi un tuto pour apprendre les base de html/css comme celui-là: 
+     https://internetingishard.com/html-and-css/ 
 
-Comment j'ai découvert le Web
-=============================
-
-* client (front): affichage de contenu html5, css3, javascript. Pour apprendre :
+Il en existe plein d'autres. Essayez d'avoir des sites de références pour ces diverses techno : 
     * http://www.w3schools.com
     * https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web
     * http://www.thenetninja.co.uk
-    * https://wiki.centrale-marseille.fr/informatique/public:developpement_web
 
-* serveur (back). Peut dans un sens très (trop) large :
+
+
+partie d'un tout
+================
+
+front/back/ops 
+
+* front (client): affichage de contenu html5, css3, javascript. 
+
+* back (serveur). Peut dans un sens très (trop) large :
     * servir du contenu html, css, js
     * servir des fichiers binaires/textes
     * fonctionnement asynchrone par défaut mais aussi synchrone (websocket)
     * stockage et accès à des données côté serveur (api rest, crud) ou client (cookies)
-
 * communication entre front et back par le protocole http ou https.
 
+* ops : la mise en production. L'idée est que la mise en production doit être un **non-évènement**. On doit pouvoir le faire 20, 30 fois par jour si nécessaire. Parfois ça ratera mais il faut minimiser cela par un workflow efficace et surtout permettre une correction rapide en cas de bug.
 
 
+projet
+======
 
-HTML
+Créez un projet webstorm de type *empty project*, et initialisez le avec git :
+    * initialiser le projet : :code:`git init`
+    * gérer le :code:`.gitignore` (:code:`ls -la` pour voir les fichiers cachés)
+
+html
 ====
 
 .. note:: faire en direct avec le lien vers un navigateur.
 
 
-Le HTML est un langage à balise. C'est-à-dire qu'il est toujours en deux parties. Par exemple : :code:`<head></head>` et :code:`<body></body>`.
-Structure de base d'un document : http://www.alsacreations.com/article/lire/1374-html5-structure-globale-document.html
-Juste un petit exemple, on en refera par la suite, c'est juste pour ne pas être (trop) perdu.
-Le navigateur interprétera directement le fichier. On ne passe pas par un serveur,
-il utilise directement le fichier avec l'URI (https://fr.wikipedia.org/wiki/Uniform_Resource_Identifier)  :code:`file://chemin/absolu/vers/fichier.html`
+Le HTML est un langage à balise. C'est-à-dire qu'il est toujours en deux parties. Par exemple : :code:`<head></head>` et :code:`<body></body>`. 
 
+
+    Structure de base d'un document html : http://www.alsacreations.com/article/lire/1374-html5-structure-globale-document.html
+
+
+Juste un petit exemple, on en refera par la suite, c'est juste pour ne pas être (trop) perdu.
+Ici, le navigateur interprétera directement le fichier, sans passer par un *serveur*. Il trouve le fichier à afficher via une `uri <https://fr.wikipedia.org/wiki/Uniform_Resource_Identifier)>`_   :code:`file://chemin/absolu/vers/fichier.html`
 
 .. code-block:: html
+    :linenos:
+    :caption: index.html
 
-	<!doctype html>
+    
+    <!doctype html>
     <html>
-        <head>
-            <meta charset="utf-8" />
-            <title>Maison page</title>
-        </head>
-        <body>
-            <h1>Enfin du web !</h1>
-            <p>Et on aime ça.</p>
-        </body>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Maison page</title>
+    </head>
+    <body>
+    <h1>Enfin du web !</h1>
+    <p>Bonjour à tous.</p>
+    </body>
     </html>
 
+Webstorm n'est pas content, il souligne la ligne 2. En passant le curseur à droite de l'éditeur, en regard de la ligne 2 sur le trait orange, il est dit : *Missing required 'lang' attribute*. En cliqant dessus une ampoule orange apparait sur le mot :code:`html`. Si on clique si cette ampoule elle propose un correctif : *insert required tag*. Faisons le et choisissons :code:`fr` comme langue.
 
-Le HTML crée un arbre (via les balises imbriquées). Il est appelé arbre DOM (Document Object Model).
+Ouvrez le fichier avec chrome : :code:`fichier > ouvrir`. 
 
-Ajout du CSS
+.. note:: vous pouvez aussi l'ouvrir avec webstorm via un serveur local. :code:`clique droit su rle fichier > open in browser`
+
+Le html crée un arbre (via les balises imbriquées). Il est appelé arbre dom (Document Object Model).
+
+Ajout du css
 ============
 
 .. note:: Faire uniquement le début pour voir les changements s'effectuer en direct.
 
 
-Le CSS est ajouté directement sur la page grâce à la balise :code:`<style></style>`.
+Le css est ajouté directement sur la page grâce à la balise :code:`<style></style>`.
 
 .. code-block:: html
+    :caption: index.html
+    
+    <!doctype html>
+    <html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Maison page</title>
 
-	<!doctype html>
-    <html>
-        <head>
-            <meta charset="utf-8" />
-            <title>Maison page</title>
+        <!-- https://fonts.google.com -->
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
-            <!--        https://fonts.google.com-->
-            <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
 
-            <style>
-                html, body {
-                    margin:0;
-                    padding:0;
+                background: skyblue;
+                color: #ffffff;
+                font-size: 2em;
+                text-align: center;
+            }
 
-                    background: skyblue;
-                    color: #FFFFFF;
-                    font-size: 2em;
-                    text-align: center;
-                }
-                p {
-                    font-family: 'Indie Flower';
-                }
-            </style>
-        </head>
-        <body>
-            <h1>Enfin du web !</h1>
-            <p>Et on aime ça.</p>
-        </body>
+            p {
+                font-family: 'Indie Flower', serif;
+            }
+        </style>
+    </head>
+    <body>
+    <h1>Enfin du web !</h1>
+    <p>Bonjour à tous.</p>
+    </body>
     </html>
 
 
 Pour la couleur, on la gère en hexadécimal RGB sur 32bits 8 par channel.
 
-* Pour un aperçu des couleurs : https://color.adobe.com/fr/.
+* Pour un aperçu des couleurs : https://color.adobe.com/fr/create.
 * Pour les couleurs en hexadécimal pour faire du développement web : https://www.w3schools.com/colors/colors_names.asp.
 
-Apparté pour github
-===================
-
-On a un premier site qui fonctionne. Il n'a qu'un fichier mais il marche. On peut donc créer un repository git, puis crer un repository central sur github. Ceci nous permettra de facilement partager le code et de mettre en production très facilement (c'est devops de partout).
-
-projet git
-----------
-
-On commence par se placer à la racine du site avec votre terminal/powershell, puis :
-
- .. code-block:: sh
-
-    git init
-
-
-On peut voir l'état dans le quel est notre projet :
-
-.. code-block:: sh
-
-   git status
-
-
-qui devrait rendre :
-
-.. code-block:: sh
-
-    On branch master
-
-    No commits yet
-
-    Untracked files:
-    (use "git add <file>..." to include in what will be committed)
-
-    index.html
-
-    nothing added to commit but untracked files present (use "git add" to track)
-
-
-On peut donc sauvegarder notre premier commit :
-
-.. code-block:: sh
-
-    git add index.html
-    git commit -m "first commit"
-
-github
-------
-
-Pour facilement mettre un projet en production et avoir un projet de référence, on va mettre le code sur https://github.com/
-
-Ceci participe de l'adage : "ce qui se fait souvent doit se faire rapidement", ici la mise en production.
-
-* Si ce n'est pas encore fait créez vous une paire de clés ssh et ajoutez la clé public à votre compte github : https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/
-* Créez un nouveau projet sur github https://help.github.com/articles/creating-a-new-repository/
-* ajouter le projet github nouvellement créer à notre projet git :  https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
-
-Par exemple, chez moi après avoir ajouté la ligne :
-
-.. code-block:: sh
-
-    git remote add origin git@github.com:FrancoisBrucker/test_cours.git
-
-Mon fichier de conf `.git/config`  ressembre à :
-
-.. code-block:: sh
-
-  [core]
-      repositoryformatversion = 0
-      filemode = true
-      bare = false
-      logallrefupdates = true
-      ignorecase = true
-      precomposeunicode = true
-  [remote "origin"]
-      url = git@github.com:FrancoisBrucker/test_cours.git
-      fetch = +refs/heads/*:refs/remotes/origin/*
-
-
-On peut maintnenant envoyer le projet sur github :
-.. code-block:: sh
-
-  git push origin master
-
-
-Voyez le résultat sur votre compte github.
-
-Github vous demande de rajouter un fichier README.md pour décrire ce qu'est NOTRE PROJET ! Faisons le directement sur le site (.md est pour markdown, un façon sympathique d'écrire du texte : https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-
-On en profitera alors également pour ajouter :
-
-    * un fichier de license :  https://help.github.com/articles/adding-a-license-to-a-repository/ J'ai une petite préférence pour la license IV ou la WTFPL (https://github.com/jslicense/WTFPL ) mais à vous de voir
-    * un fichier .gitignore . Vous pouvez le laisser pour l'instant, ou choisir un template. Les utilisateurs de mac peuvent cepndant dés à présent y ajouter la ligne .DS_Store
-
-
-Notre programme diffère maintenant entre ce qui est sur github et sur notre machine. On va récupérer le tout :
-.. code-block:: sh
-
-  git pull origin master
-
-
-.. note::  ?? comment conaitre les différences entre les 2 ??
-
-
-ovh
----
-
-La dernière pointe du triangle va être de mettre NOTRE PROJET ! sur le server ovh.
-
-On commence par se connecter sur le serveur ovh  :
-
-.. code-block:: sh
-
-    ssh raifort@ovh1.ec-m.fr
-
-
-Puis on va cloner le projet de github sur notre page web.
-
-.. code-block:: sh
-
-    cd www
-    git clone https://github.com/FrancoisBrucker/test_cours
-
-
-Comme vous pouvez le remarquer dans le fichier de config, l'origin est placée directement.
-
-Tout est maintenant visible à l'adresse : http://raifort.ovh1.ec-m.fr/test_cours/
-
-Lorsque l'on voudra mettre à jour le site, il suffira de faire un :
-
-.. code-block:: sh
-
-  git pull origin master
-
-Ou de créer un script que le fera de façon automatique, sans même avoir à se logger sur la machine distante.
-
+.. note:: Utilisez les `outils de développement <https://developers.google.com/web/tools/chrome-devtools>`_ pour voir ce que vous avez fait. :code:`plus d'outils > outils de développement`
 
 
 Les div et pourquoi c'est important
@@ -241,15 +132,15 @@ Les div et pourquoi c'est important
 
 Les div (ou span) sont des blocs anonymes :
 
-* span: sur une ligne. Ils sont placés les un à côtés des autres (propriété display en css). Comme un img ou un strong;
-* div: un bloc les un en dessous des autres. Comme un p, ou un h1.
+* `span <https://developer.mozilla.org/fr/docs/Web/HTML/Element/span>`_ : sur une ligne. Ils sont placés les un à côtés des autres (propriété display en css). Comme un :code:`<img />` ou un  :code:`<strong></strong>`;
+* `div <https://developer.mozilla.org/fr/docs/Web/HTML/Element/div>`_ : un bloc les un en dessous des autres. Comme un :code:`<p></p>`, ou un :code:`<h1></h1>`.
 
 Elles ne vont être caractérisées que par les classes/id css qu'on leur mettra :
 
-* class: plusieurs paramètres peuvent avoir la ou les mêmes classes;
-* id: unique pour un bloc particulier.
+* `class <https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/class>`_ : plusieurs paramètres peuvent avoir la ou les mêmes classes;
+* `id <https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/id>`_ : unique pour un bloc particulier.
 
-On peut très finement caractériser la portée d'un sélecteur css : https://www.w3schools.com/cssref/css_selectors.asp
+    On peut très finement caractériser la portée d'un sélecteur css : https://www.w3schools.com/cssref/css_selectors.asp
 
 Attention cependant :
 
@@ -259,340 +150,480 @@ Attention cependant :
 
 
 .. code-block:: html
-
-  <html>
+    :caption: index.html
+    
+    
+    <!doctype html>
+    <html lang="fr">
     <head>
-      <title>Maison Page</title>
+        <meta charset="utf-8"/>
+        <title>Maison page</title>
 
+        <!-- https://fonts.google.com -->
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+
+                background: skyblue;
+                color: #ffffff;
+                font-size: 2em;
+                text-align: center;
+            }
+
+            p {
+                font-family: 'Indie Flower', serif;
+            }
+
+            .milieu {
+                margin: 10px auto;
+                height: 50px;
+                width: 20px;
+            }
+
+            .color {
+                background-color: olive;
+            }
+        </style>
     </head>
     <body>
-      <style>
-        html, body {
-          margin: 0;
-          padding:0;
-
-          background: skyblue;
-          color: #FFFFFF;
-          font-size: 2em;
-          text-align: center;
-        }
-        .milieu {
-          margin: 10px auto;
-          height: 50px;
-          width: 20px;
-        }
-        .color {
-          background-color: olive;
-        }
-      </style>
-
-      <h1> Enfin du web !</h1>
-      <p> et on aime ça</p>
-      <div class="milieu color"></div>
+    <h1>Enfin du web !</h1>
+    <div class="milieu color"></div>
+    <p>Bonjour à tous.</p>
     </body>
-  </html>
+    </html>
+
+
+projet
+======
+
+
+Créez un projet github pour y téléverser votre projet.
+
+Pour cette partie essayez d'utiliser uniquement les outils mis à votre disposition par webstorm, en particulier :
+    * le `terminal <https://www.jetbrains.com/help/webstorm/terminal-emulator.html>`_  
+    * `la gestion des sources <https://www.jetbrains.com/help/webstorm/version-control-integration.html>`_ 
+
+ (n'oubliez pas de charger votre clé ssh) . Une fois ceci fait :
+    * ajoutez un readme depuis l'interface de github
+    * mettez à jour votre projet chez vous
+    * utilisez l'ovh comme serveur distant pour y mettre votre projet
 
 Un framework web
 ================
 
-Faire du javascript à la mimine, c'est rigolo deux minutes mais vite ça devient pénible. Dans la plupart des cas on utilisera des frameworks pour s'éviter de maintenir trop de css (comme bootstrap, ou bulma que l'on utilisera ici). Si l'on est vraiment obligé de faire beaucoup de css,
 
-bulma : https://bulma.io
+Faire du javascript ou du css à la mimine, c'est rigolo deux minutes mais vite ça devient pénible. Dans la plupart des cas on utilisera des frameworks pour s'éviter de maintenir trop de css.
 
-.. note:: un tuto : https://scotch.io/bar-talk/get-to-know-bulma-my-current-favorite-css-framework
+Nous allons utiliser ici un nouveau framework : https://tailwindcss.com/ qui va nous permettre, non seulement de voir ce qu'un framework css peut faire mais également vous initier au build d'un projet front.
 
+    Un très bon tutoriel : https://www.grafikart.fr/tutoriels/tailwindcss-framework-css-1177
+    
+
+On a juste mis tailwind, voyez le résultat. Tout le style par défaut est supprimé (enlevez l'import de tailwind pour voir la différence)
 
 .. code-block:: html
+    :caption: index.html
+    
+    <!doctype html>
+    <html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Maison page</title>
 
-  <!doctype html>
+        <!-- https://fonts.google.com -->
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
 
-  <html>
-  <head>
-      <meta charset="utf-8" />
-      <title>Maison page</title>
-	
-      <link href="./bulma-0.7.1/css/bulma.css" rel="stylesheet">
-  </head>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
-  <body>
-  <section class="hero is-info is-small">
-      <div class="hero-body">
-          <div class="container">
-
-              <h1 class="title">Enfin du web</h1>
-              <h2 class="subtitle has-text-right">Et on aime ça</h2>
-
-          </div>
-      </div>
-  </section>
-
-  <div class="columns">
-    <div class="column has-background-primary">
-      First column
+        <style>
+            p {
+                font-family: 'Indie Flower', serif;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-100">
+    <div class="flex content-center">
+        <h1 class="text-6xl max-w-lg mx-auto">Enfin du web !</h1>
     </div>
-    <div class="column">
-      Second column
-    </div>
-    <div class="column is-half">
-      Third column
-    </div>
-    <div class="column">
-      Fourth column
-    </div>
-  </div>
-  </body>
-  </html>
+
+    <p class="bg-orange-300 shadow-xl hover:underline">Bonjour à tous.</p>
+    </body>
+    </html>
   
 
 Gestion de packages
 ===================
 
-Plutôt que de tout installer à la main et de ne plus se souvenir qui est quoi, on a coutume d'installer un gestionnaire de package. Le plus célèbre en front est :code:`npm` l'installeur de node (Node Package Manager). Il y a des alternatives comme :code:`yarn` mais restons (pour une fois) classique.
+Plutôt que de tout installer à la main et de ne plus se souvenir qui est quoi, on a coutume d'installer un gestionnaire de package. Le plus célèbre en front est :code:`npm` l'installeur de node (Node Package Manager). Il y a des alternatives comme :code:`yarn`, que nous utiliserons aujourd'hui.
 
-Commençez par installer node.
+.. note:: A priori toutes les commandes par :code:`yarn` peuvent être remplacées par :code:`npm`.
+
+installation
+------------
+
+Commençez par installer https://nodejs.org/en/ :
+    * osx : :code:`brew install nodejs`
+    * w10 : :code:`scoop install nodejs`
+
+Puis installez https://yarnpkg.com/lang/en/ : https://yarnpkg.com/en/docs/install#mac-stable
+
+projet
+------
+
+On commence par initialiser le projet : :code:`yarn init`
+
+Un fichier :code:`package.json` a été créé. Ainsi qu'un répertoire :code:`node_modules` qui va contenir toutes nos dépendances.
+
+Installation des dépendances. On a uniquement besoin de dépendance de développement : 
+    * la bibliothèque https://tailwindcss.com en dépendance pour le développement : :code:`yarn add --dev tailwind`
+    * https://postcss.org : :code:`yarn add --dev postcss`
 
 
-Puis : 
-    #. :code:`npm init` (on crée le fichier de configuration),
-    #. :code:`npm install bulma --save` (ajout de la dépendance bulma dans :code:`package.json`).
+.. note:: node_modules va dans le :code:`.gitignore` et on ajoute :code:`package.json` au projet.
+
+Le fichier :code:`package.json` devrait ressembler à ça :
+
+.. code-block:: javascript
+    :caption: package.json
     
-Si on oublie :code:`--save` le package est installé mais pas ajouté dans le fichier de config (regardez le fichier de configuration). Il est toujours bon de se souvenir des packages que l'on installe (on le verra sur l'ovh). 
-
-.. note:: 
-    Il y a de tout sur :code:`npm`. Quasiment tout le monde peut poster des packages. Donc Le meilleur y cotoie le pire, comme https://github.com/kevva/is-negative . Je vous rassure, il y a aussi https://github.com/kevva/is-positive mais bizarrement pas https://github.com/kevva/is-zero.
+    {
+      "name": "2019_front",
+      "version": "1.0.0",
+      "main": "index.js",
+      "repository": "git@github.com:FrancoisBrucker/cours_front_ecm.git",
+      "author": "François Brucker <francois.brucker@centrale-marseille.fr>",
+      "license": "MIT",
+      "devDependencies": {
+        "postcss-cli": "^6.1.3",
+        "tailwindcss": "^1.1.2"
+      }
+    }
     
     
-Le lien vers bulma devient alors : :code:`<link href="./node_modules/bulma/css/bulma.css" rel="stylesheet">`
+.. code-block:: html
+    :caption: index.html
+    
+    <!doctype html>
+    <html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Maison page</title>
+
+        <!-- https://fonts.google.com -->
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="tailwind.css">
+        <style>
 
 
+        </style>
+    </head>
+    <body class="bg-gray-100">
+    <div class="flex content-center">
+        <h1 class="text-6xl max-w-lg mx-auto">Enfin du web !</h1>
+    </div>
 
-.. note:: sauvegardez git et placez vous sur l'ovh pour refaire le projet. Un simple git pull puis npm init va suffire ! C'est y pas beau ça ? 
-
-Tests
-=====
-
-.. note :: 
-
-    `<https://www.slideshare.net/robertgreiner/test-driven-development-at-10000-feet>`_
-    regardez en particulier la courbe décroissante.
-
-Côté Client
-^^^^^^^^^^^  
+    <p class="bg-orange-300 shadow-xl hover:underline">Bonjour à tous.</p>
+    </body>
+    </html>
 
 
-Tests côté front
-================ 
+.. code-block:: javascript
+    :caption: postcss.config.js
+    
+    module.exports = {
+        plugins: [
+            require('tailwindcss'),
+        ]
+    };
+    
+.. code-block:: css
+    :caption: ptailwind.pcss
+    
+    @tailwind base;
 
-On fera plutôt des tests fonctionnels en racontant des petites histoires que doit satisfaire notre site, mais on peut aussi voir si nos balises html se placent bien.
+    @tailwind components;
 
+    @tailwind utilities;
 
-webdriver.io
-^^^^^^^^^^^^ 
-
-On peut tester le rendu client en simulant un navigateur.
-
-Pour cela on utilise Selenium `<http://www.seleniumhq.org>`_ et ses webdrivers qui simulent un browser. Tout ceci fonctionne en java, donc assurez vous d'avoir un java qui corresponde.
-Étapes à suivre : 
-
-#. installation de java (si nécessaire. Tapez java dans un terminal/powershell et si ça rate, c'est qu'il faut l'installer) : `<https://www.java.com/fr/download/faq/develop.xml>`_ et suivez le lien pour télécharger le jdk.
-#. récupérer le fichier jar de Selenium standalone server : `<http://www.seleniumhq.org/download/>`_.
-#. ajouter un driver. Nous utiliserons celui de Chrome : `<https://sites.google.com/a/chromium.org/chromedriver/>`_. Il y en a d'autres possibles (par exemple pour Firefox : `<https://github.com/mozilla/geckodriver/releases>`_).
-
-Une fois Selenium et le driver placé dans un dossier Selenium. Je l'ai placé dans le dossier parent de l'application. On peut tester pour voir si ça marche. En utilisant ce que j'ai téléchargé et mis dans le même dossier : :code:`java -Dwebdriver.chrome.driver=./chromedriver -jar selenium-server-standalone-3.14.jar` 
-
-
-sous windows la commande devient : :code:`java "-Dwebdriver.chrome.driver=chromedriver.exe" -jar "selenium-server-standalone-3.14.0.jar"`
-
-
-.. note:: Attention à la version du serveur selenium et au driver que vous utilisez.
-
-Un serveur web Selenium est lancé. Il est sur le port 4444 par défaut (lisez les logs).
-
-.. note :: Java est toujours verbeux dans ses logs. Apprenez à les lire. 
-
-Et maintenant, il nous reste à installer `<http://webdriver.io>`_ pour utiliser Selenium avec Node : :code:`npm install --save-dev webdriverio`
-
-.. note :: On a installé webdriver.io uniquement pour le développement. Il n'est pas nécessaire de l'emmener avec nous en production. voir https://docs.npmjs.com/cli/install
-
-
-
-Et on fait un premier essai avec le tout : :file:`selenium.test.js` dans un repertoire de test :
-
-.. code-block:: js 
- 
-    var webdriverio = require('webdriverio');
-
-    var options = {
-        desiredCapabilities: {
-            browserName: 'chrome'
-        }
+    p {
+        font-family: 'Indie Flower', serif;
     }
 
-    webdriverio
-    .remote(options)
-    .init()
-    .url('https://www.google.fr')
-    .saveScreenshot("snapshot.png")
-    .catch(function(err) {
-        console.log(err);}) 
-    .end();
 
+Il faut donc processer le fichier :code:`tailwind.pcss` pour le transformer en un fichier css utilisable. Pour cela on peut exécuter la commande : :code:`yarn run postcss -o tailwind.css tailwind.pcss`
 
+.. note:: :code:`postcss` est un exécutable que l'on peut trouver dans le dossier :code:`./node_modules/.bin`. La commande `yarn run` permet d'exécuter un de ces exécutable directement (on peut aussi bien sur directement taper :code:`./node_modules/.bin/postcss`). 
 
+La comande :code:`yarn run` permet également d'exécuter un script construit dans le fichier :code:`package.json`. Créons notre script de *build* :
 
-Avant d'exécuter le fichier avec :code:`node ./tests/selenium.test.js` On s'assure que le serveur Selenium tourne toujours sur le port 4444.
-
-.. note :: Assurez vous de ne part avoir de serveur qui tourne sur le port par défaut. Sinon, changez de port par défaut.
-
-On peut maintenant faire la même chose pour notre fichier : 
-
-.. code-block:: js 
-
-    var webdriverio = require('webdriverio');
-    var path = require('path');
-
-        var options = {
-            desiredCapabilities: {
-                browserName: 'chrome'
-            }
-        }
-
-    var toUpload = path.join(__dirname, '..', '/index.html')
+.. code-block:: javascript
+    :caption: package.json
     
-    webdriverio
-        .remote(options)
-        .init()
-        .url('file://' + toUpload)
-        .saveScreenshot("snapshot.png")
-        .catch(function(err) {
-            console.log(err);}) 
-        .end();
+    {
+      "name": "2019_front",
+      "version": "1.0.0",
+      "main": "index.js",
+      "repository": "git@github.com:FrancoisBrucker/cours_front_ecm.git",
+      "author": "François Brucker <francois.brucker@centrale-marseille.fr>",
+      "license": "MIT",
+      "scripts": {
+        "build": "yarn run postcss -o tailwind.css tailwind.pcss"
+      },
+      "devDependencies": {
+        "postcss-cli": "^6.1.3",
+        "tailwindcss": "^1.1.2"
+      }
+    }
+
+La commande :code:`yarn run build` exécutera notre *build* et créera tout ce qui est nécessaire à la création du projet. Pour finir de bien faire les choses, il faudrait mettre toutes nos sources dans un dossier :code:`src` et builder l'application web finale dans un dossier :code:`build` qui serait généré automatiquement à chaque fois. Il existe plusieurs outils de build, comme https://webpack.js.org/ https://brunch.io ou encore https://parceljs.org
+
+.. note:: A l'aide du tuto https://www.grafikart.fr/tutoriels/parcel-bundler-985 séparez le code en src et build
 
 
+utilité de postcss
+------------------
 
-Notez que l'on a ajouté un module (:code:`path`) pour concaténer des chemins (NE JAMAIS LE FAIRE A LA MAIN !) et utilisé la variable spéciale :code:`__dirname` qui rend le repertoire où est le fichier qui est entrain d'être lu (ici :code:`selenium.test.js`).
+Les imports 
+^^^^^^^^^^^ 
 
-
-Pour l'instant ce ne sont pas de vrais tests. Pour cela, on va utiliser une bibliothèque de test (ici https://mochajs.org/).
-
-Commençons par voir ce que l'on veut tester :
-
+Ils existent a priori pour css pure aussi.
  
-.. code-block:: js 
 
-	var webdriverio = require('webdriverio');
-	var path = require('path');
-
-	var options = {
-	    desiredCapabilities: {
-	        browserName: 'chrome'
-	    }
-	}
-	var toUpload = path.join(__dirname, 'index.html')
-
-	browser = webdriverio
-	    .remote(options)
-	    .init()
-		.url('file://' + toUpload)
-	.getTitle().then( (title) => {
-	    console.log("titre : " + title)
-	})
-	.getText('h1.title').then((title) => {
-	    console.log("h1 : " + title)
-	})
-	.catch(function(err) {
-	    console.log(err);
-	    }) 
-
-	.end()
+.. code-block:: javascript
+    :caption: postcss.config.js
     
+    module.exports = {
+        plugins: [
+            require('postcss-import'),
+            require('tailwindcss'),
+        ]
+    }
 
-.. note :: Attention au .end(). Tout est asynchrone donc si on ajoute une ligne avec le .end(), il risque d'être exécuté avant la fin de la requête.
+.. code-block:: css
+    :caption: tailwind.pcss
+    
+    @import "tailwindcss/base";
+    @import "tailwindcss/components";
+    @import "tailwindcss/utilities";
 
-On peut attraper plein de choses avec Selenium et Webdriver.io en utilisant les selecteurs : `<http://webdriver.io/guide/usage/selectors.html>`_
+    @import "custom-css.css";
+
+.. code-block:: css
+    :caption: custom-css.css
+    
+    p {
+        font-family: 'Indie Flower', serif;
+    }
 
 
-
-mocha
+apply
 ^^^^^
 
-On peut finalement rajouter tous nos tests à la batterie de tests de Node en créant un dernier morceau notre fichier avec le nom
 
-
-on utilise toujours celui dans node_modules. Sur le serveur on peu en avoir un vieux. Et on ajoute la ligne dans les tests.
-
-Les tests js et de routes sont lents par rapport aux tests python ou java. C'est comme ça. Mais il faut tout de même en faire.
-
-* la bibliothèque de tests : :code:`npm install mocha --save-dev`
-* ecrire des jolis tests : :code:`npm install chai --save-dev`
-
-
-Le code des tests :code:`mocha` pour le fichier :file:`./tests/index.test.js` : 
-
-https://medium.com/@ChrisDobler/getting-started-guide-to-browser-testing-with-webdriver-io-and-mocha-and-chai-323c2ff3c773
-
-A expliquer :
-
-* tout est asynchrone. Donc on ne continue qu'après le :code:`done()`
-* before est exécuté avant les tests. Si on ne mets pas done, gettitle va rater puisque la page ne sera pas chargée. Faite le test
-* after est exécuté après les tests. On log les erreurs et on stope le browser
-
-
-.. code-block:: js 
-
-    var webdriverio = require('webdriverio');
-    var path = require('path');
-
-    const expect = require('chai').expect;
-
-    var options = {
-        desiredCapabilities: {
-            browserName: 'chrome'
-        }
-    }
-    const browser = webdriverio.remote(options);
-
-    let toUpload = path.join(__dirname, '..', 'index.html')
-
-    describe('index tests', function() {    
-        before(function(done) {
-            browser.init().url('file://' + toUpload)
-                .then(() => {done();})
-                .catch((err) => done(err));
-          });
-
-          after(function() {
-          browser
-              .catch((err) => { console.log(err);}) 
-              .end();
-          });
-      
-        it('page title', function(done) {
-            browser.getTitle().then((title) => {
-              expect(title).to.equal('Maison page');
-              done();
-            }).catch((err) => done(err));
-        });
-
-        it('h1 title', function(done) {
-            browser.getText('h1.title').then((title) => {
-              expect(title).to.equal('Enfin du web');
-              done();
-            }).catch((err) => done(err));
-        });
+.. code-block:: css
+    :caption: tailwind.pcss
     
-    });    
+    @import "tailwindcss/base";
+    @import "tailwindcss/components";
+    @import "tailwindcss/utilities";
+
+    @import "custom-components.pcss";
+    @import "custom-css.css";
 
 
+.. code-block:: html
+    :caption: custom-component.pcss
+    
+    .info {
+        @apply bg-orange-300 shadow-xl;
+    }
 
-On lance le test avec la comande : :code:`./node_modules/.bin/mocha ./tests/index.test.js --timeout 0`
+    .info:hover { 
+        @apply underline;
+    }
+    
 
-A expliquer :
 
-* :code:`timeout` il faut le temps de lancer le nvigateur, de charger la page, etc. Par défaut c'est 2 secondes et c'est trop court (tester le sans)
-* on utilise le :code:`mocha` installé, il n'existe pas globalement (a priori)
+.. code-block:: html
+    :caption: index.html
+    
+    <!doctype html>
+    <html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Maison page</title>
 
+        <!-- https://fonts.google.com -->
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="tailwind.css">
+        <style>
+
+
+        </style>
+    </head>
+    <body class="bg-gray-100">
+    <div class="flex content-center">
+        <h1 class="text-6xl max-w-lg mx-auto">Enfin du web !</h1>
+    </div>
+
+    <p class="info">Bonjour à tous.</p>
+    </body>
+    </html>
+
+
+variables
+^^^^^^^^^
+
+.. code-block:: javascript
+    :caption: postcss.config.js
+    
+    module.exports = {
+        plugins: [
+            require('postcss-import'),
+            require('tailwindcss'),
+            require('postcss-variables')({
+                globals: {
+                    background: '#f7fafc'
+                }
+            })
+        ]
+    };    
+
+.. code-block:: html
+    :caption: index.html
+
+    <!doctype html>
+    <html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Maison page</title>
+
+        <!-- https://fonts.google.com -->
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="tailwind.css">
+        <style>
+
+
+        </style>
+    </head>
+    <body>
+    <div class="flex content-center">
+        <h1 class="text-6xl max-w-lg mx-auto">Enfin du web !</h1>
+    </div>
+
+    <p class="info">Bonjour à tous.</p>
+    </body>
+    </html>
+
+
+.. code-block:: html
+    :caption: tailwind.pcss
+
+
+    @import "tailwindcss/base";
+    @import "tailwindcss/components";
+    @import "tailwindcss/utilities";
+
+    @import "custom-components.pcss";
+    @import "custom-css.css";
+
+    $color: #bad;
+
+
+    body {
+        background: $background;
+        color: $color;
+    }
+
+autoprefixer et purgecss
+^^^^^^^^^^^^^^^^^^^^^^^^
+https://www.purgecss.com/ permet de supprimer le css inutile (et il y en a. Chez moi on passe de 800ko à 10ko)
+
+
+https://autoprefixer.github.io/ gère tout seul ce qui est browser dépendant. Exemple avec les animations (tiré de https://www.grafikart.fr/tutoriels/parcel-bundler-985). Regardez avec les outils de développement ou dans le fichier :code:`css` généré toutes les animations qui sont générées.
+
+.. code-block:: javascript 
+    :caption: package.json
+    
+    {
+      "name": "2019_front",
+      "version": "1.0.0",
+      "main": "index.js",
+      "repository": "git@github.com:FrancoisBrucker/cours_front_ecm.git",
+      "author": "François Brucker <francois.brucker@centrale-marseille.fr>",
+      "license": "MIT",
+      "scripts": {
+        "build": "yarn run postcss -o tailwind.css tailwind.pcss"
+      },
+      "devDependencies": {
+        "@fullhuman/postcss-purgecss": "^1.3.0",
+        "autoprefixer": "^9.6.4",
+        "postcss-cli": "^6.1.3",
+        "postcss-import": "^12.0.1",
+        "postcss-variables": "^1.1.1",
+        "tailwindcss": "^1.1.2"
+      }
+    }
+    
+
+.. code-block:: css
+    :caption: custom-css.css
+    
+    p {
+        font-family: 'Indie Flower', serif;
+    }
+
+    @keyframes bouge {
+        from {transform: scale(.9)}
+        50% { transform: scale(1.1)}
+        to { transform: scale(.9)}
+    }
+
+    h1 {
+        animation: bouge 3s infinite;
+    }    
+
+.. code-block:: javascript
+    :caption: postcss.config.js
+    
+    const purgecss = require('@fullhuman/postcss-purgecss')
+
+    module.exports = {
+        plugins: [
+            require('postcss-import'),
+            require('tailwindcss'),
+            require('postcss-variables')({
+                globals: {
+                    background: '#f7fafc'
+                }
+            }),
+            require('autoprefixer'),
+            purgecss({
+                content: ['./*.html']
+            }),
+        ]
+    };
+    
+    
+le reste
+^^^^^^^^ 
+
+https://www.postcss.parts/
+
+    un tuto : https://www.grafikart.fr/tutoriels/postcss-663 mais qui commence à être vieux. Utilisation avec gulp qui est un packager ancien. 
+    
+Quelques plugins très utiles : https://www.hongkiat.com/blog/postcss-plugins/ :
+    * minifier (https://cssnano.co/)
+    * cssnext (https://cssnext.github.io/) 
+    * font magician (https://github.com/jonathantneal/postcss-font-magician)
+    * ...
+    
 
 JS (côté front)
 ===============
@@ -619,10 +650,6 @@ Le javascript permet de modifier cet arbre DOM via des évènements : https://ww
           margin: 0;
           padding:0;
 
-          background: skyblue;
-          color: #FFFFFF;
-          font-size: 2em;
-          text-align: center;
         }
         .milieu {
           margin: 10px auto;
@@ -634,8 +661,6 @@ Le javascript permet de modifier cet arbre DOM via des évènements : https://ww
         }
       </style>
 
-      <h1> Enfin du web !</h1>
-      <p> et on aime ça</p>
       <div id="mon_div" class="milieu color"></div>
 
       <script>
@@ -755,12 +780,6 @@ On va tout de suite installer node pour utiliser son gestionnaire de package npm
 (https://www.npmjs.com) ou un
 équivalent yarn (https://yarnpkg.com/lang/en/).
 
-.. code-block :: sh
-
-  yarn init
-  yarn install
-
-
 JS UI
 -----
 
@@ -769,13 +788,3 @@ Pour fabriquer des UI, JS est un bon outil, muni des bons frameworks.
 
 Orienté jeu/2D : Pixijs (http://www.pixijs.com)
 
-
-webpack
-=======
-
-https://webpack.js.org
-
-Un compilateur de javascript, css, html, et fichiers statiques.
-
-
-.. note:: C'est bon, mangez-en !
