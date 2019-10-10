@@ -216,5 +216,6 @@ Le *front* est servi par un *back* via le protocole *http*.
 
 On pourrait tout faire en telnet, mais plein de choses peuvent être automatisées ou rendues plus faciles. C'est le boulot des frameworks comme :
     * https://nodejs.org (petit serveur)
+    * https://palletsprojects.com/p/flask/ (micro serveur)
     * https://www.djangoproject.com (moyen serveur)
-    * http://projects.spring.io/spring-framework/ (gros serveur)
+    * http://projects.spring.io/spring-framework/ et https://spring.io/projects/spring-boot (gros serveur)

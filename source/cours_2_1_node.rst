@@ -141,33 +141,31 @@ Le principe d'un serveur web est de servir des pages différentes selon les requ
 Avant de passer à un framework permettant de le faire, voyons comment faire en node pure :
 
 
-Routes.js
-^^^^^^^^^^
-
 .. code-block:: javascript
+    :caption: routes.js
 
 	var http = require('http')
 
-		var server = http.createServer((request, response) =>{
-		    // http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3
-		    response.statusCode = 200;
-		    response.setHeader('Content-Type', 'text/html');
+	var server = http.createServer((request, response) =>{
+	    // http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3
+	    response.statusCode = 200;
+	    response.setHeader('Content-Type', 'text/html');
 
-		    if (request.url === "/" || request.url === "/home") {
-		        response.end("<html><head><title>home</title></head><body><h1>sweet home</h1></body></html>");
-		    }
-		    else if (request.url === "/contact") {
-		        response.end("<html><head><title>contact</title></head><body><h1>contact</h1></body></html>");
-		    }
-		    else {
-		      response.statusCode = 404;
-		      response.setHeader('Content-Type', 'text/plain');
-		      response.end();
-		    }
-		})
+	    if (request.url === "/" || request.url === "/home") {
+	        response.end("<html><head><title>home</title></head><body><h1>sweet home</h1></body></html>");
+	    }
+	    else if (request.url === "/contact") {
+	        response.end("<html><head><title>contact</title></head><body><h1>contact</h1></body></html>");
+	    }
+	    else {
+	      response.statusCode = 404;
+	      response.setHeader('Content-Type', 'text/plain');
+	      response.end();
+	    }
+	})
 
-		server.listen(3000, 'localhost')
-		console.log("c'est parti")
+	server.listen(3000, 'localhost')
+	console.log("c'est parti")
 
 
 Dans la partie suivante, on utilisera le framework *express* pour gérer tout cela de façon un peu plus élégante.
