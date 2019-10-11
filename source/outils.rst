@@ -71,8 +71,9 @@ w10
 Il faut aussi mettre à jour les service ssh de windows même : `scoop install win32-openssh`. Une fois installé win32-openssh, scoop vous indique comment créer le service ssh-agent. Il s’agit d’exécuter une ligne commençant par sudo. Exécutez la ligne **en enlevant le mot sudo** (exécuter juste le programme) dans un powershell ouvert en mode administrateur.
 
 Une fois ceci fait, vous pourrez : dans un powershell en mode administrateur  :
-    * exécuter le service avec la commande : :code:`Start-Service ssh-agent`
+    * stopper le service avec la commande : :code:`Stop-Service ssh-agent`
     * permettre à l’agent de se lancer au boot de façon automatique : :code:`Set-Service -Name ssh-agent   * StartupType 'Automatic'`
+    * exécuter le service avec la commande : :code:`Start-Service ssh-agent`
 
 utilisation
 -----------
@@ -123,6 +124,39 @@ Installation:
 * Sous Windows 10, suivez les instructions de https://nodejs.org/en/download/,
 * Sous linux, on pourra suivre https://nodejs.org/en/download/package-manager/,
 * Sous OSX, je vous conseille de passer par *brew*: :code:`brew install node`. Brew (http://brew.sh) est un outil magnifique qui permet d'installer sans douleur la quasi totalité des logiciels unix (il y a forcément un package pour ça).
+
+
+java
+====
+
+
+.. todo:: à remanier.
+
+Pour le cours de java android de la semaine prochaine, vous aurez besoin de :
+- java (un jdk) d’installé
+- android studio : https://developer.android.com/studio/?gclid=Cj0KCQjwrfvsBRD7ARIsAKuDvMMw7iwPWLVNsbhPcyvxj5-kIyiTKbbnGxRjjvaxC-Dvs9Y4LR_SiDkaAs3dEALw_wcB
+
+Pour installer sans problème un jdk, je vous conseille d’utiliser https://sdkman.io/ (une fois installer il suffit de taper sdk install java). Pour que cette installation fonctionne sous w10, il va être nécessaire de faire plein de choses :
+
+sdkman et java pour w10 : 
+
+#. supprimer java si vous l'aviez déjà installé : paramètres > Applications > trouver java puis le désinstaller.
+
+#. installation de sdkman : https://sdkman.io/install 
+
+	#. avant d'installer sdkman, il faut installer zip avec scoop : :code:`scoop install zip` dans un powershell
+	#. si git-bash n’est pas déjà installé (tapez git-bash dans un powershell ou dans une barre de recherche), installez le en suivant le lien dans le tuto de sdkman. Lors de l’installation, on n'a pas besoin de modifier le path de git (puisque c'est scoop qui nous a installé git).
+	#. ouvrez une fenêtre git-bash et faites comme dit dans le tuto d’install de sdkman
+	#. fermez la fenêtre git-bash et ouvrez en une autre.
+
+#. modification du path. Il faut que notre java soit reconnu par windows. 
+	#. - trouver où est java : tapez la commande `which java` dans le nouveau git-bash
+	#. utilsez  https://www.java.com/fr/download/help/path.xml pour modifier le path. Il faut ajouter le chemin où est java. Attention, dans le monde windows on utilise de \ à la place des / :
+    
+		* chez moi :code:`which java` donne : /c/Users/francois/.sdkman/candidates/java/current/bin/java
+		* le path que j’ai ajouté est : C:\Users\francois\.sdkman\candidates\java\current\bin
+
+#. dans un powershell, en tapant :code:`get-command java` on doit trouver le bon.
 
 
 odds & ends

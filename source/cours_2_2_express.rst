@@ -45,10 +45,8 @@ On a juste remplacé les routes basiques par celles offertes par Express dans :c
 On utilise les méthodes *get* de HTTP. Les autres existent également bien sûr : http://expressjs.com/fr/starter/basic-routing.html.
 
 
-app.js
-^^^^^^ 
-
 .. code-block:: javascript 
+    :caption: app.js
 
     const http = require('http') 
 
@@ -65,9 +63,10 @@ app.js
 
     app.get('/contact', (request, response) => {
     	response.statusCode = 200;
-		response.setHeader('Content-Type', 'text/html');
+		response.setHeader('Content-Type', 'text/html');        
+        
+    response.end("<html><head><title>contact</title></head><body><h1>contact</h1></body></html>");
 		
-		fs.createReadStream(__dirname + "/html/contact.html", "utf8").pipe(response)    
     })
 
     //manque 404
@@ -75,7 +74,44 @@ app.js
     app.listen(3000);
     console.log("c'est parti")
 
+Pour rappel : 
 
+
+.. code-block:: html
+    :caption: index.html
+    
+    <!doctype html>
+    <html>
+        <head>
+            <title>Maison page</title>
+            <meta charset="utf-8" />
+
+            <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+
+
+            <style>
+                html, body {
+                    margin:0;
+                    padding:0;
+
+                    background: skyblue;
+                    color: #FFFFFF;
+                    font-size: 2em;
+                    text-align: center;
+
+                }
+                p {
+                   font-family: 'Indie Flower', cursive;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Enfin du web !</h1>
+            <p>Et on aime ça.</p>
+        </body>
+    </html>
+    
+    
 La lecture des fichiers est également simplifiée en utilisant la méthode :code:`sendFile` du paramètre :code:`response` :
 
 
@@ -94,7 +130,10 @@ La lecture des fichiers est également simplifiée en utilisant la méthode :cod
     })
 
     app.get('/contact', (request, response) => {
-        response.sendFile(__dirname + "/html/contact.html")
+        	response.statusCode = 200;
+    		response.setHeader('Content-Type', 'text/html');        
+        
+        response.end("<html><head><title>contact</title></head><body><h1>contact</h1></body></html>");
     })
 
     //manque 404
@@ -132,22 +171,26 @@ Les appels aux middlewares se font dans l'ordre. Le paramètre next permettant d
     })
 
     app.get('/contact', (request, response) => {
-        response.sendFile(__dirname + "/html/contact.html")
+        	response.statusCode = 200;
+    		response.setHeader('Content-Type', 'text/html');        
+        
+        response.end("<html><head><title>contact</title></head><body><h1>contact</h1></body></html>");
     })
 
     app.use(function (req, res, next) {
-        console.log('la fin');
+        console.log('comme un 404');
     })
 
-    app.listen(8080);
+    app.listen(3000);
     console.log("c'est parti")
 
 
-Pour toute requête, on affiche la date. Ensuite, si la requête est un get que l'on réceptionne, on effectue la méthode puis on s'arrête puisqu'il n'y a pas de :code:`next()`. On écrit donc "la fin" que si aucune requête get n'est interceptée : c'est notre 404 !
+Pour toute requête, on affiche la date. Ensuite, si la requête est un get que l'on réceptionne, on effectue la méthode puis on s'arrête puisqu'il n'y a pas de :code:`next()`. On écrit donc "comme un 404" que si aucune requête get n'est interceptée : c'est notre 404 !
 
 On peut donc finalement écrire : 
 
 .. code-block:: javascript
+    :caption: app.js
 
     var http = require('http') 
 
@@ -171,6 +214,75 @@ On peut donc finalement écrire :
     app.listen(8080);
     console.log("c'est parti")
 
+
+.. code-block:: html
+    :caption: contact.html
+    
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>Contact</title>
+
+            <style>
+                html, body {
+                    margin:0;
+                    padding:0;
+
+                    background: skyblue;
+                    color: #FFFFFF;
+                    font-size: 2em;
+                    text-align: center;
+                }
+
+                img {
+                    display: block;
+                    width: 452px;
+                    height: 600px;
+                    margin: auto;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Contact</h1>
+
+            <img src="https://www.mauvais-genres.com/6047/full-contact-affiche-40x60-fr-90-jean-claude-van-damne-movie-poster-.jpg" />
+        </body>
+    </html>
+    
+.. code-block:: html
+    :caption: 404.html
+    
+    <html>
+        <head>
+            <meta charset="utf-8" />
+            <title>404</title>
+
+            <style>
+                html, body {
+                    margin:0;
+                    padding:0;
+
+                    background: skyblue;
+                    color: #FFFFFF;
+                    font-size: 2em;
+                    text-align: center;
+                }
+
+                img {
+                    display: block;
+                    width: 580px;
+                    height: 419px;
+                    margin: auto;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Oooops !</h1>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Peugeot404-berline.jpg/1200px-Peugeot404-berline.jpg" />
+
+
+        </body>
+    </html>
 
 Fichiers statiques
 ==================
@@ -214,6 +326,15 @@ Pour l'instant, utilisons un petit middleware :
     app.listen(8080);
     console.log("c'est parti");
 
+
+.. note:: on supprimera ce middleware en prod puisque la configuration de nginx a une route pour les fichiers statiques.
+
+build
+=====
+
+Placez votre code sur l'ovh.
+
+.. note:: On fera attention aux fichiers statiques. Où doivent-ils être ?
 
 Templates
 =========
@@ -265,10 +386,8 @@ Ajoutons maintenant un élément qui va être sur toutes les pages :
     * On l'inclut dans nos templates en ajoutant dans notre fichier ejs la ligne :code:`<% include partials/navbar.ejs %>` Ici, cela pourra être la première ligne du body. 
 
 
-navbar.ejs
-^^^^^^^^^^ 
-
 .. code-block:: html
+    :caption: navbar.ejs
 
 	<style>
 	    nav > ul {

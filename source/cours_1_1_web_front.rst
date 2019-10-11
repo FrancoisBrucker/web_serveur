@@ -50,7 +50,7 @@ Le HTML est un langage à balise. C'est-à-dire qu'il est toujours en deux parti
 
 
 Juste un petit exemple, on en refera par la suite, c'est juste pour ne pas être (trop) perdu.
-Ici, le navigateur interprétera directement le fichier, sans passer par un *serveur*. Il trouve le fichier à afficher via une `uri <https://fr.wikipedia.org/wiki/Uniform_Resource_Identifier)>`_   :code:`file://chemin/absolu/vers/fichier.html`
+Ici, le navigateur interprétera directement le fichier, sans passer par un *serveur*. Il trouve le fichier à afficher via une `uri <https://fr.wikipedia.org/wiki/Uniform_Resource_Identifier)>`__   :code:`file://chemin/absolu/vers/fichier.html`
 
 .. code-block:: html
     :linenos:
@@ -125,7 +125,7 @@ Pour la couleur, on la gère en hexadécimal RGB sur 32bits 8 par channel.
 * Pour un aperçu des couleurs : https://color.adobe.com/fr/create.
 * Pour les couleurs en hexadécimal pour faire du développement web : https://www.w3schools.com/colors/colors_names.asp.
 
-.. note:: Utilisez les `outils de développement <https://developers.google.com/web/tools/chrome-devtools>`_ pour voir ce que vous avez fait. :code:`plus d'outils > outils de développement`
+.. note:: Utilisez les `outils de développement <https://developers.google.com/web/tools/chrome-devtools>`__ pour voir ce que vous avez fait. :code:`plus d'outils > outils de développement`
 
 
 Les div et pourquoi c'est important
@@ -133,13 +133,13 @@ Les div et pourquoi c'est important
 
 Les div (ou span) sont des blocs anonymes :
 
-* `span <https://developer.mozilla.org/fr/docs/Web/HTML/Element/span>`_ : sur une ligne. Ils sont placés les un à côtés des autres (propriété display en css). Comme un :code:`<img />` ou un  :code:`<strong></strong>`;
-* `div <https://developer.mozilla.org/fr/docs/Web/HTML/Element/div>`_ : un bloc les un en dessous des autres. Comme un :code:`<p></p>`, ou un :code:`<h1></h1>`.
+* `span <https://developer.mozilla.org/fr/docs/Web/HTML/Element/span>`__ : sur une ligne. Ils sont placés les un à côtés des autres (propriété display en css). Comme un :code:`<img />` ou un  :code:`<strong></strong>`;
+* `div <https://developer.mozilla.org/fr/docs/Web/HTML/Element/div>`__ : un bloc les un en dessous des autres. Comme un :code:`<p></p>`, ou un :code:`<h1></h1>`.
 
 Elles ne vont être caractérisées que par les classes/id css qu'on leur mettra :
 
-* `class <https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/class>`_ : plusieurs paramètres peuvent avoir la ou les mêmes classes;
-* `id <https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/id>`_ : unique pour un bloc particulier.
+* `class <https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/class>`__ : plusieurs paramètres peuvent avoir la ou les mêmes classes;
+* `id <https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/id>`__ : unique pour un bloc particulier.
 
     On peut très finement caractériser la portée d'un sélecteur css : https://www.w3schools.com/cssref/css_selectors.asp
 
@@ -204,8 +204,8 @@ projet
 Créez un projet github pour y téléverser votre projet.
 
 Pour cette partie essayez d'utiliser uniquement les outils mis à votre disposition par webstorm, en particulier :
-    * le `terminal <https://www.jetbrains.com/help/webstorm/terminal-emulator.html>`_  
-    * `la gestion des sources <https://www.jetbrains.com/help/webstorm/version-control-integration.html>`_ 
+    * le `terminal <https://www.jetbrains.com/help/webstorm/terminal-emulator.html>`__  
+    * `la gestion des sources <https://www.jetbrains.com/help/webstorm/version-control-integration.html>`__ 
 
  (n'oubliez pas de charger votre clé ssh) . Une fois ceci fait :
     * ajoutez un readme depuis l'interface de github

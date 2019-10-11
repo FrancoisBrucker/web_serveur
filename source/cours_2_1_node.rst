@@ -4,12 +4,12 @@ Node
 
 https://nodejs.org/en/ est idéal pour créer des petits serveur web, des sites à une seule page ressemblant à une application, ou encore une interface *REST*.
 
-Il est utilisé en conjonction d'autres bibliothèques pour créer des applications *MEAN* (`<https://en.wikipedia.org/wiki/MEAN_(software_bundle)>`_) . Actuellement, il y a des alternatives sérieuses à A (angular), comme react.js mais il est bien revenu.
+Il est utilisé en conjonction d'autres bibliothèques pour créer des applications *MEAN* (`<https://en.wikipedia.org/wiki/MEAN_(software_bundle)>`__) . Actuellement, il y a des alternatives sérieuses à A (angular), comme react.js mais il est bien revenu.
 
 Node en console
 ===============
 
-Node peut être vu comme un interpréteur javascript. Il incorpore le moteur javascript V8 de google (`<https://fr.wikipedia.org/wiki/V8_(moteur_JavaScript)>`_).
+Node peut être vu comme un interpréteur javascript. Il incorpore le moteur javascript V8 de google (`<https://fr.wikipedia.org/wiki/V8_(moteur_JavaScript)>`__).
 
 Tapez :code:`Node` dans un terminal. Vous vous retrouverez dans un interpréteur javascript. Idéal pour tester des choses, en particulier pour reprendre les exemples de https://www.destroyallsoftware.com/talks/wat
 
@@ -60,14 +60,14 @@ Regardons le code de près :
 
 On peut afficher l'url de la requête : On récupère les variables *hostname* et *port* et on les affiche dans la console.
   
-Détails, en utilisant la `documentation <https://nodejs.org/en/docs/>`_ de nodejs :
+Détails, en utilisant la `documentation <https://nodejs.org/en/docs/>`__ de nodejs :
 
     * :code:`http` : C'est le module s'occupant des échanges et du codage des données.
-    * :code:`http.createServer` : demande un `requestListener <https://www.w3schools.com/nodejs/func_http_requestlistener.asp>`_ qui est ajouté à l'événement request.
+    * :code:`http.createServer` : demande un `requestListener <https://www.w3schools.com/nodejs/func_http_requestlistener.asp>`__ qui est ajouté à l'événement request.
     * event request : deux paramètres :code:`http.IncomingMessage`  et :code:`http.ServerResponse`. Il est émit à chaque fois qu'un *request* est demandé
     * :code:`http.IncomingMessage` a un attribut url : il sert à générer le *Readable Stream interface* et beaucoup d'autres choses (événements, méthodes, ...).
 
-.. note:: La `documentation <https://nodejs.org/api/>`_ de nodejs est très bien faite. Trouvez tous les éléments mentionnés ci-dessus.
+.. note:: La `documentation <https://nodejs.org/api/>`__ de nodejs est très bien faite. Trouvez tous les éléments mentionnés ci-dessus.
 
 
 Tout est orienté autours d'évènements auxquels le serveur doit répondre.
