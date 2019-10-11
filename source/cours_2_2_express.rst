@@ -16,26 +16,10 @@ Node vient avec son célèbre installeur npm : https://www.npmjs.com. Il existe 
  
 :code:`yarn` va installer les package pour nous : 
 
-* on commence par initialier le projet par :code:`yarn init` :code:`yarn add express`.
+* on commence par initialier le projet par :code:`yarn init` 
+* puis :code:`yarn add express`.
 
-Il a rajouté un répertoire :code:`node_module` avec plein d'autres répertoires à l'intérieur. Ce sont les dépendances du framework express. Tout installer à la main aurait été infaisable. 
-
-Il manque cependant un fichier : :code:`package.json` : il gère les dépendances de notre projet pour que l'on n'ait pas à emmener avec nous le répertoire :code:`node_module`.
-
-Donc commençons par reprendre de zéro : :code:`npm uninstall express` (:code:`node_module` est à nouveau vide).
-
-Puis : 
-    #. :code:`npm init` (on crée le fichier de configuration),
-    #. :code:`npm install express --save` (ajout de la dépendance express dans :code:`package.json`).
-    
-
-On pourra maintenant supprimer le répertoire :code:`node_modules` et le recréer avec :code:`npm install`.
-
-
-.. note:: 
-    Il y a de tout sur :code:`npm`. Quasiment tout le monde peut poster des packages. Donc Le meilleur y cotoie le pire, comme https://github.com/kevva/is-negative . Je vous rassure, il y a aussi https://github.com/kevva/is-positive mais bizarrement pas https://github.com/kevva/is-zero.
-    
-    
+Il a rajouté un répertoire :code:`node_module` avec plein d'autres répertoires à l'intérieur. Ce sont les dépendances du framework express. ainsi qu'un fichier de configuration :code:`config.json` Tout installer à la main aurait été infaisable. 
 
 Route Express
 =============
@@ -341,7 +325,7 @@ Templates
 
 Générer des fichiers HTML spécifiques pour chaque requête. Pour cela on a du choix : http://expressjs.com/en/guide/using-template-engines.html et on utilisera http://ejs.co :
 
-Il faut commencer par l'installer et le mettre en dépendance : :code:`npm install ejs --save` 
+Il faut commencer par l'installer et le mettre en dépendance : :code:`yarn add ejs` 
 
 .. code-block:: javascript
 
@@ -407,11 +391,9 @@ Ajoutons maintenant un élément qui va être sur toutes les pages :
 	  </ul>
 	</nav>
 
-.. Passage de paramètres
+.. todo:: Passage de paramètres
 
-.. =====================
- 
-.. .. todo:: cours prochain.
+
  
 
  
