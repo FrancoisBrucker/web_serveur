@@ -11,6 +11,7 @@ Il en existe plein d'autres. Essayez d'avoir des sites de références pour ces 
     * http://www.thenetninja.co.uk
 
 
+.. todo:: faire un projet git avec les diverses parties du projet en tag. https://git-scm.com/book/en/v2/Git-Basics-Tagging
 
 partie d'un tout
 ================
@@ -379,10 +380,7 @@ La comande :code:`yarn run` permet également d'exécuter un script construit da
       }
     }
 
-La commande :code:`yarn run build` exécutera notre *build* et créera tout ce qui est nécessaire à la création du projet. Pour finir de bien faire les choses, il faudrait mettre toutes nos sources dans un dossier :code:`src` et builder l'application web finale dans un dossier :code:`build` qui serait généré automatiquement à chaque fois. Il existe plusieurs outils de build, comme https://webpack.js.org/ https://brunch.io ou encore https://parceljs.org
-
-.. note:: A l'aide du tuto https://www.grafikart.fr/tutoriels/parcel-bundler-985 séparez le code en src et build
-
+La commande :code:`yarn run build` exécutera notre *build* et créera tout ce qui est nécessaire à la création du projet. 
 
 utilité de postcss
 ------------------
@@ -392,6 +390,7 @@ Les imports
 
 Ils existent a priori pour css pure aussi.
  
+ .. note:: les plugins sont exécutés les uns à la suite des autres, dans l'ordre de la liste. Il faut exécuter :code:`postcss-import` en premier, pour les imports passent.
 
 .. code-block:: javascript
     :caption: postcss.config.js
@@ -625,6 +624,17 @@ Quelques plugins très utiles : https://www.hongkiat.com/blog/postcss-plugins/ :
     * ...
     
 
+build
+=====
+Pour finir de bien faire les choses, il faudrait mettre toutes nos sources dans un dossier :code:`src` et builder l'application web finale dans un dossier :code:`build` qui serait généré automatiquement à chaque fois.
+
+.. todo:: à faire bien
+
+* dossier src/ et build/
+* deux scripts build.sh et build.ps1 si sous w10 et powershell (https://www.dummies.com/computers/operating-systems/windows-xp-vista/create-run-powershell-script/)
+
+
+
 JS (côté front)
 ===============
 
@@ -780,11 +790,19 @@ On va tout de suite installer node pour utiliser son gestionnaire de package npm
 (https://www.npmjs.com) ou un
 équivalent yarn (https://yarnpkg.com/lang/en/).
 
-JS UI
------
+build
+----- 
 
-Pour fabriquer des UI, JS est un bon outil, muni des bons frameworks.
- Le très connu et reconnu https://reactjs.org, ou encore https://vuejs.org
+.. todo:: à faire bien
 
-Orienté jeu/2D : Pixijs (http://www.pixijs.com)
+jquery est utilisé en production pour notre site. Il faut modifier notre script de build
+
+https://yarnpkg.com/lang/en/docs/cli/install/ : yarn install --production --modules-folder="../build"
+
+outils de build
+===============
+
+ Il existe plusieurs outils de build, comme https://webpack.js.org/ https://brunch.io ou encore https://parceljs.org
+
+.. note:: A l'aide du tuto https://www.grafikart.fr/tutoriels/parcel-bundler-985 séparez le code en src et build
 

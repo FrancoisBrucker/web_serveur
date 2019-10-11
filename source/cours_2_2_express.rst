@@ -9,10 +9,14 @@ Node vient souvent avec express (http://expressjs.com), un framework permettant 
 Gestion de packages
 ===================
 
-Node vient avec son célèbre installeur npm : https://www.npmjs.com
-. Il existe des alternatives, comme  :code:`yarn` par exemple
+Node vient avec son célèbre installeur npm : https://www.npmjs.com. Il existe des alternatives, comme  :code:`yarn` par exemple, que nous allons utiliser ici (voir partie front)
  
-:code:`npm` va installer les package pour nous : :code:`npm install express`.
+.. todo:: faire une référence avec la patie front
+
+ 
+:code:`yarn` va installer les package pour nous : 
+
+* on commence par initialier le projet par :code:`yarn init` :code:`yarn add express`.
 
 Il a rajouté un répertoire :code:`node_module` avec plein d'autres répertoires à l'intérieur. Ce sont les dépendances du framework express. Tout installer à la main aurait été infaisable. 
 

@@ -164,7 +164,7 @@ Ceci est possible car en javascript, comme en python, un fonction peut être une
 Événements
 ----------
 
-On fait un exemple avec les intervalles. On utilise la méthode :code:`setInterval` utilisable par défaut en node.
+On utilise la méthode :code:`setInterval` utilisable par défaut en node.
 
 Ce qui est utilisable par défaut est définit dans https://nodejs.org/api/globals.html
 
@@ -236,8 +236,8 @@ Servir des fichiers
 
 On simule un petit serveur web qui charge des fichiers. On utilisera quasi jamais ça en production. Les fichiers html étant des fichiers statiques, et donc mieux servis par nginx que par node.
 
-chargement d'un fichier local
------------------------------
+fichier local
+-------------
 
 
 .. code-block:: javascript
@@ -295,8 +295,8 @@ Le nom `__dirname` est un globals de node (https://nodejs.org/docs/latest/api/gl
     </html>
 
 
-streaming
----------
+fichier distant
+---------------
 
 Les fichiers précédents ne sont pas volumineux, ils sont donc quasi-immédiatement chargés, mais pour de gros fichiers, le chargement peut être long, node organise ainsi tout chargement en stream pour permettre de servir du contenu le plus tôt possible. 
 
@@ -337,8 +337,6 @@ Odds and ends
 
 Modules
 -------
-
-.. note:: Comme la partie précédente, on pourra passer notre chemin sur cette partie.
 
 
 La force de Node est ses modules. Le mécanisme de création est assez spécial. On en créera lorsque l'on voudra séparer notre code en unités fonctionnelles.
