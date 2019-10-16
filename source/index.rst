@@ -46,7 +46,6 @@ back
     2_2_node
     2_3_express
 
-    tests_selenium_mocha
 
 
 données
@@ -57,20 +56,23 @@ données
     :maxdepth: 2
 
     3_1_app_complete
-    cours_3_1_2_outils
-    cours_3_2_1_formulaires
-    cours_3_2_2_cookies
-    
-    ejs_partials
+    3_2_formulaires
+    3_3_crud
+    3_4_bases_de_donnees
 
-Cours 4
-^^^^^^^
+à retravailler
+==============
+
 .. toctree::
     :maxdepth: 2
+    
+    tests_selenium_mocha
+
+    cours_3_2_2_cookies    
+    ejs_partials
 
     cours_4_1_identification
-    cours_4_2_post_et_json
-    cours_4_3_1_crud
+
     cours_4_3_2_webstorage
 
 

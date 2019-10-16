@@ -1,24 +1,21 @@
-******************
-Sauver les Données
-******************
+********
+API CRUD
+********
 
-.. note:: à mettre à jour avec la version actuelle
+.. todo:: à mettre à jour avec la version actuelle
 
-Côté serveur
-============
+Les données sont usuellement stockées quelque part. Celles-ci peuvent prendre des formes différentes (base de données, fichier json, objets) et se stocker de façon diverses : 
 
-La base de données :
-
-  * elle peut être en mémoire ;
-  * elle peut être dans un fichier (plat ou SQlite) ;
-  * elle peut être en base (SQL ou mongodb).
+  * en mémoire ;
+  * dans un fichier (plat ou SQlite) ;
+  * être une base (SQL ou mongodb).
 
 Pour manipuler les données on utilisera un formalisme CRUD (`<https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`_) et pour les transmettre une architecture REST (`<https://en.wikipedia.org/wiki/Representational_state_transfer>`_).
 
-.. note:: Durant ce cours, nous ne verrons que les bases de données en mémoire.
+Quelque soit le modèle de stockage de nos données, on va y accéder en utilisant le formalisme `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__
 
-Route spéciale
-^^^^^^^^^^^^^^
+api
+===
 
 On va attaquer toutes nos requêtes vers les données en utilisant une URL commençant par API. Parfois on ajoute aussi le numéro de version. Pour ne pas avoir à refaire toutes les routes à chaque changement de version, on va utiliser les router de express (`<http://expressjs.com/fr/4x/api.html#router>`_).
 
@@ -37,11 +34,12 @@ Pour l'instant on va placer le code dans le fichier :file:`server.js` :
 
 
 CRUD
-^^^^
+====
+
+
 Notre modèle de donnée va être ici:
   * id
-  * nom
-  * prénom
+  * pseudo
   * commentaire
 
 Il va bien s'adapter avec les bases de données *NOSQL*. Nous ne ferons ici que le traitement en mémoire. Il n'y aura donc pas de persistence des données (après l'arrêt du serveur) ni de méthodes de recherche très frustre.
@@ -71,7 +69,7 @@ Les différentes méthodes seront :
   })
 
 Test avec Postman
-^^^^^^^^^^^^^^^^^
+=================
 
 `<https://www.getpostman.com>`_ est une application permettant de tester facilement vos API REST.
 
@@ -252,10 +250,3 @@ Ici, notre ID va être un nombre qui va toujours grandir. Dans une vrai base de 
 
 
 .. note:: A faire:  Changer le code du javascript client de :file:`contact.ejs` pour qu'il utilise l'API. Supprimer la requête POST restante dans :file:`server.js`.
-
-
-Bases de données
-================
-
-Utilisez par exemple `<https://www.youtube.com/watch?v=L4OP8JGKbQU&index=35&list=PL4cUxeGkcC9gcy9lrvMJ75z9maRw4byYp>`_
-pour mettre en place le tout avec une base de données MONGODB.
