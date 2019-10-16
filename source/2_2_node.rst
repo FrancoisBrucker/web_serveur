@@ -120,6 +120,9 @@ screen manual : https://linuxize.com/post/how-to-use-linux-screen/
 * :code:`screen -ls` : trouve les différents screen
 * :code:`screen -X -S [session # you want to kill] quit` : tue le screen
 
+
+.. todo:: faire un speech sur les ps et kill
+
 :code:`ps aux| grep raifort` puis kill (sans -9) le numéro du process (le 1er numéro)
 
 

@@ -30,7 +30,7 @@ On utilise les méthodes *get* de HTTP. Les autres existent également bien sûr
 
 
 .. code-block:: javascript 
-    :caption: app.js
+    :caption: index.js
 
     const http = require('http') 
 
@@ -313,12 +313,6 @@ Pour l'instant, utilisons un petit middleware :
 
 .. note:: on supprimera ce middleware en prod puisque la configuration de nginx a une route pour les fichiers statiques.
 
-build
-=====
-
-Placez votre code sur l'ovh.
-
-.. note:: On fera attention aux fichiers statiques. Où doivent-ils être ?
 
 Templates
 =========
@@ -364,6 +358,15 @@ Commençons par transformer nos fichiers HTML en templates :
     console.log("c'est parti")
 
 
+passage de paramètres
+---------------------
+
+.. todo:: Passage de paramètres
+
+
+partials
+--------
+
 
 Ajoutons maintenant un élément qui va être sur toutes les pages :
     * On crée une navbar toute simple, que l'on place dans un sous-répertoire de :code:`views`,  :code:`partials`,
@@ -391,9 +394,15 @@ Ajoutons maintenant un élément qui va être sur toutes les pages :
 	  </ul>
 	</nav>
 
-.. todo:: Passage de paramètres
+
 
 
  
+build
+=====
+
+Placez votre code sur l'ovh.
+
+.. note:: On fera attention aux fichiers statiques. Où doivent-ils être ?
 
  

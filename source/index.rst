@@ -25,24 +25,28 @@ Table des matières
     ssh_premier_projet
     
 
-Cours 1
-^^^^^^^
+front
+=====
 
 .. toctree::
     :maxdepth: 2
 
-    cours_1_1_web_front
-    cours_1_2_web_http
+
+    1_1_web_front_html_css
+    1_2_web_front_js
+
+back
+====
+
+.. toctree::
+    :maxdepth: 2
+
+    2_1_protocole_http
+
+    2_2_node
+    2_3_express
+
     tests_selenium_mocha
-
-Cours 2
-^^^^^^^
-
-.. toctree::
-    :maxdepth: 2
-
-    cours_2_1_node
-    cours_2_2_express
 
 Cours 3
 ^^^^^^^
