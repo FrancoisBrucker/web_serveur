@@ -48,16 +48,20 @@ back
 
     tests_selenium_mocha
 
-Cours 3
-^^^^^^^
+
+données
+=======
+
 
 .. toctree::
     :maxdepth: 2
 
-    cours_3_1_1_preparation
+    3_1_app_complete
     cours_3_1_2_outils
     cours_3_2_1_formulaires
     cours_3_2_2_cookies
+    
+    ejs_partials
 
 Cours 4
 ^^^^^^^

@@ -207,7 +207,10 @@ Pour cette partie essayez d'utiliser uniquement les outils mis à votre disposit
     * le `terminal <https://www.jetbrains.com/help/webstorm/terminal-emulator.html>`__  
     * `la gestion des sources <https://www.jetbrains.com/help/webstorm/version-control-integration.html>`__ 
 
- (n'oubliez pas de charger votre clé ssh) . Une fois ceci fait :
+.. note :: pour utiliser powershell sous W10, vous pouvez suivre ce `tuto <https://itnext.io/how-to-use-powershell-as-default-terminal-in-intellij-vscode-windows-power-user-menu-ba512e68b566>`__
+
+
+N'oubliez pas de charger votre clé ssh. Une fois ceci fait :
     * ajoutez un readme depuis l'interface de github
     * mettez à jour votre projet chez vous
     * utilisez l'ovh comme serveur distant pour y mettre votre projet
