@@ -88,4 +88,6 @@ Index
 TBD
 ***
 
+.. todo:: replacer tous les :code:`fichier` par :file:`fichier`
+
 .. todolist::

@@ -111,7 +111,7 @@ Une fois ça fait, on peut créer le fichier de configuration de winston :
 
     var options = {
         file: {
-            level: 'info',
+            level: 'warn',
             filename: `${appRoot}/logs/app.log`,
             handleExceptions: true,
             json: true,
@@ -147,22 +147,32 @@ Une fois ça fait, on peut créer le fichier de configuration de winston :
     module.exports = logger;
 
 
-A chaque fois que l'on va accéder à des routes, elles vont être ajoutées dans le fichier de log.
+On a créé deux sorties :
 
-log des erreurs dans app.js
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    * file : qui va stocker dansun fichier de log (:file:`./logs/app.log`) tous les messages qui sont au moins de niveau :code:`warn` 
+    * la console qui affiche dans la console tous les messages de niveau au moins :code:`debug`
 
-* Remplace la ligne : :code:`app.use(logger('combined'));` par :code:`app.use(logger('combined', { stream: winston.stream }));`. Ceci va faire que les messages de morgan sont transformés en messages winston.
-* dans la gesion des erreurs, ajouter un message winston : 
 
-.. code:: javascript 
+
+On crée aussi un :code:`stream` qui va nous permettre d'encapsuler les messages de morgan.
+
+winston et morgan
+^^^^^^^^^^^^^^^^^
+
+Dans :file:`app.js`, remplacez la ligne : :code:`app.use(logger('combined'));` par :code:`app.use(logger('combined', { stream: winston.stream }));`. Ceci va faire que les messages de morgan sont encapsulés dans des messages winston.
+
+message de log
+^^^^^^^^^^^^^^
+
+Dans :file:`app.js`, dans la gestion des erreurs transformons la ligne qui affiche dans la console par un message winston : 
+
+.. code-block:: javascript 
 
     winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
 
-log dans user
-^^^^^^^^^^^^^
 
-On peut ajouter un log dans le fichier users. pour cela on importe winston avec la ligne : 
+
+On peut également ajouter un log dans le fichier users. pour cela on importe winston avec la ligne : 
 .. code:: javascript
 
     var winston = require('../winston.config');

@@ -357,5 +357,9 @@ Pour envoyer des choses au serveur, il faut que le navigateur fasse une requête
     });
     
     
-    Tester que tout fonctionne. Vous pouvez également supprimer (ou commenter) la ligne qui supprime le comportement par défaut.
+    Tester que tout fonctionne. 
+    
+Une fois que tout est ok, supprimez la ligne qui enlève le comportement par défaut. C'est une bonne pratique de recharger une page en get après un envoie car cela évite le double post en rechargeant la page. C'est le pattern `redirect after post <https://www.theserverside.com/news/1365146/Redirect-After-Post>`__
+
+
 

@@ -10,27 +10,62 @@ Les données sont usuellement stockées quelque part. Celles-ci peuvent prendre 
   * dans un fichier (plat ou SQlite) ;
   * être une base (SQL ou mongodb).
 
-Pour manipuler les données on utilisera un formalisme CRUD (`<https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`_) et pour les transmettre une architecture REST (`<https://en.wikipedia.org/wiki/Representational_state_transfer>`_).
-
-Quelque soit le modèle de stockage de nos données, on va y accéder en utilisant le formalisme `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__
+Pour manipuler les données on utilisera un formalisme `CRUD <https://en.wikipedia.org/wiki/Create,_read,_update_and_delete>`__ et pour les transmettre une architecture `REST <https://en.wikipedia.org/wiki/Representational_state_transfer>`__.
 
 api
 ===
 
-On va attaquer toutes nos requêtes vers les données en utilisant une URL commençant par API. Parfois on ajoute aussi le numéro de version. Pour ne pas avoir à refaire toutes les routes à chaque changement de version, on va utiliser les router de express (`<http://expressjs.com/fr/4x/api.html#router>`_).
+On va attaquer toutes nos requêtes vers les données en utilisant une URL commençant par :code:`api`. Parfois on ajoute aussi le numéro de version, ce qui permet de garder des anciennes api en parallèle de l'api courante. 
 
-Pour l'instant on va placer le code dans le fichier :file:`server.js` :
+Donc la route : 
 
 .. code-block:: javascript
+    :caption: ./routes/api.js
+    
+    var express = require('express');
+    var router = express.Router();
 
-  var router = express.Router();
+    var winston = require('../winston.config');
 
-  router.get("/comment", (request, response) => {
-      response.send(request.originalUrl)
-  })
+    router.get('/', function(req, res, next) {
+      winston.warn("TBD: implement me");
 
-  app.use('/api', router);
-  app.use('/api/v1', router);
+      res.send('api');
+
+    });
+
+    module.exports = router;
+    
+
+Le chargement et le lien dans :file:`app.js`.
+
+Chargement des routes (juste après les autres chargements de routes) :
+
+.. code-block:: javascript 
+    :caption:  api.js
+
+    // ... 
+    
+    var apiRouter = require('./routes/api');    
+    
+    // ... 
+    
+
+LLe lien, juste après les autres liens de routes : 
+
+.. code-block:: javascript 
+    :caption:  api.js
+
+    // ...     
+    
+    app.use('/api', apiRouter);
+    app.use('/api/v1', apiRouter); 
+
+    // ...     
+
+L'api courante est l'api v1. Cela pourra changer plus tard, lorsque l'on développera de nouvelles api tout en maintenant le legacy. 
+
+.. note:: garder le legacy peut être important lorsque l'on développe des apis, car les utilisateurs ne veulent pas changer leurs interfaces tout le temps. Mais une api se devant aussi d'évoluer, il est nécessaire de permettre le changement. 
 
 
 CRUD
@@ -38,215 +73,165 @@ CRUD
 
 
 Notre modèle de donnée va être ici:
-  * id
-  * pseudo
+  * pseudo (la clé)
   * commentaire
 
-Il va bien s'adapter avec les bases de données *NOSQL*. Nous ne ferons ici que le traitement en mémoire. Il n'y aura donc pas de persistence des données (après l'arrêt du serveur) ni de méthodes de recherche très frustre.
+Il va bien s'adapter avec les bases de données *nosql*. Nous ne ferons ici que le traitement en mémoire. Il n'y aura donc pas de persistance des données (après l'arrêt du serveur) ni de méthodes de recherche.
 
 Les différentes méthodes seront :
 
 .. code-block:: javascript
+    :caption: ./routes/api.js
 
-  router.get("/comment", (request, response) => {
-      response.send("READ all the comments")
-  })
+    var express = require('express');
+    var router = express.Router();
 
-  router.post("/comment", (request, response) => {
-      response.send("CREATE a comment")
-  })
+    var winston = require('../winston.config');
 
-  router.get("/comment/:id", (request, response) => {
-      response.send("Comment with id", id)
-  })
+    router.get("/", (req, res) => {
+      winston.info("TBD: implement me");
+      res.send("READ all the comments");
+    });
 
-  router.post("/comment/:id", (request, response) => {
-      response.send("UPDATE with id", id)
-  })
+    router.post("/", (req, res) => {
+      winston.info("TBD: implement me");
+      res.send("CREATE a comment");
+    });
 
-  router.delete("/comment/:id", (request, response) => {
-      response.send("DELETE comment with id", id)
-  })
+    router.get("/:pseudo", (req, res) => {
+      winston.info("TBD: implement me");
+      res.send("Comment with pseudo "+ req.params.pseudo);
+    });
 
-Test avec Postman
-=================
+    router.post("/:pseudo", (req, res) => {
+      winston.info("TBD: implement me");
+      res.send("UPDATE with pseudo " + req.params.pseudo);
+    });
 
-`<https://www.getpostman.com>`_ est une application permettant de tester facilement vos API REST.
+    router.delete("/:pseudo", (req, res) => {
+      winston.info("TBD: implement me");
+      res.send("DELETE comment with pseudo " + req.params.pseudo);
+    });
 
-Ceci va nous aider pour créer effectivement les différentes méthodes.
 
-Module de routage
-^^^^^^^^^^^^^^^^^
+    module.exports = router;
+    
 
-On fait comme la fin de cette page `<http://expressjs.com/fr/guide/routing.html>`_
-en créant un module spécifique pour l'API CRUD.
+    
+Testez ces routes avec Postman
+    
+Lier l'api aux commentaires
+===========================
 
-On va créer un fichier :file:`comment.js` dans le répertoire :file:`route/api` de notre application.
+Le javascript de la page des commentaires doit pointer sur routes. Il suffit de 
+
+* supprimer la méthode post dans la route :file:`./routes/comments.js` 
+* changer le paramètre :code:`url` de la méthode :code:`ajax` par : 
+
+    .. code-block:: javascript 
+
+        // ...
+    
+        url: "http://" + $(location).attr('host') + "/api",
+    
+        // ...
+    
+
+
+Stockage des données
+====================
+
+Ave une *base de données* en mémoire (*ie.* un dictionnaire).
+
+
+On va créer un fichier :file:`data_storage.js` dont le but est de stocker nos données. Ce fichier pourra ensuite amélioré si l'on veut mettre une vraie base de données.
+
 
 .. code-block:: javascript
+    :caption: ./data_storage.js
 
-  var express = require('express')
-  var router = express.Router();
+    const comments = {
+    };
 
-  router.get("/comment", (request, response) => {
-      response.send("READ all the comments")
-  })
+    comments["françois"] = "le web c'est la vie.";
+    comments["pascal"] = "L'algo c'est rude.";
 
-  router.post("/comment", (request, response) => {
-      response.send("CREATE a comment")
-  })
+    module.exports = {
+        getAllComments: () => {
+            return comments;
+        },
+        getCommentByPseudo: (pseudo) => {
+            return comments[pseudo];
+        },
+        setCommentByPseudo: (pseudo, comment) => {
+            comments[pseudo] = comment;
+        },
+        deleteCommentByPseudo: (pseudo) => {
+            delete comments[pseudo];
+        },
+    };
 
-  router.get("/comment/:id", (request, response) => {
-      response.send("READ comment with id: " + request.params.id)
-  })
-
-  router.post("/comment/:id", (request, response) => {
-      response.send("UPDATE comment with id: " + request.params.id)
-  })
-
-  router.delete("/comment/:id", (request, response) => {
-      response.send("DELETE comment with id: " + request.params.id)
-  })
-
-  module.exports = router;
-
-
-Et dans notre :file:`server.js`, on pourra se contenter de :
-.. code-block:: javascript
-
-  var commentAPI = require("./routes/api/comment")
-
-  app.use('/api', commentAPI);
-  app.use('/api/v1', commentAPI);
-
-
-.. note:: A faire: ajouter des logs pour cette partie. En faisant un nouveau loggeur.
-
-
-Implémentation des méthodes ave une base de données en mémoire
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Ici, notre ID va être un nombre qui va toujours grandir. Dans une vrai base de données, cet ID aurait été généré automatiquement.
-
-.. note:: En codant vos méthodes, n'oubliez pas d'utiliser postman pour vérifier que tout se passe au mieux.
 
 .. code-block:: javascript
+    :caption: ./routes/api.js
+    
+    var express = require('express');
+    var router = express.Router();
 
-  var express = require('express')
-  var router = express.Router();
+    var winston = require('../winston.config');
 
-  var comments = [{id: 0,
-                   firstname: "François",
-                   name: "Brucker",
-                   comment: "Le web c'est la vie !"
-                  },
-                  {id: 1,
-                   firstname: "Pascal",
-                   name: "Préa",
-                   comment: "La recherche est en n, on peut faire mieux. Comment ?"
-                  },
-                  {id: 2,
-                   firstname: "Joëlle",
-                   name: "Gazérian",
-                   comment: "Un beau projet."
-                  }
-                 ]
-  var nextID = 3
+    var data = require('../data_storage');
 
+    router.get("/", (req, res) => {
+      res.send(data.getAllComments());
+    });
 
-  router.get("/comment", (request, response) => {
-      response.send(comments)
-  })
+    router.post("/", (req, res) => {
+      winston.info("post: " + JSON.stringify(req.body));
+      data.setCommentByPseudo(req.body.pseudo, req.body.comment);
+      res.send("CREATE a comment");
+    });
 
-  router.post("/comment", (request, response) => {
-      comment = {
-          id: nextID,
-          firstname: "",
-          name: "",
-          comment: ""
-      }
-      comments.push(comment)
+    router.get("/:pseudo", (req, res) => {
+      winston.info("TBD: implement me");
+      res.send(data.getCommentByPseudo(req.params.pseudo));
+    });
 
-      nextID += 1
+    router.post("/:pseudo", (req, res) => {
+      data.setCommentByPseudo(req.params.pseudo, req.body);
+      res.send("UPDATE with pseudo " + req.params.pseudo);
+    });
 
-          if (request.body.firstname) {
-              comment.firstname = request.body.firstname
-          }
-          if (request.body.name) {
-              comment.name = request.body.name
-          }
-          if (request.body.comment) {
-              comment.comment = request.body.comment
-          }
-
-      response.send(comment)
-  })
-
-  router.get("/comment/:id", (request, response) => {
-
-      result_index = get_index_by_id(request.params.id)
-
-      if (result_index === -1) {
-          response.status(404).send({})
-      }
-      else {
-          response.send(comments[result_index])
-      }
-
-  })
-
-  router.post("/comment/:id", (request, response) => {
-
-      result_index = get_index_by_id(request.params.id)
-
-      if (result_index === -1) {
-          response.status(404).send({})
-      }
-      else {
-          result = comments[result_index]
-
-          if (request.body.firstname) {
-              result.firstname = request.body.firstname
-          }
-          if (request.body.name) {
-              result.name = request.body.name
-          }
-          if (request.body.comment) {
-              result.comment = request.body.comment
-          }
-
-          response.send(comments[result_index])
-      }
-
-  })
-
-  router.delete("/comment/:id", (request, response) => {
-
-      result_index = get_index_by_id(request.params.id)
-
-      if (result_index === -1) {
-          response.status(404).send({})
-      }
-      else {
-          delete comments[result_index]
-      }
-
-  })
-
-  function get_index_by_id(id) {
-      for (var i=0; i < comments.length ; i += 1) {
-          if (String(comments[i]) === id) {
-              return i
-          }
-      }
-      return -1;
-
-  }
-
-  module.exports = router;
+    router.delete("/:pseudo", (req, res) => {
+      data.deleteCommentByPseudo(req.params.pseudo)
+      res.send("DELETE comment with pseudo " + req.params.pseudo);
+    });
 
 
-.. note:: Si on a le temps les laisser faire une méthode.
+    module.exports = router;
+    
+    
+.. note:: Attention au fait que parfois, on utilise :code:`req.params`, lorsque c'est un paramètre de l'url et parfois on utilise :code:`req.body` lorsque les données sont passées dans le corps de la requête.
 
 
-.. note:: A faire:  Changer le code du javascript client de :file:`contact.ejs` pour qu'il utilise l'API. Supprimer la requête POST restante dans :file:`server.js`.
+Testez botre api avec postman et l'url :
+
+    * http://localhost:3000/api en GET : rend un objet
+    * http://localhost:3000/api/françois en GET : rend une chaine de caractères
+    
+    * http://localhost:3000/api en POST avec comme corps de message :
+        .. code-block:: json
+        
+            {
+                "pseudo": "Geo",
+                "comment": "ce serait pas plus simple en sh ?"
+            }
+        
+        puis un http://localhost:3000/api en GET
+        
+    http://localhost:3000/api/françois en DELETE puis un http://localhost:3000/api en GET 
+            
+      
+.. note:: postman et utf8 ? françois pas ok dans url.
+
+  
