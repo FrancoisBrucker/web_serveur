@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web front : javascript &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Protocole HTTP" href="2_1_protocole_http.html" />
+    <link rel="prev" title="Web front : html, css" href="1_1_web_front_html_css.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Web front : javascript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#javascript-et-jquery">Javascript et jQuery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build">build</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="1_1_web_front_html_css.html" title="Chapitre précédent">Web front : html, css</a></li>
+      <li>Next: <a href="2_1_protocole_http.html" title="Chapitre suivant">Protocole HTTP</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="web-front-javascript">
+<h1>Web front : javascript<a class="headerlink" href="#web-front-javascript" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Permet la modification de l’arbre DOM.</p>
+<p>Le script est exécuté lorsqu’il est lu : il est souvent exécuté à la fin du html ou via un évènement lancé après que la page soit chargée.</p>
+<p>Le javascript permet de modifier cet arbre DOM via des évènements : <a class="reference external" href="https://www.w3schools.com/jsref/dom_obj_event.asp">https://www.w3schools.com/jsref/dom_obj_event.asp</a>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison Page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+      <span class="nt">html</span><span class="o">,</span> <span class="nt">body</span> <span class="p">{</span>
+        <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">padding</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+
+      <span class="p">}</span>
+      <span class="p">.</span><span class="nc">milieu</span> <span class="p">{</span>
+        <span class="k">margin</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span> <span class="kc">auto</span><span class="p">;</span>
+        <span class="k">height</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+        <span class="k">width</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="p">.</span><span class="nc">color</span> <span class="p">{</span>
+        <span class="k">background-color</span><span class="p">:</span> <span class="kc">olive</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mon_div&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;milieu color&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mon_div&quot;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mon_div&quot;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span>
+      <span class="p">}</span>
+
+    <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>On peut aussi faire plus compliqué :</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="nx">blue</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mon_div&quot;</span><span class="p">).</span><span class="nx">onclick</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">blue</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">blue</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mon_div&quot;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="s2">&quot;olive&quot;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">blue</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;mon_div&quot;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="s2">&quot;blue&quot;</span>
+    <span class="p">}</span>
+
+  <span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Comme c’est compliqué comme ça, on utilise souvent (toujours ?) des bibliothèques.</p>
+<p>Une nouvelle tendance émerge comme utiliser d’autres langages puis on les « compile » en javascript : <a class="reference external" href="https://www.transcrypt.org">https://www.transcrypt.org</a></p>
+<div class="section" id="javascript-et-jquery">
+<h2>Javascript et jQuery<a class="headerlink" href="#javascript-et-jquery" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Commencer par n’installer que jQuery</p></li>
+<li><p>aller dans les outils de développement et montrer ce que l’on a</p></li>
+<li><p>jouer avec jQuery <code class="code docutils literal notranslate"><span class="pre">$(&quot;p&quot;).html()</span></code> un peu.</p></li>
+<li><p>dire qu’il faut que tout soit chargé avant que ça marche.</p></li>
+</ul>
+</div>
+<p>Ajout de la bibliothèque jQuery (<a class="reference external" href="http://jquery.com">http://jquery.com</a>) directement depuis un CDN
+(<a class="reference external" href="https://fr.wikipedia.org/wiki/Content_delivery_network">https://fr.wikipedia.org/wiki/Content_delivery_network</a>) et d’un peu de code javascript avec la balise <code class="code docutils literal notranslate"><span class="pre">&lt;script&gt;&lt;/script&gt;</span></code>.</p>
+<p>Notez le côté purement fonctionnel de la programmation (ici fin de chargement, entrée/sortie d’un sélecteur).</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>    <span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+        <span class="c">&lt;!--        https://fonts.google.com--&gt;</span>
+        <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/css?family=Indie+Flower&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+            <span class="nt">html</span><span class="o">,</span> <span class="nt">body</span> <span class="p">{</span>
+                <span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+                <span class="k">padding</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+
+                <span class="k">background</span><span class="p">:</span> <span class="kc">skyblue</span><span class="p">;</span>
+                <span class="k">color</span><span class="p">:</span> <span class="mh">#FFFFFF</span><span class="p">;</span>
+                <span class="k">font-size</span><span class="p">:</span> <span class="mi">2</span><span class="kt">em</span><span class="p">;</span>
+                <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="nt">p</span> <span class="p">{</span>
+                <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Indie Flower&#39;</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://code.jquery.com/jquery-3.1.1.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+            <span class="c1">//le paragraphe n&#39;existe pas encore</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">())</span>
+            <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                <span class="c1">// le paragraphe est chargé</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">).</span><span class="nx">html</span><span class="p">())</span>
+
+                <span class="c1">//pour le lol. Appel asynchrone des fonctions.</span>
+                <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">).</span><span class="nx">hover</span><span class="p">(</span>
+                    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s2">&quot;text-decoration&quot;</span><span class="p">,</span> <span class="s2">&quot;underline&quot;</span><span class="p">)</span>
+                    <span class="p">},</span>
+                    <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s2">&quot;text-decoration&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+            <span class="p">})</span>
+        <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Enfin du web !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Et on aime ça.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Le Javascript est un langage très utilisé en front. C’est pas le plus beau mais avec la version ES6 (<a class="reference external" href="https://fr.wikipedia.org/wiki/ECMAScript">https://fr.wikipedia.org/wiki/ECMAScript</a>), ça commence à ressembler à quelque chose.</p>
+<img alt="_images/javascript_the_good_parts.jpg" src="_images/javascript_the_good_parts.jpg" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Un peu de lol. Javascript en entier vs ce qui en est utilisé.</p>
+</div>
+<p>Nous allons l’utiliser aussi côté back, avec <em>node</em>.</p>
+<p>On va tout de suite installer node pour utiliser son gestionnaire de package npm
+(<a class="reference external" href="https://www.npmjs.com">https://www.npmjs.com</a>) ou un
+équivalent yarn (<a class="reference external" href="https://yarnpkg.com/lang/en/">https://yarnpkg.com/lang/en/</a>).</p>
+</div>
+<div class="section" id="build">
+<h2>build<a class="headerlink" href="#build" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">À faire</p>
+<p>à faire bien</p>
+</div>
+<p>jquery est utilisé en production pour notre site. Il faut modifier notre script de build</p>
+<p><a class="reference external" href="https://yarnpkg.com/lang/en/docs/cli/install/">https://yarnpkg.com/lang/en/docs/cli/install/</a> : yarn install –production –modules-folder= »../build »</p>
+<div class="section" id="outils-de-build">
+<h3>outils de build<a class="headerlink" href="#outils-de-build" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><p>Il existe plusieurs outils de build, comme <a class="reference external" href="https://webpack.js.org/">https://webpack.js.org/</a> <a class="reference external" href="https://brunch.io">https://brunch.io</a> ou encore <a class="reference external" href="https://parceljs.org">https://parceljs.org</a></p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A l’aide du tuto <a class="reference external" href="https://www.grafikart.fr/tutoriels/parcel-bundler-985">https://www.grafikart.fr/tutoriels/parcel-bundler-985</a> séparez le code en src et build</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/1_2_web_front_js.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>API CRUD &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Bases de données" href="3_4_bases_de_donnees.html" />
+    <link rel="prev" title="Formulaires" href="3_2_formulaires.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API CRUD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api">api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#crud">CRUD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lier-l-api-aux-commentaires">Lier l’api aux commentaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stockage-des-donnees">Stockage des données</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="3_2_formulaires.html" title="Chapitre précédent">Formulaires</a></li>
+      <li>Next: <a href="3_4_bases_de_donnees.html" title="Chapitre suivant">Bases de données</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="api-crud">
+<h1>API CRUD<a class="headerlink" href="#api-crud" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Les données sont usuellement stockées quelque part. Celles-ci peuvent prendre des formes différentes (base de données, fichier json, objets) et se stocker de façon diverses :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>en mémoire ;</p></li>
+<li><p>dans un fichier (plat ou SQlite) ;</p></li>
+<li><p>être une base (SQL ou mongodb).</p></li>
+</ul>
+</div></blockquote>
+<p>Pour manipuler les données on utilisera un formalisme <a class="reference external" href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> et pour les transmettre une architecture <a class="reference external" href="https://en.wikipedia.org/wiki/Representational_state_transfer">REST</a>.</p>
+<div class="section" id="api">
+<h2>api<a class="headerlink" href="#api" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On va attaquer toutes nos requêtes vers les données en utilisant une URL commençant par <code class="code docutils literal notranslate"><span class="pre">api</span></code>. Parfois on ajoute aussi le numéro de version, ce qui permet de garder des anciennes api en parallèle de l’api courante.</p>
+<p>Donc la route :</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">./routes/api.js</span><a class="headerlink" href="#id1" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">winston</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../winston.config&#39;</span><span class="p">);</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s2">&quot;TBD: implement me&quot;</span><span class="p">);</span>
+
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;api&#39;</span><span class="p">);</span>
+
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Le chargement et le lien dans <code class="file docutils literal notranslate"><span class="pre">app.js</span></code>.</p>
+<p>Chargement des routes (juste après les autres chargements de routes) :</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">api.js</span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+
+<span class="kd">var</span> <span class="nx">apiRouter</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./routes/api&#39;</span><span class="p">);</span>
+
+<span class="c1">// ...</span>
+</pre></div>
+</div>
+</div>
+<p>LLe lien, juste après les autres liens de routes :</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">api.js</span><a class="headerlink" href="#id3" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/api&#39;</span><span class="p">,</span> <span class="nx">apiRouter</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s1">&#39;/api/v1&#39;</span><span class="p">,</span> <span class="nx">apiRouter</span><span class="p">);</span>
+
+<span class="c1">// ...</span>
+</pre></div>
+</div>
+</div>
+<p>L’api courante est l’api v1. Cela pourra changer plus tard, lorsque l’on développera de nouvelles api tout en maintenant le legacy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>garder le legacy peut être important lorsque l’on développe des apis, car les utilisateurs ne veulent pas changer leurs interfaces tout le temps. Mais une api se devant aussi d’évoluer, il est nécessaire de permettre le changement.</p>
+</div>
+</div>
+<div class="section" id="crud">
+<h2>CRUD<a class="headerlink" href="#crud" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="simple">
+<dt>Notre modèle de donnée va être ici:</dt><dd><ul class="simple">
+<li><p>pseudo (la clé)</p></li>
+<li><p>commentaire</p></li>
+</ul>
+</dd>
+</dl>
+<p>Il va bien s’adapter avec les bases de données <em>nosql</em>. Nous ne ferons ici que le traitement en mémoire. Il n’y aura donc pas de persistance des données (après l’arrêt du serveur) ni de méthodes de recherche.</p>
+<p>Les différentes méthodes seront :</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">./routes/api.js</span><a class="headerlink" href="#id4" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">winston</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../winston.config&#39;</span><span class="p">);</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;TBD: implement me&quot;</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;READ all the comments&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;TBD: implement me&quot;</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;CREATE a comment&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/:pseudo&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;TBD: implement me&quot;</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;Comment with pseudo &quot;</span><span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&quot;/:pseudo&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;TBD: implement me&quot;</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;UPDATE with pseudo &quot;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">&quot;/:pseudo&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;TBD: implement me&quot;</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;DELETE comment with pseudo &quot;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">);</span>
+<span class="p">});</span>
+
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Testez ces routes avec Postman</p>
+</div>
+<div class="section" id="lier-l-api-aux-commentaires">
+<h2>Lier l’api aux commentaires<a class="headerlink" href="#lier-l-api-aux-commentaires" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le javascript de la page des commentaires doit pointer sur routes. Il suffit de</p>
+<ul>
+<li><p>supprimer la méthode post dans la route <code class="file docutils literal notranslate"><span class="pre">./routes/comments.js</span></code></p></li>
+<li><p>changer le paramètre <code class="code docutils literal notranslate"><span class="pre">url</span></code> de la méthode <code class="code docutils literal notranslate"><span class="pre">ajax</span></code> par :</p>
+<blockquote>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// ...</span>
+
+<span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://&quot;</span> <span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="nx">location</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/api&quot;</span><span class="p">,</span>
+
+<span class="c1">// ...</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="stockage-des-donnees">
+<h2>Stockage des données<a class="headerlink" href="#stockage-des-donnees" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Ave une <em>base de données</em> en mémoire (<em>ie.</em> un dictionnaire).</p>
+<p>On va créer un fichier <code class="file docutils literal notranslate"><span class="pre">data_storage.js</span></code> dont le but est de stocker nos données. Ce fichier pourra ensuite amélioré si l’on veut mettre une vraie base de données.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">./data_storage.js</span><a class="headerlink" href="#id5" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">comments</span> <span class="o">=</span> <span class="p">{</span>
+<span class="p">};</span>
+
+<span class="nx">comments</span><span class="p">[</span><span class="s2">&quot;françois&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;le web c&#39;est la vie.&quot;</span><span class="p">;</span>
+<span class="nx">comments</span><span class="p">[</span><span class="s2">&quot;pascal&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;L&#39;algo c&#39;est rude.&quot;</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">getAllComments</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">comments</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">getCommentByPseudo</span><span class="o">:</span> <span class="p">(</span><span class="nx">pseudo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">comments</span><span class="p">[</span><span class="nx">pseudo</span><span class="p">];</span>
+    <span class="p">},</span>
+    <span class="nx">setCommentByPseudo</span><span class="o">:</span> <span class="p">(</span><span class="nx">pseudo</span><span class="p">,</span> <span class="nx">comment</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">comments</span><span class="p">[</span><span class="nx">pseudo</span><span class="p">]</span> <span class="o">=</span> <span class="nx">comment</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">deleteCommentByPseudo</span><span class="o">:</span> <span class="p">(</span><span class="nx">pseudo</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">delete</span> <span class="nx">comments</span><span class="p">[</span><span class="nx">pseudo</span><span class="p">];</span>
+    <span class="p">},</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">./routes/api.js</span><a class="headerlink" href="#id6" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">winston</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../winston.config&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../data_storage&#39;</span><span class="p">);</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">getAllComments</span><span class="p">());</span>
+<span class="p">});</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;post: &quot;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">));</span>
+  <span class="nx">data</span><span class="p">.</span><span class="nx">setCommentByPseudo</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">comment</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;CREATE a comment&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/:pseudo&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;TBD: implement me&quot;</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">getCommentByPseudo</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">));</span>
+<span class="p">});</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s2">&quot;/:pseudo&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">.</span><span class="nx">setCommentByPseudo</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">);</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;UPDATE with pseudo &quot;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">&quot;/:pseudo&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">.</span><span class="nx">deleteCommentByPseudo</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">)</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s2">&quot;DELETE comment with pseudo &quot;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">);</span>
+<span class="p">});</span>
+
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Attention au fait que parfois, on utilise <code class="code docutils literal notranslate"><span class="pre">req.params</span></code>, lorsque c’est un paramètre de l’url et parfois on utilise <code class="code docutils literal notranslate"><span class="pre">req.body</span></code> lorsque les données sont passées dans le corps de la requête.</p>
+</div>
+<p>Testez botre api avec postman et l’url :</p>
+<blockquote>
+<div><ul>
+<li><p><a class="reference external" href="http://localhost:3000/api">http://localhost:3000/api</a> en GET : rend un objet</p></li>
+<li><p><a class="reference external" href="http://localhost:3000/api">http://localhost:3000/api</a>/françois en GET : rend une chaine de caractères</p></li>
+<li><dl>
+<dt><a class="reference external" href="http://localhost:3000/api">http://localhost:3000/api</a> en POST avec comme corps de message :</dt><dd><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;pseudo&quot;</span><span class="p">:</span> <span class="s2">&quot;Geo&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;ce serait pas plus simple en sh ?&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>puis un <a class="reference external" href="http://localhost:3000/api">http://localhost:3000/api</a> en GET</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><a class="reference external" href="http://localhost:3000/api">http://localhost:3000/api</a>/françois en DELETE puis un <a class="reference external" href="http://localhost:3000/api">http://localhost:3000/api</a> en GET</p>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>postman et utf8 pas ok… Et c’est une honte. Bref il faut encoder l’url à la main. Par exemple en ouvrant une console et en tapant : encodeURIComponent(« françois ») ce qui me retourne : fran%C3%A7ois que je peux utiliser dans postman</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/3_3_crud.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

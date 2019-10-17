@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Protocole HTTP &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Node" href="2_2_node.html" />
+    <link rel="prev" title="Web front : javascript" href="1_2_web_front_js.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Protocole HTTP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#back-vs-front">Back vs Front</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#le-protocole-http">Le protocole HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#la-suite">La suite</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="1_2_web_front_js.html" title="Chapitre précédent">Web front : javascript</a></li>
+      <li>Next: <a href="2_2_node.html" title="Chapitre suivant">Node</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="protocole-http">
+<h1>Protocole HTTP<a class="headerlink" href="#protocole-http" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="back-vs-front">
+<h2>Back vs Front<a class="headerlink" href="#back-vs-front" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le <em>back</em> est un serveur rendant des ressources accessibles via le protocole HTTP.</p>
+<p>Les ressources accessibles sont principalement des pages HTML, mais bien d’autres choses sont possibles comme des fichiers texte, JSON, voire même des fichiers binaires.</p>
+<dl class="simple">
+<dt>Un serveur est ainsi une machine accessible depuis internet. Pour la contacter, on a besoin :</dt><dd><ul class="simple">
+<li><p>D’une adresse IP (par exemple <a class="reference external" href="http://172.217.22.131">http://172.217.22.131</a>),</p></li>
+<li><p>Et d’un port de communication (web 80 par défaut) (<a class="reference external" href="http://www.linuxnix.com/important-port-numbers-linux-system-administrator/">http://www.linuxnix.com/important-port-numbers-linux-system-administrator/</a>)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Derrière chaque port, un programme peut écouter 65536 possibilités (sûrement bloquées par le firewall au départ).</p>
+<p>Connaître l’IP peut se faire avec la commande <code class="code docutils literal notranslate"><span class="pre">nslookup</span></code> :</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>fbrucker$ nslookup www.google.fr
+Server:             <span class="m">147</span>.94.19.254
+Address:    <span class="m">147</span>.94.19.254#53
+
+Non-authoritative answer:
+Name:       www.google.fr
+Address: <span class="m">216</span>.58.205.99
+</pre></div>
+</div>
+<p>Le contraire marche aussi :</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>fbrucker$ nslookup <span class="m">147</span>.94.19.254
+Server:             <span class="m">147</span>.94.19.254
+Address:    <span class="m">147</span>.94.19.254#53
+
+Non-authoritative answer:
+<span class="m">254</span>.19.94.147.in-addr.arpa  <span class="nv">name</span> <span class="o">=</span> resolv.ec-m.fr.
+
+Authoritative answers can be found from:
+<span class="m">19</span>.94.147.in-addr.arpa      <span class="nv">nameserver</span> <span class="o">=</span> ns1.ec-marseille.fr.
+</pre></div>
+</div>
+<p>Pour se faciliter la tâche (un humain retient mieux des noms que des nombres), on associe un nom à chaque adresse IP : le DNS.</p>
+<dl class="simple">
+<dt>Ainsi :</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="http://www.google.fr">http://www.google.fr</a>, <a class="reference external" href="http://www.google.fr:80">http://www.google.fr:80</a> et <a class="reference external" href="http://172.217.22.131">http://172.217.22.131</a> sont équivalents.</p></li>
+<li><p>sur un autre port ça risque de ne pas marcher (ex. 1337)</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Un nom particulier :</strong> <code class="code docutils literal notranslate"><span class="pre">localhost</span></code> qui correspondra toujours à l’ordinateur courant (équivalent de this pour le réseau)</p>
+<p><strong>Un IP particulier :</strong> 127.0.0.1</p>
+<p>Lorsque l’on créera notre propre serveur, il tournera en développement toujours sur <code class="code docutils literal notranslate"><span class="pre">localhost</span></code> et pour ne pas interférer avec un potentiel serveur web déjà existant, on utilisera un port différent (8080 ou 3000 par exemple). On y accédera par l’url : <code class="code docutils literal notranslate"><span class="pre">http://localhost:8080</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>la commande <code class="code docutils literal notranslate"><span class="pre">dig</span></code> est également possible <a class="reference external" href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-bind-dig.html">https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Deployment_Guide/s2-bind-dig.html</a></p>
+</div>
+</div>
+<div class="section" id="le-protocole-http">
+<h2>Le protocole HTTP<a class="headerlink" href="#le-protocole-http" title="Lien permanent vers ce titre">¶</a></h2>
+<p><a class="reference external" href="https://fr.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP_1.1">https://fr.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP_1.1</a></p>
+<p>Il est décrit par une série de RFC, qui définissent les différents standards du net <a class="reference external" href="https://fr.wikipedia.org/wiki/Request_for_comments">https://fr.wikipedia.org/wiki/Request_for_comments</a> (le RFC 2026 explique comment écrire une RFC).</p>
+<p>On peut quasiment tout le temps communiquer avec un serveur via le logiciel  <a class="reference external" href="https://fr.wikipedia.org/wiki/Telnet">https://fr.wikipedia.org/wiki/Telnet</a> qui permet d’envoyer et recevoir du texte.</p>
+<dl class="simple">
+<dt>Nous allons émuler un navigateur en cherchant à recevoir la page <a class="reference external" href="http://www.wikipedia.fr">http://www.wikipedia.fr</a> Il faut tout d’abord se connecter :</dt><dd><ul class="simple">
+<li><p>Une adresse de serveur (nom ou IP),</p></li>
+<li><p>Un port (80 pour le protocole http, 443 pour le protocole https ).</p></li>
+</ul>
+</dd>
+</dl>
+<p>Une requête Telnet est divisée en plusieurs lignes :</p>
+<ol class="arabic simple">
+<li><dl class="simple">
+<dt>Le type de requête</dt><dd><ul class="simple">
+<li><p>Le nom de la requête (<code class="code docutils literal notranslate"><span class="pre">GET</span></code>, <code class="code docutils literal notranslate"><span class="pre">PUT</span></code>, …),</p></li>
+<li><p>A quoi on fait la requête (adresse suivant le serveur),</p></li>
+<li><p>Le protocole : <code class="code docutils literal notranslate"><span class="pre">HTTP/1.1</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Une liste de méthodes séparées par des retours à la ligne. La méthode <code class="code docutils literal notranslate"><span class="pre">Host</span></code> est obligatoire.</p></li>
+<li><p>une ligne vide signifiant que l’on attend une réponse.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>fbrucker$ telnet www.wikipedia.fr <span class="m">80</span>
+Trying <span class="m">78</span>.109.84.114...
+Connected to www.wikipedia.fr.
+Escape character is <span class="s1">&#39;^]&#39;</span>.
+GET /index.php HTTP/1.1
+Host: www.wikipedia.fr
+</pre></div>
+</div>
+<dl class="simple">
+<dt>La réponse est composée de 3 parties :</dt><dd><ol class="arabic simple">
+<li><p>L’entête de réponse,</p></li>
+<li><p>Une ligne vide,</p></li>
+<li><p>La réponse.</p></li>
+</ol>
+</dd>
+</dl>
+<p>Pour notre requête précédente, l’entête était :</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 <span class="m">200</span> OK
+Date: Wed, <span class="m">25</span> Jan <span class="m">2017</span> <span class="m">07</span>:32:39 GMT
+Server: Apache
+Vary: Accept-Encoding
+Connection: close
+Transfer-Encoding: chunked
+Content-Type: text/html
+</pre></div>
+</div>
+<p>En gros :</p>
+<ol class="arabic simple">
+<li><p>Protocole utilisé, status, nom du status (<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">https://en.wikipedia.org/wiki/List_of_HTTP_status_codes</a> ou mieux <a class="reference external" href="https://http.cat">https://http.cat</a>),</p></li>
+<li><p>Listes de méthodes, dont le type de réponse.</p></li>
+</ol>
+<p>Puis…</p>
+<ol class="arabic simple">
+<li><p>Une ligne vide,</p></li>
+<li><p>La réponse.</p></li>
+</ol>
+<p>Pour plus d’informations sur les entêtes de réponses, on pourra lire  <a class="reference external" href="http://www.alsacreations.com/astuce/lire/1152-en-tetes-http.html">http://www.alsacreations.com/astuce/lire/1152-en-tetes-http.html</a></p>
+<p>On vérifie avec les outils de développement de <em>chrome</em> que c’est bien la même chose :</p>
+<ol class="arabic simple">
+<li><p>Ouvrir les outils de développement,</p></li>
+<li><p>Aller sur l’onglet <strong>network</strong>,</p></li>
+<li><dl class="simple">
+<dt>Recharger la page. On voit tout ce qui est téléchargé. Pour <code class="code docutils literal notranslate"><span class="pre">index.php</span></code> on voit :</dt><dd><ul class="simple">
+<li><p>son status (200),</p></li>
+<li><p>son type (<code class="code docutils literal notranslate"><span class="pre">document</span></code>),</p></li>
+<li><p>le temps que le téléchargement à mis.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>En cliquant sur le nom du fichier, on peut accéder à son header complet.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On voit que tout un tas d’autres fichiers ont été téléchargés.</p>
+</div>
+<p>On pourra voir que le navigateur envoit également tout un tas d’autres informations au serveur. C’est la partie <em>Request Headers</em>. Regardez par exemple la méthode <code class="code docutils literal notranslate"><span class="pre">User-Agent</span></code> de l’entête.</p>
+<p>Quelques variantes de réponses :</p>
+<div class="section" id="redirect">
+<h3>Redirect<a class="headerlink" href="#redirect" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>fbrucker$ telnet www.google.com <span class="m">80</span>
+Trying <span class="m">216</span>.58.210.196...
+Connected to www.google.com.
+Escape character is <span class="s1">&#39;^]&#39;</span>.
+GET / HTTP/1.1
+Host: www.google.com
+</pre></div>
+</div>
+<p>Le statut est 302 (redirect). Regardez sur <em>chrome</em> pour voir ce qu’il s’est passé.</p>
+</div>
+<div class="section" id="timer-et-text-plain">
+<h3>Timer et text/plain<a class="headerlink" href="#timer-et-text-plain" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>fbrucker$ telnet www.gutenberg.org <span class="m">80</span>
+Trying <span class="m">152</span>.19.134.47...
+Connected to gutenberg.org.
+Escape character is <span class="s1">&#39;^]&#39;</span>.
+GET /files/20262/20262-0.txt HTTP/1.1
+host: www.gutenberg.org
+</pre></div>
+</div>
+<p>Attention au timer qui ne vous laissera sans doute pas le temps de recopier la commande…</p>
+</div>
+<div class="section" id="type-binaire-application-pdf">
+<h3>Type binaire application/pdf<a class="headerlink" href="#type-binaire-application-pdf" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>fbrucker$ telnet www.jeuxavolonte.asso.fr <span class="m">80</span>
+Trying <span class="m">213</span>.186.33.19...
+Connected to jeuxavolonte.asso.fr.
+Escape character is <span class="s1">&#39;^]&#39;</span>.
+HEAD /regles/formula_d.pdf HTTP/1.1
+host: www.jeuxavolonte.asso.fr
+</pre></div>
+</div>
+<p>On peut télécharger ce que l’on veut. Ici on ne demande que les headers et pas le contenu, car il est binaire. Le type de résultat est alors <em>text/html</em>.</p>
+</div>
+<div class="section" id="curl">
+<h3>Curl<a class="headerlink" href="#curl" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Pour télécharger directement une ressource (html, pdf ou autre) de l’internet, on peut utiliser l’utilitaire <a class="reference external" href="https://en.wikipedia.org/wiki/CURL">https://en.wikipedia.org/wiki/CURL</a> On pourra par exemple l’utiliser pour transférer votre site de votre visible au site distant.</p>
+<p>Très simple d’utilisation, il permet cependant de faire des choses complexes. Téléchargeons la documentation :</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>curl -#O https://www.gitbook.com/download/pdf/book/bagder/everything-curl
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>L’option <code class="code docutils literal notranslate"><span class="pre">-O</span></code> permet à ce que l’output soit écrit dans un fichier de même nom qui est sauvegardé dans le dossier courant. L’option <code class="code docutils literal notranslate"><span class="pre">-#</span></code> ne fait que changer la manière d’afficher la <em>progress bar</em>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="la-suite">
+<h2>La suite<a class="headerlink" href="#la-suite" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le <em>front</em> est servi par un <em>back</em> via le protocole <em>http</em>.</p>
+<dl class="simple">
+<dt>On pourrait tout faire en telnet, mais plein de choses peuvent être automatisées ou rendues plus faciles. C’est le boulot des frameworks comme :</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://nodejs.org">https://nodejs.org</a> (petit serveur)</p></li>
+<li><p><a class="reference external" href="https://palletsprojects.com/p/flask/">https://palletsprojects.com/p/flask/</a> (micro serveur)</p></li>
+<li><p><a class="reference external" href="https://www.djangoproject.com">https://www.djangoproject.com</a> (moyen serveur)</p></li>
+<li><p><a class="reference external" href="http://projects.spring.io/spring-framework/">http://projects.spring.io/spring-framework/</a> et <a class="reference external" href="https://spring.io/projects/spring-boot">https://spring.io/projects/spring-boot</a> (gros serveur)</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/2_1_protocole_http.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

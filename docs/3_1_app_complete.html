@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Squelette d’une application complète &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Formulaires" href="3_2_formulaires.html" />
+    <link rel="prev" title="Express" href="2_3_express.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Squelette d’une application complète</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#initialisation">initialisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejs">ejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logger">logger</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="2_3_express.html" title="Chapitre précédent">Express</a></li>
+      <li>Next: <a href="3_2_formulaires.html" title="Chapitre suivant">Formulaires</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="squelette-d-une-application-complete">
+<h1>Squelette d’une application complète<a class="headerlink" href="#squelette-d-une-application-complete" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="initialisation">
+<h2>initialisation<a class="headerlink" href="#initialisation" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="simple">
+<dt>Avec Webstorm, créez un projet <strong>Node.js Express App</strong> avec comme paramètres :</dt><dd><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">yarn</span></code> comme package manager</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ejs</span></code> comme View engine</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">Plain</span> <span class="pre">CSS</span></code> comme stylesheet engine</p></li>
+</ul>
+</dd>
+<dt>Cela va créer des dossiers (il utilise <a class="reference external" href="https://expressjs.com/fr/starter/generator.html">express-generator</a>) :</dt><dd><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">bin</span></code> qui va contenir votre exécutable (regardez le scripts <em>start</em> dans le fichier <code class="code docutils literal notranslate"><span class="pre">package.json</span></code>)</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">node_modules</span></code> qui va contenir nos modules</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">public</span></code> pour les fichiers statiques</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">routes</span></code> pour les différentes routes</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">views</span></code> pour les templates</p></li>
+</ul>
+</dd>
+</dl>
+<p>On aura aussi un fichier <code class="code docutils literal notranslate"><span class="pre">app.js</span></code> qui sera importé pour être exécuté par le script <code class="code docutils literal notranslate"><span class="pre">./bin/www</span></code></p>
+<blockquote>
+<div><p>On peut lancer le serveur en tapant <code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">run</span> <span class="pre">start</span></code>. Un serveur est crée à l’adresse <a class="reference external" href="http://localhost:3000/">http://localhost:3000/</a></p>
+</div></blockquote>
+<p>Essayons de comprendre comment tout ça fonctionne :</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">bin/www</span></code> charge app et l’exécute.</p></li>
+<li><p>variables d’environnement <a class="reference external" href="https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786">https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786</a> (changer le port en 8080. ); C’est super bien pour avoir plusieurs configurations (dev, prod, …)</p></li>
+<li><p>debug <a class="reference external" href="https://www.npmjs.com/package/debug">https://www.npmjs.com/package/debug</a> (utilisez le. Avec une variable d’environnement)</p></li>
+<li><p>les routes : elles sont importées. Combien y en a-t-il ?</p></li>
+<li><p>utilisation du module <a class="reference external" href="https://nodejs.org/api/path.html">path</a></p></li>
+<li><p>des cookies <a class="reference external" href="https://www.npmjs.com/package/cookie-parser">https://www.npmjs.com/package/cookie-parser</a></p></li>
+<li><p>un logger <a class="reference external" href="https://alligator.io/nodejs/getting-started-morgan/">https://alligator.io/nodejs/getting-started-morgan/</a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>plusieurs variables d’environnement en même temps <code class="code docutils literal notranslate"><span class="pre">DEBUG=untitled3:server</span> <span class="pre">PORT=8080</span> <span class="pre">yarn</span> <span class="pre">run</span> <span class="pre">start</span></code></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>si vous avez installé tree, vous pouvez taper <code class="code docutils literal notranslate"><span class="pre">tree</span> <span class="pre">-f</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-v</span> <span class="pre">&quot;node_modules/.*&quot;</span></code> pour avoir l’arborescence jolie.</p>
+</div>
+</div>
+<div class="section" id="ejs">
+<h2>ejs<a class="headerlink" href="#ejs" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Vous voyez que le rendu de l’index se fait via un paramètre : <code class="code docutils literal notranslate"><span class="pre">{</span> <span class="pre">title:</span> <span class="pre">'Express'</span> <span class="pre">}</span></code>. Il est utilisé dans le template par le bout de code <code class="code docutils literal notranslate"><span class="pre">&lt;%=</span> <span class="pre">title</span> <span class="pre">%&gt;</span></code></p>
+<p>Il est également possible de rajouter des tests, des boucles etc. Regardez du côté dela doc : <a class="reference external" href="https://ejs.co/#docs">https://ejs.co/#docs</a></p>
+<blockquote>
+<div><p>Mélanger du script dans du html devient vite indigeste. Donc indentez bien le tout pour ne pas s’y perdre.</p>
+</div></blockquote>
+</div>
+<div class="section" id="logger">
+<h2>logger<a class="headerlink" href="#logger" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un loggeur permet de rendre compte de tout ce que fait le server.C’est super important si le serveur crash et que l’on veut savoir pourquoi.</p>
+<p>On va voir 2 loggueur :</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/expressjs/morgan">morgan</a> : un logger tout simple de toute requête http</p></li>
+<li><p><a class="reference external" href="https://github.com/winstonjs/winston">winston</a> qui permet de faire bien plus de choses.</p>
+<blockquote>
+<div><p>Pourquoi et quoi logger : <a class="reference external" href="https://stackify.com/winston-logging-tutorial/">https://stackify.com/winston-logging-tutorial/</a></p>
+</div></blockquote>
+</li>
+</ul>
+<div class="section" id="morgan">
+<h3>morgan<a class="headerlink" href="#morgan" title="Lien permanent vers ce titre">¶</a></h3>
+<p>C’est <a class="reference external" href="https://github.com/expressjs/morgan">morgan</a> qui est utilisé pour loguer tous les appels http. C’est un middleware : commentez la ligne <code class="code docutils literal notranslate"><span class="pre">app.use(logger('dev'));</span></code>
+dans <code class="code docutils literal notranslate"><span class="pre">app.js</span></code> pour voir la différence. Utilisez une autre façon de logger les choses : <code class="code docutils literal notranslate"><span class="pre">app.use(logger('combined'));</span></code> par exemple.</p>
+<blockquote>
+<div><p>la doc : <a class="reference external" href="https://github.com/expressjs/morgan">https://github.com/expressjs/morgan</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="winston">
+<h3>winston<a class="headerlink" href="#winston" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><p><a class="reference external" href="https://github.com/winstonjs/winston">https://github.com/winstonjs/winston</a></p>
+</div></blockquote>
+<p>On doit pouvoir a priori logger tout ce que fait le serveur. Mais il ne faut pas tout logger tout le temps sinon ne va plus rien retrouver, et les fichiers de logs vont être énormes. L’usage veut que l’on donne donc des niveaux de log et que ne sont stockés que les log de niveau inférieur à un seuil donné. Pour winston les <a class="reference external" href="https://github.com/winstonjs/winston#logging-levels">logging levels</a> sont ceux de npm par défaut :</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="o">{</span>
+  error: <span class="m">0</span>,
+  warn: <span class="m">1</span>,
+  info: <span class="m">2</span>,
+  verbose: <span class="m">3</span>,
+  debug: <span class="m">4</span>,
+  silly: <span class="m">5</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>En production on pourra par exemple utiliser le level 0, en développement le 2 et en debug le 4.</p>
+<blockquote>
+<div><p>Le tuto pour winston que l’on va utiliser ici : <a class="reference external" href="https://www.digitalocean.com/community/tutorials/how-to-use-winston-to-log-node-js-applications">https://www.digitalocean.com/community/tutorials/how-to-use-winston-to-log-node-js-applications</a>
+Le tuto est bien mais écrit pour une vieille version de winston. Il y a donc quelques changements de temps en temps.</p>
+</div></blockquote>
+<p>On va commencer par installer le logger winston (<code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">add</span> <span class="pre">winston</span></code>) et le module app-root-path (<code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">add</span> <span class="pre">app-root-path</span></code>) qui va nous permettre de spécifier dans l’appli les chemins.</p>
+<div class="section" id="config">
+<h4>config<a class="headerlink" href="#config" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Une fois ça fait, on peut créer le fichier de configuration de winston :</p>
+<div class="highlight-javascript notranslate" id="winston-config-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">appRoot</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;app-root-path&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">winston</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;winston&#39;</span><span class="p">);</span>
+
+<span class="c1">// define the custom settings for each transport (file, console)</span>
+
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">file</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">level</span><span class="o">:</span> <span class="s1">&#39;warn&#39;</span><span class="p">,</span>
+        <span class="nx">filename</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="nx">appRoot</span><span class="si">}</span><span class="sb">/logs/app.log`</span><span class="p">,</span>
+        <span class="nx">handleExceptions</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">json</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">maxsize</span><span class="o">:</span> <span class="mi">5242880</span><span class="p">,</span> <span class="c1">// 5MB</span>
+        <span class="nx">maxFiles</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="nx">colorize</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="nx">console</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">level</span><span class="o">:</span> <span class="s1">&#39;debug&#39;</span><span class="p">,</span>
+        <span class="nx">handleExceptions</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nx">json</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="nx">colorize</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="c1">// instantiate a new Winston Logger with the settings defined above</span>
+<span class="kd">var</span> <span class="nx">logger</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">winston</span><span class="p">.</span><span class="nx">createLogger</span><span class="p">({</span>
+    <span class="nx">transports</span><span class="o">:</span> <span class="p">[</span>
+        <span class="k">new</span> <span class="nx">winston</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">File</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">file</span><span class="p">),</span>
+        <span class="k">new</span> <span class="nx">winston</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nx">Console</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">console</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="nx">exitOnError</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// do not exit on handled exceptions</span>
+<span class="p">});</span>
+
+<span class="c1">// create a stream object with a &#39;write&#39; function that will be used by `morgan`</span>
+<span class="nx">logger</span><span class="p">.</span><span class="nx">stream</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">write</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">encoding</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// use the &#39;info&#39; log level so the output will be picked up by both transports (file and console)</span>
+        <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">message</span><span class="p">);</span>
+    <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">logger</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>On a créé deux sorties :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>file : qui va stocker dansun fichier de log (<code class="file docutils literal notranslate"><span class="pre">./logs/app.log</span></code>) tous les messages qui sont au moins de niveau <code class="code docutils literal notranslate"><span class="pre">warn</span></code></p></li>
+<li><p>la console qui affiche dans la console tous les messages de niveau au moins <code class="code docutils literal notranslate"><span class="pre">debug</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>On crée aussi un <code class="code docutils literal notranslate"><span class="pre">stream</span></code> qui va nous permettre d’encapsuler les messages de morgan.</p>
+</div>
+<div class="section" id="winston-et-morgan">
+<h4>winston et morgan<a class="headerlink" href="#winston-et-morgan" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Dans <code class="file docutils literal notranslate"><span class="pre">app.js</span></code>, remplacez la ligne : <code class="code docutils literal notranslate"><span class="pre">app.use(logger('combined'));</span></code> par <code class="code docutils literal notranslate"><span class="pre">app.use(logger('combined',</span> <span class="pre">{</span> <span class="pre">stream:</span> <span class="pre">winston.stream</span> <span class="pre">}));</span></code>. Ceci va faire que les messages de morgan sont encapsulés dans des messages winston.</p>
+</div>
+<div class="section" id="message-de-log">
+<h4>message de log<a class="headerlink" href="#message-de-log" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Dans <code class="file docutils literal notranslate"><span class="pre">app.js</span></code>, dans la gestion des erreurs transformons la ligne qui affiche dans la console par un message winston :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">winston</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">err</span><span class="p">.</span><span class="nx">status</span> <span class="o">||</span> <span class="mi">500</span><span class="si">}</span><span class="sb"> - </span><span class="si">${</span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="si">}</span><span class="sb"> - </span><span class="si">${</span><span class="nx">req</span><span class="p">.</span><span class="nx">originalUrl</span><span class="si">}</span><span class="sb"> - </span><span class="si">${</span><span class="nx">req</span><span class="p">.</span><span class="nx">method</span><span class="si">}</span><span class="sb"> - </span><span class="si">${</span><span class="nx">req</span><span class="p">.</span><span class="nx">ip</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>On peut également ajouter un log dans le fichier users. pour cela on importe winston avec la ligne :
+.. code:: javascript</p>
+<blockquote>
+<div><p>var winston = require(“../winston.config”);</p>
+</div></blockquote>
+<p>Puis, dans la route “/” on peut ajouter la ligne :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">winston</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="s2">&quot;TBD: implement me&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Testez votre nouveau log !</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>même si on redemande avec un require un fichier. Il n’est pas re-exécuté. Le contenu du module est en cache et va être donné tel quel. C’est donc le même winston qui va être donné à tous les require. Pour plus d’infos sur les require : <a class="reference external" href="https://www.freecodecamp.org/news/requiring-modules-in-node-js-everything-you-need-to-know-e7fbd119be8/">https://www.freecodecamp.org/news/requiring-modules-in-node-js-everything-you-need-to-know-e7fbd119be8/</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/3_1_app_complete.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

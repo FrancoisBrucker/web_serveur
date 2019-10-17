@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>ejs : partials &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="S’identifier" href="cours_4_1_identification.html" />
+    <link rel="prev" title="Cookies" href="cours_3_2_2_cookies.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ejs : partials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#server-js">server.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ejs">404.ejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-css">main.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#home-ejs">home.ejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#commentaires-placeholders">Commentaires (placeholders)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#refactor-en-separant-les-routes-du-serveur">Refactor en séparant les routes du serveur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="cours_3_2_2_cookies.html" title="Chapitre précédent">Cookies</a></li>
+      <li>Next: <a href="cours_4_1_identification.html" title="Chapitre suivant">S’identifier</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="ejs-partials">
+<h1>ejs : partials<a class="headerlink" href="#ejs-partials" title="Lien permanent vers ce titre">¶</a></h1>
+<p>On recommence un petit site avec ce qu’on a appris la dernière fois. On ajoute juste un formulaire pour mettre son nom, son prénom et permettre d’envoyer un petit compliment aux créateurs du site.</p>
+<ol class="arabic simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">npm</span> <span class="pre">init</span></code> (on va appeler notre fichier de départ <em>server</em>),</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">express</span> <span class="pre">--save</span></code>,</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">ejs</span> <span class="pre">--save</span></code>,</p></li>
+<li><p>création des dossiers annexes:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="file docutils literal notranslate"><span class="pre">assets</span></code> pour les fichiers statiques. On y met une image pour les 404 appelée <code class="file docutils literal notranslate"><span class="pre">404.jpg</span></code> (prenez par exemple l’image de <a class="reference external" href="https://fr.wikipedia.org/wiki/Peugeot_404">https://fr.wikipedia.org/wiki/Peugeot_404</a>)</p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">views</span></code> pour les vues (avec le template <em>ejs</em>) et créez le dossier <code class="file docutils literal notranslate"><span class="pre">partials</span></code> dans celui-ci.</p></li>
+</ul>
+</div></blockquote>
+<p>On doit obtenir l’architecture de dossiers suivante (en utilisant la commande tree qu’il faut peut-être installer d’abord), sans regarder les sous dossiers de <code class="file docutils literal notranslate"><span class="pre">node_modules</span></code> (d’où la commande <code class="code docutils literal notranslate"><span class="pre">grep</span></code>) :</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>port-mac-brucker:app fbrucker$ tree -f <span class="p">|</span> grep -v <span class="s2">&quot;node_modules/.*&quot;</span>
+.
+├── ./assets
+│   └── ./assets/404.jpg
+├── ./node_modules
+├── ./package-lock.json
+├── ./package.json
+└── ./views
+    └── ./views/partials
+</pre></div>
+</div>
+<div class="section" id="server-js">
+<h2>server.js<a class="headerlink" href="#server-js" title="Lien permanent vers ce titre">¶</a></h2>
+<p>C’est la base du serveur :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;view engine&#39;</span><span class="p">,</span> <span class="s1">&#39;ejs&#39;</span><span class="p">)</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s2">&quot;/static&quot;</span><span class="p">,</span> <span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/assets&#39;</span><span class="p">))</span>
+
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;c&#39;est parti&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Regardons si ça marche… On peut aller sur <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> et voir si notre assets fonctionne :
+<a class="reference external" href="http://localhost:8080/static/404.jpg">http://localhost:8080/static/404.jpg</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>on a dissocié les URL (static) du dossier effectif (./assets/)</p>
+</div>
+</div>
+<div class="section" id="ejs">
+<h2>404.ejs<a class="headerlink" href="#ejs" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On commence par gérer les 404, puis on rajoutera toutes les autres routes au-dessus de celle-ci.</p>
+<p>On place notre <code class="file docutils literal notranslate"><span class="pre">404.ejs</span></code> :</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>404<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+            <span class="nt">img</span> <span class="p">{</span>
+                <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+                <span class="k">width</span><span class="p">:</span> <span class="mi">580</span><span class="kt">px</span><span class="p">;</span>
+                <span class="k">height</span><span class="p">:</span> <span class="mi">419</span><span class="kt">px</span><span class="p">;</span>
+                <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Oooops !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/404.jpg&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Et on ajoute la route dans le <code class="file docutils literal notranslate"><span class="pre">server.js</span></code> (à la toute fin, juste avant le lancement de l’appli. Si on a rien trouvé avant, c’est que c’est un 404) :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// 404 aucune interception</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">404</span><span class="p">).</span><span class="nx">render</span><span class="p">(</span><span class="s2">&quot;404&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>On peut le vérifier avec Chrome et les outils de développement (on doit voir le status 404 dans l’onglet <em>network</em>. N’oubliez pas d’actualiser la page pour que l’onglet <em>network</em> fonctionne).</p>
+</div>
+<div class="section" id="main-css">
+<h2>main.css<a class="headerlink" href="#main-css" title="Lien permanent vers ce titre">¶</a></h2>
+<p>L’architecture générale fonctionne, on va commencer notre premier nettoyage : séparer HTML et style pour que l’on puisse facilement s’y retrouver plus tard (aucun css dans les html). Ici :</p>
+<ul class="simple">
+<li><p>On chargera un fichier <code class="file docutils literal notranslate"><span class="pre">main.css</span></code> contenant les caractéristiques générales d’une image,</p></li>
+<li><p>On spécifiera la taille de l’image voulue dans la balise img.</p></li>
+</ul>
+<p>Ce qui donne l’ajout de la ligne suivante dans le header de <code class="file docutils literal notranslate"><span class="pre">404.ejs</span></code> :</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>404<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/main.css&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Oooops !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/404.jpg&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;580px&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;419px&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Et dans le <code class="file docutils literal notranslate"><span class="pre">main.css</span></code> on a ajouté, outre le comportement général d’une image (block et centré), les marges des balises body et html.</p>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">html</span><span class="o">,</span> <span class="nt">body</span> <span class="p">{</span>
+  <span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+  <span class="k">padding</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">background</span><span class="p">:</span> <span class="kc">skyblue</span><span class="p">;</span>
+  <span class="k">color</span><span class="p">:</span> <span class="mh">#FFFFFF</span><span class="p">;</span>
+  <span class="k">font-size</span><span class="p">:</span> <span class="mi">2</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">img</span> <span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+  <span class="k">margin</span><span class="p">:</span> <span class="kc">auto</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="home-ejs">
+<h2>home.ejs<a class="headerlink" href="#home-ejs" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On ajoute maintenant notre première page, le home (ou la fame).</p>
+<p>On va mettre les éléments dans le répertoire <code class="file docutils literal notranslate"><span class="pre">views</span></code>. On commence par ajouter la route à <code class="file docutils literal notranslate"><span class="pre">server.js</span></code> (avant la route par défaut qui est le 404) :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s2">&quot;home&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Puis on crée notre vue <code class="file docutils literal notranslate"><span class="pre">home.ejs</span></code> dans le répertoire <code class="file docutils literal notranslate"><span class="pre">views</span></code>.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/main.css&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Le site<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Il va y avoir des données (plein).<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="section" id="navbar">
+<h3>Navbar<a class="headerlink" href="#navbar" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Ajout de <a class="reference external" href="http://materializecss.com">http://materializecss.com</a> pour que ce soit plus joli ! Par exemple la navbar : <a class="reference external" href="http://materializecss.com/navbar.html">http://materializecss.com/navbar.html</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>on peut faire plein de trucs chouette avec materialize ! Mais c’est encore très (trop) instable. Pour une solution (très) stable vous pouvez aussi regarder du côté de <a class="reference external" href="http://getbootstrap.com">http://getbootstrap.com</a> (qui à l’heure que je tape ces lignes est en beta de la v4) (et qui à l’heure où je corrige ces lignes, en est à la v4 tout court)</p>
+</div>
+<p>On va installer ces bibliothèques dans <code class="file docutils literal notranslate"><span class="pre">assets</span></code> puisque ce sont des dépendances front. On crée donc un nouveau projet npm pour gérer les dépendances front, et on y ajoute nos bibliothèques.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>emma:app $ <span class="nb">cd</span> assets
+emma:assets $ npm init
+emma:assets $ npm install materialize-css --save
+</pre></div>
+</div>
+<p>On peut maintenant importer la bibliothèque dans <code class="file docutils literal notranslate"><span class="pre">home.ejs</span></code> :</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!--Import Google Icon Font--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--Import materialize.css--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/node_modules/materialize-css/dist/css/materialize.min.css&quot;</span> <span class="na">media</span><span class="o">=</span><span class="s">&quot;screen,projection&quot;</span>
+    <span class="p">/&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/main.css&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-wrapper&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;brand-logo left&quot;</span><span class="p">&gt;</span>Da site<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;nav-mobile&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;right&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;commentaires&quot;</span><span class="p">&gt;</span>Commentaires<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Le site<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Il va y avoir des données (plein).<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!--Import jQuery before materialize.js--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://code.jquery.com/jquery-3.2.1.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/node_modules/materialize-css/dist/js/materialize.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="commentaires-placeholders">
+<h2>Commentaires (placeholders)<a class="headerlink" href="#commentaires-placeholders" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La navbar contient un lien vers une route « commentaires ». On placera notre formulaire là-bas plus tard. Pour l’instant, faisons juste en sorte que la route soit reconnue.</p>
+<p>On ajoute ainsi la route dans <code class="file docutils literal notranslate"><span class="pre">server.js</span></code>, juste après la route « / » et avant le « 404 ».</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/commentaires&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s2">&quot;commentaires&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Et le fichier <code class="file docutils literal notranslate"><span class="pre">commentaires.ejs</span></code> :</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Commentaires<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!--Import Google Icon Font--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--Import materialize.css--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/node_modules/materialize-css/dist/css/materialize.min.css&quot;</span> <span class="na">media</span><span class="o">=</span><span class="s">&quot;screen,projection&quot;</span>
+    <span class="p">/&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/main.css&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-wrapper&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;brand-logo left&quot;</span><span class="p">&gt;</span>Da site<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;nav-mobile&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;right&quot;</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+                    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;commentaires&quot;</span><span class="p">&gt;</span>Commentaires<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Si j&#39;ai quoi ? affirmatif.<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Et quoi d&#39;autre ? No comment.<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!--Import jQuery before materialize.js--&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://code.jquery.com/jquery-3.2.1.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/node_modules/materialize-css/dist/js/materialize.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>on voit que les listes n’ont pas de puces. En regardant les propriétés css, on voit que c’est materialize qui a modifié leur comportement.  C’est pourquoi l’ordre des import des fichiers css et js est important.</p>
+</div>
+<div class="section" id="les-partials">
+<h3>Les partials<a class="headerlink" href="#les-partials" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On a dupliqué du code (la navbar et les imports). C’est très dangereux. Pour corriger cela, on va utiliser des partials qui seront importés depuis le dossier <code class="file docutils literal notranslate"><span class="pre">views/partials</span></code></p>
+<p>Vous allez faire 3 partials :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="file docutils literal notranslate"><span class="pre">navbar.ejs</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">head_imports.ejs</span></code></p></li>
+<li><p><code class="file docutils literal notranslate"><span class="pre">js_imports.ejs</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>Ils seront placés dans tous les ejs à part le 404 qui est spécial (il ne fait PAS partie du site).</p>
+<p><code class="file docutils literal notranslate"><span class="pre">views/partials/navbar.ejs</span></code> :</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">nav</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nav-wrapper&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;brand-logo left&quot;</span><span class="p">&gt;</span>Da site<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;nav-mobile&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;right&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;commentaires&quot;</span><span class="p">&gt;</span>Commentaires<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">nav</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><code class="file docutils literal notranslate"><span class="pre">views/partials/head_css_import.ejs</span></code> :</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="c">&lt;!--Import Google Icon Font--&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/icon?family=Material+Icons&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+<span class="c">&lt;!--Import materialize.css--&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/node_modules/materialize-css/dist/css/materialize.min.css&quot;</span> <span class="na">media</span><span class="o">=</span><span class="s">&quot;screen,projection&quot;</span>
+<span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/static/main.css&quot;</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><code class="file docutils literal notranslate"><span class="pre">views/partials/js_import.ejs</span></code> :</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="c">&lt;!--Import jQuery before materialize.js--&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://code.jquery.com/jquery-3.2.1.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;/static/node_modules/materialize-css/dist/js/materialize.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Ce qui donne pour <code class="file docutils literal notranslate"><span class="pre">home.ejs</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;html&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;Maison page&lt;/title&gt;
+    &lt;% include partials/head_css_import.ejs %&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;% include partials/navbar.ejs %&gt;
+
+    &lt;h1&gt;Le site&lt;/h1&gt;
+    &lt;p&gt;Il va y avoir des données (plein).&lt;/p&gt;
+
+    &lt;% include partials/js_import.ejs %&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre></div>
+</div>
+<p>et pour <code class="file docutils literal notranslate"><span class="pre">commentaires.ejs</span></code> :</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;html&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;Commentaires&lt;/title&gt;
+
+    &lt;% include partials/head_css_import.ejs %&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;% include partials/navbar.ejs %&gt;
+
+    &lt;ul&gt;
+        &lt;li&gt;Si j&#39;ai quoi ? affirmatif.&lt;/li&gt;
+        &lt;li&gt;Et quoi d&#39;autre ? No comment.&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;% include partials/js_import.ejs %&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="refactor">
+<h3>Refactor<a class="headerlink" href="#refactor" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+</div>
+<div class="section" id="refactor-en-separant-les-routes-du-serveur">
+<h2>Refactor en séparant les routes du serveur<a class="headerlink" href="#refactor-en-separant-les-routes-du-serveur" title="Lien permanent vers ce titre">¶</a></h2>
+<p>En informatique, on aime bien bien séparer le code en unité fonctionnelles, de préférence dans de petits fichiers.</p>
+<p>Ici, on va séparer ce qui est de l’ordre de la création du serveur et les routes qu’il peut prendre (pour l’instant on a peu de routes, mais cela augmente généralement très vite).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>cela va aussi nous permettre de voir comment javascript gère les modules.  <a class="reference external" href="https://www.sitepoint.com/understanding-module-exports-exports-node-js/">https://www.sitepoint.com/understanding-module-exports-exports-node-js/</a></p>
+</div>
+<p>On crée un fichier <code class="file docutils literal notranslate"><span class="pre">app.js</span></code> contenant nos routes :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;view engine&#39;</span><span class="p">,</span> <span class="s1">&#39;ejs&#39;</span><span class="p">)</span>
+
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s2">&quot;/static&quot;</span><span class="p">,</span> <span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s1">&#39;/assets&#39;</span><span class="p">))</span>
+
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s2">&quot;home&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/commentaires&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s2">&quot;commentaires&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+
+
+<span class="c1">// 404 aucune interception</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">404</span><span class="p">).</span><span class="nx">render</span><span class="p">(</span><span class="s2">&quot;404&quot;</span><span class="p">)</span>
+    <span class="c1">// logger.info(&quot;404 for: &quot; + req.originalUrl); Le logger n&#39;a pas ete defini, on en parle juste apres</span>
+<span class="p">})</span>
+
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">app</span>
+</pre></div>
+</div>
+<p>Et le <code class="file docutils literal notranslate"><span class="pre">server.js</span></code></p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">app</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./app.js&#39;</span><span class="p">)</span>
+
+<span class="nx">port</span> <span class="o">=</span> <span class="mi">8080</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;c&#39;est parti: http://localhost:&quot;</span> <span class="o">+</span> <span class="nx">port</span><span class="p">.</span><span class="nx">toString</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/ejs_partials.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

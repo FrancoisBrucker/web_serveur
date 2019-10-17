@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Formulaires &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="API CRUD" href="3_3_crud.html" />
+    <link rel="prev" title="Squelette d’une application complète" href="3_1_app_complete.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Formulaires</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mise-en-place">Mise en place</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fonctionnement">fonctionnement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#templating">Templating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#postman">Postman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requete-post">Requête POST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#post-et-formulaires">POST et formulaires</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="3_1_app_complete.html" title="Chapitre précédent">Squelette d’une application complète</a></li>
+      <li>Next: <a href="3_3_crud.html" title="Chapitre suivant">API CRUD</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="formulaires">
+<h1>Formulaires<a class="headerlink" href="#formulaires" title="Lien permanent vers ce titre">¶</a></h1>
+<p>On va mettre en place un formulaire (<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms">https://developer.mozilla.org/en-US/docs/Learn/HTML/Forms</a> ). dans la page de contact.</p>
+<div class="section" id="mise-en-place">
+<h2>Mise en place<a class="headerlink" href="#mise-en-place" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On va créer une nouvelle route dans notre application.</p>
+<p>Pour cela :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>on crée la route</p></li>
+<li><p>on ajoute le template</p></li>
+</ul>
+</div></blockquote>
+<div class="section" id="le-template">
+<h3>le template<a class="headerlink" href="#le-template" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Dans nos vues :</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">./views/comments.ejs</span><a class="headerlink" href="#id1" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;fr&quot;</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Commentaires<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;pseudo&quot;</span><span class="p">&gt;</span>Pseudo :<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;pseudo&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;pseudo&quot;</span><span class="p">/&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;message&quot;</span><span class="p">&gt;</span>Message :<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;message&quot;</span> <span class="na">placeholder</span><span class="o">=</span><span class="s">&quot;dites nous tout le bonheur que vous apporte ce site&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;comment&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span><span class="p">&gt;</span>Envoi<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="la-route">
+<h3>la route<a class="headerlink" href="#la-route" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">./routes/comments.ejs</span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;comments&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<dl class="simple">
+<dt>Puis on fait les liens entre notre route et l’app, dans <code class="code docutils literal notranslate"><span class="pre">app.js</span></code> :</dt><dd><ul class="simple">
+<li><p>on charge la route : <code class="code docutils literal notranslate"><span class="pre">var</span> <span class="pre">commentsRouter</span> <span class="pre">=</span> <span class="pre">require('./routes/comments');</span></code></p></li>
+<li><p>on utilise la route : <code class="code docutils literal notranslate"><span class="pre">app.use('/comments',</span> <span class="pre">commentsRouter);</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="fonctionnement">
+<h2>fonctionnement<a class="headerlink" href="#fonctionnement" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Lancez votre serveur et testez la route <a class="reference external" href="http://localhost:3000/comments">http://localhost:3000/comments</a></p>
+<p>Une fois appuyé sur le bouton <em>envoi</em> on voit que requête GET est envoyée au serveur avec une url contenant nos envois. Par exemple : <a class="reference external" href="http://localhost:3000/comments?pseudo=caro&amp;comment=Trop+cool+ton+site+%28lol%29">http://localhost:3000/comments?pseudo=caro&amp;comment=Trop+cool+ton+site+%28lol%29</a></p>
+<p>..note:: c’est en clair. Donc pas de bêtises avec des messages confidentiels.</p>
+<p>On appelle ça des <em>query string parameters</em> : <a class="reference external" href="https://en.wikipedia.org/wiki/Query_string">https://en.wikipedia.org/wiki/Query_string</a>. Le format est assez simple et permet de faire passer des variables dans une url.</p>
+<p>Modifions un peu <code class="file docutils literal notranslate"><span class="pre">app.js</span></code> pour voir ce qu’il se passe.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">./routes/comments.js</span><a class="headerlink" href="#id3" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">winston</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../winston.config&#39;</span><span class="p">);</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">));</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;comments&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Dans le fichier de log vous verrez le message passé au format <a class="reference external" href="http://www.json.org/">http://www.json.org/</a> (voir ci-après)</p>
+<p>Le format json, qui est une adaptation des dictionnaires javascript (ou python, est le format d’échange de données roi du net (et des environs). Il permet en effet de transformer un objet en texte avant de l’envoyer sur le réseau <em>via une requête http</em>, puis de le retransformer en objet à l’arrivée très simplement.</p>
+</div>
+<div class="section" id="templating">
+<h2>Templating<a class="headerlink" href="#templating" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On va utiliser ces query strings dans notre template. Commençons par passer les query strings en paramètres de notre template :</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">./routes/comments.js</span><a class="headerlink" href="#id4" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">winston</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../winston.config&#39;</span><span class="p">);</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">));</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;comments&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">qs</span><span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>L’objet qs est passé en paramètre de notre template et prend la valeur de notre query string. Dans notre cas, il a donc 2 champs correspondant aux noms de nos formulaires, à savoir <code class="code docutils literal notranslate"><span class="pre">qs.pseudo</span></code> et <code class="code docutils literal notranslate"><span class="pre">qs.comment</span></code>.</p>
+<p>Modifions le template pour les utiliser. On va tout de même faire attention au fait que ces paramètres peuvent être vides.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">./views/comments.ejs</span><a class="headerlink" href="#id5" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;html lang=&quot;fr&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;/&gt;
+    &lt;title&gt;Commentaires&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;form&gt;
+    &lt;label for=&quot;pseudo&quot;&gt;Pseudo :&lt;/label&gt;
+    &lt;input id=&quot;pseudo&quot; type=&quot;text&quot; name=&quot;pseudo&quot; &lt;% if (qs.pseudo) { %&gt; value=&lt;%= qs.pseudo %&gt; &lt;% } %&gt; /&gt;
+
+    &lt;label for=&quot;message&quot;&gt;Message :&lt;/label&gt;
+    &lt;textarea id=&quot;message&quot; placeholder=&quot;dites nous tout le bonheur que vous apporte ce site&quot; name=&quot;comment&quot;&gt;&lt;% if (qs.comment) { %&gt;&lt;%= qs.comment %&gt;&lt;% } %&gt;&lt;/textarea&gt;
+
+
+    &lt;button type=&quot;submit&quot;&gt;Envoi&lt;/button&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>il faut mettre tout le textarea surune ligne. Sinon il peut y avoir des caractères en trop par défaut.</p>
+</div>
+</div>
+<div class="section" id="postman">
+<h2>Postman<a class="headerlink" href="#postman" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Pour visualiser les différentes requêtes, on utilise souvent <a class="reference external" href="https://www.getpostman.com/">postman</a> qui est un utilitaire bien pratique</p>
+<blockquote>
+<div><p>un tuto : <a class="reference external" href="https://www.guru99.com/postman-tutorial.html">https://www.guru99.com/postman-tutorial.html</a></p>
+</div></blockquote>
+<p>On va tester les façons de gérer des requêtes avec postman :</p>
+<ol class="arabic simple">
+<li><p>On lance l’application,</p></li>
+<li><p>On dit que l’on ne veut pas de compte (c’est tout en bas),</p></li>
+<li><p>On ferme la fenêtre qui demande de sauver ses requêtes (croix en haut à droite),</p></li>
+</ol>
+<p>On peut tester la requête <a class="reference external" href="http://localhost:3000/comments?pseudo=caro&amp;comment=c%27est+moins+bien+que+sonate+je+trouve">http://localhost:3000/comments?pseudo=caro&amp;comment=c%27est+moins+bien+que+sonate+je+trouve</a> en GET. On récupère bien des headers par défaut et du HTML.</p>
+</div>
+<div class="section" id="requete-post">
+<h2>Requête POST<a class="headerlink" href="#requete-post" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les query strings sont un moyen utile de passer des données au serveur via une URL, mais une méthode plus <em>pure</em> est d’utiliser le protocole HTTP lui-même et la méthode POST, car elle permet de transmettre des données arbitraires.</p>
+<p>Toutes les données vont être transférées sous forme de chaîne de caractères. On utilise pour cela le format <a class="reference external" href="http://www.json.org">http://www.json.org</a> qui est fait pour ça. C’est <em>en gros</em> un dictionnaire. Donc pour transférer un objet javascript <code class="code docutils literal notranslate"><span class="pre">data</span></code>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>On transforme <code class="code docutils literal notranslate"><span class="pre">data</span></code> en chaine de caractères : <code class="code docutils literal notranslate"><span class="pre">JSON.stringify(data)</span></code>,</p></li>
+<li><p>On transfère cette chaîne d’un endroit à un autre,</p></li>
+<li><p>On récupère notre donnée en retransformant notre chaîne de caractères en objet <code class="code docutils literal notranslate"><span class="pre">JSON.parse(chaine_de_caractère)</span></code>. Cette étape est souvent faite automatiquement si l’on sait que l’on transporte du JSON.</p></li>
+</ol>
+</div></blockquote>
+<p>Côté serveur, on attend une requête de type POST sur l’adresse contact. Pour avoir accès au corps de notre requête, ici l’objet transmis sous la forme d’un JSON, il faut utiliser <a class="reference external" href="https://github.com/expressjs/body-parser">https://github.com/expressjs/body-parser</a> qui va nous permettre de récupérer le body de la requête, c’est à dire les données envoyées au serveur. On l’installe comme d’habitude: <strong class="command">yarn add body-parser</strong>.</p>
+<p>Puis on l’utilise dans <code class="file docutils literal notranslate"><span class="pre">app.js</span></code>, juste après l’utilisation de Express :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>chargement du module : <code class="code docutils literal notranslate"><span class="pre">var</span> <span class="pre">bodyParser</span> <span class="pre">=</span> <span class="pre">require('body-parser');</span></code></p></li>
+<li><p>utilisation du module (juste avant les routes) : <code class="code docutils literal notranslate"><span class="pre">app.use(bodyParser.json());</span></code></p></li>
+</ul>
+</div></blockquote>
+<p>Puis la route en elle même :</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">./routes/comments.js</span><a class="headerlink" href="#id6" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">winston</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../winston.config&#39;</span><span class="p">);</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">));</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;comments&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">qs</span><span class="o">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">query</span><span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">router</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">winston</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;post: &quot;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">));</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;Ok&#39;</span><span class="p">)</span>
+<span class="p">});</span>
+
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<ul>
+<li><p>type : POST (à la place de GET)</p></li>
+<li><p>url : <a class="reference external" href="http://localhost:3000/comments">http://localhost:3000/comments</a></p></li>
+<li><p>body :</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>type : raw</p></li>
+<li><p>un menu déroulant est apparu : choisir JSON (application/json)</p></li>
+<li><p>texte :</p>
+<blockquote>
+<div><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;pseudo&quot;</span><span class="p">:</span> <span class="s2">&quot;Geo&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;comment&quot;</span><span class="p">:</span> <span class="s2">&quot;ce serait pas plus simple en sh ?&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</li>
+</ul>
+<p>Si tout se passe comme prévu. Le retour dans postman devrait être « Ok », et côté serveur, <code class="code docutils literal notranslate"><span class="pre">request.body</span></code> devrait être un objet javascript.</p>
+</div>
+<div class="section" id="post-et-formulaires">
+<h2>POST et formulaires<a class="headerlink" href="#post-et-formulaires" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="jquery">
+<h3>jquery<a class="headerlink" href="#jquery" title="Lien permanent vers ce titre">¶</a></h3>
+<p>L’objectif est que lorsque l’on va appuyer sur notre bouton, on veut envoyer les données à notre serveur en POST. Pour cela on va utiliser <a class="reference external" href="http://jquery.com">http://jquery.com</a> la bibliothèque à tout faire pour le javascript en front.</p>
+<p>Pour installer jquery, utilisons yarn ! Mais comme c’est pour le front, faisons un nouveau <code class="code docutils literal notranslate"><span class="pre">package.json</span></code> dans public. Donc placez vous dans le dossier <code class="code docutils literal notranslate"><span class="pre">public</span></code> qui va contenir nos fichiers statiques, puis tapez : <code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">init</span></code>. Puis <code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">add</span> <span class="pre">jquery</span></code></p>
+</div>
+<div class="section" id="javascript-post">
+<h3>javascript post<a class="headerlink" href="#javascript-post" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On a plusieurs choses à faire pour que notre binding fonctionne.</p>
+<p>Charger jquery et notre script dans le template :</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">./views/comments.ejs</span><a class="headerlink" href="#id7" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;html lang=&quot;fr&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;/&gt;
+    &lt;title&gt;Commentaires&lt;/title&gt;
+
+    &lt;script src=&quot;/node_modules/jquery/dist/jquery.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/javascripts/comments_post.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;form&gt;
+    &lt;label for=&quot;pseudo&quot;&gt;Pseudo :&lt;/label&gt;
+    &lt;input id=&quot;pseudo&quot; type=&quot;text&quot; name=&quot;pseudo&quot; &lt;% if (qs.pseudo) { %&gt; value=&lt;%= qs.pseudo %&gt; &lt;% } %&gt; /&gt;
+
+    &lt;label for=&quot;message&quot;&gt;Message :&lt;/label&gt;
+    &lt;textarea id=&quot;message&quot; placeholder=&quot;dites nous tout le bonheur que vous apporte ce site&quot; name=&quot;comment&quot;&gt;
+        &lt;% if (qs.comment) { %&gt;&lt;%= qs.comment %&gt;&lt;% } %&gt;
+    &lt;/textarea&gt;
+
+    &lt;button type=&quot;submit&quot;&gt;Envoi&lt;/button&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</pre></div>
+</div>
+</div>
+<p>Faire le lien entre le bouton et l’envoie :</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">./public/javascripts/comments_post.js</span><a class="headerlink" href="#id8" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;form&quot;</span> <span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+        <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">pseudo</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[name=pseudo]&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#message&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+        <span class="p">};</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;data sent: &quot;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<dl class="simple">
+<dt>Deux choses :</dt><dd><ul class="simple">
+<li><p>pour l’instant il n’envoie rien. Il affiche juste un message sur la console (du navigateur)</p></li>
+<li><p>on a bloqué le comportement par défaut (<code class="code docutils literal notranslate"><span class="pre">event.preventDefault();</span></code>), sinon la page serait rechargée.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="requete-ajax">
+<h3>requête ajax<a class="headerlink" href="#requete-ajax" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Pour envoyer des choses au serveur, il faut que le navigateur fasse une requête post à notre serveur. Tout ceci se fera via une requête <em>ajax</em> (<a class="reference external" href="http://learn.jquery.com/ajax/">http://learn.jquery.com/ajax/</a>)</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">./public/javascripts/comments_post.js</span><a class="headerlink" href="#id9" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;form&quot;</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+
+        <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">pseudo</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;input[name=pseudo]&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+            <span class="nx">text</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#message&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
+        <span class="p">};</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;data to send: &quot;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+            <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+                <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://&quot;</span> <span class="o">+</span> <span class="nx">$</span><span class="p">(</span><span class="nx">location</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/comments&quot;</span><span class="p">,</span>
+                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+                <span class="nx">contentType</span><span class="o">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
+                <span class="nx">data</span><span class="o">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">),</span>
+            <span class="p">})</span>
+                <span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">json</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;comment sent: &quot;</span> <span class="o">+</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+                    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;textarea&quot;</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+                <span class="p">})</span>
+                <span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span><span class="p">,</span> <span class="nx">errorThrown</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">&quot;Sorry, there was a problem!&quot;</span> <span class="p">);</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">&quot;Error: &quot;</span> <span class="o">+</span> <span class="nx">errorThrown</span> <span class="p">);</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">&quot;Status: &quot;</span> <span class="o">+</span> <span class="nx">status</span> <span class="p">);</span>
+                <span class="p">})</span>
+                <span class="c1">// Code to run regardless of success or failure;</span>
+                <span class="p">.</span><span class="nx">always</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">xhr</span><span class="p">,</span> <span class="nx">status</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="s2">&quot;The request is complete!&quot;</span> <span class="p">);</span>
+                <span class="p">});</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;no text to send.&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+
+
+<span class="nx">Tester</span> <span class="nx">que</span> <span class="nx">tout</span> <span class="nx">fonctionne</span><span class="p">.</span>
+</pre></div>
+</div>
+</div>
+<p>Une fois que tout est ok, supprimez la ligne qui enlève le comportement par défaut. C’est une bonne pratique de recharger une page en get après un envoie car cela évite le double post en rechargeant la page. C’est le pattern <a class="reference external" href="https://www.theserverside.com/news/1365146/Redirect-After-Post">redirect after post</a></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/3_2_formulaires.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

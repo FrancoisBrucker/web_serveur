@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Node &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Express" href="2_3_express.html" />
+    <link rel="prev" title="Protocole HTTP" href="2_1_protocole_http.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Node</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#node-en-console">Node en console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#node-et-serveur-web">Node et serveur web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sur-le-serveur-distant">sur le serveur distant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#globaux-et-asynchrones">Globaux et Asynchrones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-routes">Les Routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#servir-des-fichiers">Servir des fichiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#odds-and-ends">Odds and ends</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="2_1_protocole_http.html" title="Chapitre précédent">Protocole HTTP</a></li>
+      <li>Next: <a href="2_3_express.html" title="Chapitre suivant">Express</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="node">
+<h1>Node<a class="headerlink" href="#node" title="Lien permanent vers ce titre">¶</a></h1>
+<p><a class="reference external" href="https://nodejs.org/en/">https://nodejs.org/en/</a> est idéal pour créer des petits serveur web, des sites à une seule page ressemblant à une application, ou encore une interface <em>REST</em>.</p>
+<p>Il est utilisé en conjonction d’autres bibliothèques pour créer des applications <em>MEAN</em> (<a class="reference external" href="https://en.wikipedia.org/wiki/MEAN_(software_bundle)">https://en.wikipedia.org/wiki/MEAN_(software_bundle)</a>) . Actuellement, il y a des alternatives sérieuses à A (angular), comme react.js mais il est bien revenu.</p>
+<div class="section" id="node-en-console">
+<h2>Node en console<a class="headerlink" href="#node-en-console" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Node peut être vu comme un interpréteur javascript. Il incorpore le moteur javascript V8 de google (<a class="reference external" href="https://fr.wikipedia.org/wiki/V8_(moteur_JavaScript)">https://fr.wikipedia.org/wiki/V8_(moteur_JavaScript)</a>).</p>
+<p>Tapez <code class="code docutils literal notranslate"><span class="pre">Node</span></code> dans un terminal. Vous vous retrouverez dans un interpréteur javascript. Idéal pour tester des choses, en particulier pour reprendre les exemples de <a class="reference external" href="https://www.destroyallsoftware.com/talks/wat">https://www.destroyallsoftware.com/talks/wat</a></p>
+</div>
+<div class="section" id="node-et-serveur-web">
+<h2>Node et serveur web<a class="headerlink" href="#node-et-serveur-web" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Node est surtout utilisé pour créer des serveurs web. Essayons l’exemple minimal d’un serveur node de <a class="reference external" href="https://nodejs.org/api/synopsis.html">https://nodejs.org/api/synopsis.html</a></p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">exemple.js</span><a class="headerlink" href="#id2" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">hostname</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">);</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s1">&#39;Hello World\n&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="nx">hostname</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server running at http://</span><span class="si">${</span><span class="nx">hostname</span><span class="si">}</span><span class="sb">:</span><span class="si">${</span><span class="nx">port</span><span class="si">}</span><span class="sb">/`</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<p>On exécute ce fichier en console :</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>node exemple.js
+</pre></div>
+</div>
+<p>Et on peut ensuite voir le résultat dans un naviguateur à l’url : <a class="reference external" href="http://localhost:3000">http://localhost:3000</a>.</p>
+<p>Le code précédent crée un serveur <em>http</em> qui répond toujours la même chose dès qu’on le contacte. Il affiche en log la requête reçue, qui elle dépend de l’url donnée.</p>
+<p>Regardons le code de près :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">const</span></code> : déclaration de constantes. Changer port par exemple produit une erreur.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">require</span></code> : importation d’une bibliothèque (ici de nodejs mais on créera les nôtres bientôt) et affectation de celle-ci à une constante.</p></li>
+<li><p>les fonctions peuvent se créer à la volée avec : <code class="code docutils literal notranslate"><span class="pre">nomFonction((paramètres)</span> <span class="pre">=&gt;</span> <span class="pre">{})</span></code></p></li>
+<li><p>création d’un objet serveur avec une fonction ayant 2 paramètres, la requête et la réponse (voir doc).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">listen</span></code> : lien entre le serveur et le couple adresse + port.</p></li>
+</ul>
+</div></blockquote>
+<p>On peut afficher l’url de la requête : On récupère les variables <em>hostname</em> et <em>port</em> et on les affiche dans la console.</p>
+<p>Détails, en utilisant la <a class="reference external" href="https://nodejs.org/en/docs/">documentation</a> de nodejs :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">http</span></code> : C’est le module s’occupant des échanges et du codage des données.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">http.createServer</span></code> : demande un <a class="reference external" href="https://www.w3schools.com/nodejs/func_http_requestlistener.asp">requestListener</a> qui est ajouté à l’événement request.</p></li>
+<li><p>event request : deux paramètres <code class="code docutils literal notranslate"><span class="pre">http.IncomingMessage</span></code>  et <code class="code docutils literal notranslate"><span class="pre">http.ServerResponse</span></code>. Il est émit à chaque fois qu’un <em>request</em> est demandé</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">http.IncomingMessage</span></code> a un attribut url : il sert à générer le <em>Readable Stream interface</em> et beaucoup d’autres choses (événements, méthodes, …).</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La <a class="reference external" href="https://nodejs.org/api/">documentation</a> de nodejs est très bien faite. Trouvez tous les éléments mentionnés ci-dessus.</p>
+</div>
+<p>Tout est orienté autours d’évènements auxquels le serveur doit répondre.</p>
+</div>
+<div class="section" id="sur-le-serveur-distant">
+<h2>sur le serveur distant<a class="headerlink" href="#sur-le-serveur-distant" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="ecrire-le-code-en-vim">
+<h3>écrire le code en vim<a class="headerlink" href="#ecrire-le-code-en-vim" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="simple">
+<dt>Faire un peu de vim :</dt><dd><ul class="simple">
+<li><p>tuto : <a class="reference external" href="https://www.youtube.com/watch?v=ggSyF1SVFr4">https://www.youtube.com/watch?v=ggSyF1SVFr4</a> (je ne sais pas ce que ça vaut)</p></li>
+<li><p><a class="reference external" href="https://danielmiessler.com/study/vim/">https://danielmiessler.com/study/vim/</a></p></li>
+<li><p><a class="reference external" href="https://www.cs.cmu.edu/~15131/f17/topics/vim/vim-cheatsheet.pdf">https://www.cs.cmu.edu/~15131/f17/topics/vim/vim-cheatsheet.pdf</a></p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="configuration-du-serveur">
+<h3>configuration du serveur<a class="headerlink" href="#configuration-du-serveur" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On a un <a class="reference external" href="https://www.nginx.com/">https://www.nginx.com/</a> qui tourne.</p>
+<dl class="simple">
+<dt>son boulot :</dt><dd><ul class="simple">
+<li><p>lire les requête et les envoyer au bon endroit (port)</p></li>
+<li><p>servir des fichiers statiques(html css, images, …)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Un tuto : <a class="reference external" href="https://www.grafikart.fr/tutoriels/nginx-692">https://www.grafikart.fr/tutoriels/nginx-692</a></p>
+<dl class="simple">
+<dt>Allez voir sur le serveur :</dt><dd><ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">/etc/nginx/nginx.conf</span></code> : configuration générale</p></li>
+<li><dl class="simple">
+<dt><code class="code docutils literal notranslate"><span class="pre">/etc/nginx/conf.d/</span></code> puis <code class="code docutils literal notranslate"><span class="pre">nodejs.conf</span></code> par exemple</dt><dd><ul>
+<li><p>routes normales : commençant par <code class="code docutils literal notranslate"><span class="pre">/</span></code> : le reste est passé au port</p></li>
+<li><p>routes statiques : commençant par <code class="code docutils literal notranslate"><span class="pre">/static/</span></code> : le reste est un fichier à partir du répertoire <code class="code docutils literal notranslate"><span class="pre">www</span></code> de l’utilisateur. Voir fichier <code class="code docutils literal notranslate"><span class="pre">static.conf</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="executer-node">
+<h3>exécuter node<a class="headerlink" href="#executer-node" title="Lien permanent vers ce titre">¶</a></h3>
+<ul>
+<li><p>trouver le port</p></li>
+<li><dl>
+<dt>exécuter en screen executer la commande<span class="classifier"><cite>/usr/bin/screen -d -m -S node node exemple.js</cite></span></dt><dd><ul class="simple">
+<li><p>en utilisant man et <cite>/</cite></p></li>
+<li><dl class="simple">
+<dt>-S<span class="classifier">When creating a new session, this option can be used to specify a meaningful name for the session. This name  identifies</span></dt><dd><p>the session for « screen -list » and « screen -r » actions. It substitutes the default [tty.host] suffix.</p>
+</dd>
+</dl>
+</li>
+<li><p>-d -m :  Start  screen  in  « detached »  mode.  This  creates a new session but doesn’t attach to it. This is useful for system startup scripts.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><a class="reference external" href="http://node.raifort.ovh1.ec-m.fr/">http://node.raifort.ovh1.ec-m.fr/</a></p></li>
+</ul>
+<p>screen manual : <a class="reference external" href="https://linuxize.com/post/how-to-use-linux-screen/">https://linuxize.com/post/how-to-use-linux-screen/</a></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">screen</span> <span class="pre">-ls</span></code> : trouve les différents screen</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">screen</span> <span class="pre">-X</span> <span class="pre">-S</span> <span class="pre">[session</span> <span class="pre">#</span> <span class="pre">you</span> <span class="pre">want</span> <span class="pre">to</span> <span class="pre">kill]</span> <span class="pre">quit</span></code> : tue le screen</p></li>
+</ul>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">À faire</p>
+<p>faire un speech sur les ps et kill</p>
+</div>
+<p><code class="code docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux|</span> <span class="pre">grep</span> <span class="pre">raifort</span></code> puis kill (sans -9) le numéro du process (le 1er numéro)</p>
+</div>
+</div>
+<div class="section" id="globaux-et-asynchrones">
+<h2>Globaux et Asynchrones<a class="headerlink" href="#globaux-et-asynchrones" title="Lien permanent vers ce titre">¶</a></h2>
+<blockquote>
+<div><p><strong>RTFM – Merci de lire la notice</strong> : <a class="reference external" href="https://nodejs.org/api/">https://nodejs.org/api/</a></p>
+</div></blockquote>
+<p>Node est un interpréteur javascript, mais sa grande force est dans ses modules et son fonctionnement purement asynchrone :</p>
+<blockquote>
+<div><p><em>Lorsque cet évènement se produit ou lorsque j’ai fini de faire quelque chose, j’exécute une fonction.</em></p>
+</div></blockquote>
+<div class="section" id="creation-de-fonctions-a-la-volee">
+<h3>Création de fonctions à la volée<a class="headerlink" href="#creation-de-fonctions-a-la-volee" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Ceci est possible car en javascript, comme en python, un fonction peut être une assignée à une variable que l’on peut ensuite exécuter. Tester le code suivant dans l’interpréteur <code class="code docutils literal notranslate"><span class="pre">node</span></code>.</p>
+<blockquote>
+<div><p>Ouvrez une console (ou un powershell) et tapez <code class="code docutils literal notranslate"><span class="pre">node</span></code> puis la touche entrée. Il vous suffit ensuite de copier/coller le code dans le terminal.</p>
+</div></blockquote>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">affiche_bloup</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// definition classique d&#39;une fonction</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;bloup&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">affiche_bloup</span><span class="p">()</span>
+
+<span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">affiche_bloup</span> <span class="c1">//affectation de la fonction à une variable</span>
+
+<span class="nx">x</span><span class="p">()</span> <span class="c1">//exécution de la variable, donc de la fonction.</span>
+
+
+
+<span class="c1">//fonction sans nom assignée à une variable</span>
+<span class="kd">var</span> <span class="nx">affiche_2</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// On utilisera surtout celle là.</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;bloup 2&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">affiche_2</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="evenements">
+<h3>Événements<a class="headerlink" href="#evenements" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On utilise la méthode <code class="code docutils literal notranslate"><span class="pre">setInterval</span></code> utilisable par défaut en node.</p>
+<p>Ce qui est utilisable par défaut est définit dans <a class="reference external" href="https://nodejs.org/api/globals.html">https://nodejs.org/api/globals.html</a></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">affiche_bloup</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;bloup&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// tout est asyncrone.</span>
+<span class="c1">// Lorsque la condition est vérifiée on exécute une fonction.</span>
+<span class="kd">var</span> <span class="nx">timer1</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span> <span class="nx">affiche_bloup</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> <span class="c1">// un intervalle</span>
+
+<span class="kd">var</span> <span class="nx">timer2</span> <span class="o">=</span> <span class="nx">setInterval</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// un deuxième avec une function anonyme</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;bim&quot;</span><span class="p">)</span>
+<span class="p">},</span> <span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="les-routes">
+<h2>Les Routes<a class="headerlink" href="#les-routes" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Le principe d’un serveur web est de servir des pages différentes selon les requêtes.</p>
+<p>Avant de passer à un framework permettant de le faire, voyons comment faire en node pure :</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">routes.js</span><a class="headerlink" href="#id3" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>    <span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
+
+    <span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;{</span>
+        <span class="c1">// http://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/html&#39;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span> <span class="o">===</span> <span class="s2">&quot;/&quot;</span> <span class="o">||</span> <span class="nx">request</span><span class="p">.</span><span class="nx">url</span> <span class="o">===</span> <span class="s2">&quot;/home&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;home&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;sweet home&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">url</span> <span class="o">===</span> <span class="s2">&quot;/contact&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;contact&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;h1&gt;contact&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+          <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">=</span> <span class="mi">404</span><span class="p">;</span>
+          <span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">);</span>
+          <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">})</span>
+
+    <span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;c&#39;est parti&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>node routes.js
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Le serveur précédent est instalé sur le port 3000 de localhost répond à trois routes :</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="http://localhost:3000/">http://localhost:3000/</a></p></li>
+<li><p><a class="reference external" href="http://localhost:3000/home">http://localhost:3000/home</a></p></li>
+<li><p><a class="reference external" href="http://localhost:3000/contact">http://localhost:3000/contact</a></p></li>
+</ul>
+</dd>
+</dl>
+<p>Dans la partie suivante, on utilisera le framework <em>express</em> pour gérer tout cela de façon un peu plus élégante.</p>
+</div>
+<div class="section" id="servir-des-fichiers">
+<h2>Servir des fichiers<a class="headerlink" href="#servir-des-fichiers" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On simule un petit serveur web qui charge des fichiers. On utilisera quasi jamais ça en production. Les fichiers html étant des fichiers statiques, et donc mieux servis par nginx que par node.</p>
+<div class="section" id="fichier-local">
+<h3>fichier local<a class="headerlink" href="#fichier-local" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">servir_fichier.js</span><a class="headerlink" href="#id4" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;{</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span>  <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;text/html&#39;</span><span class="p">})</span>
+
+    <span class="c1">//file stream</span>
+    <span class="kd">var</span> <span class="nx">readStream</span> <span class="o">=</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">createReadStream</span><span class="p">(</span><span class="nx">__dirname</span> <span class="o">+</span> <span class="s2">&quot;/index.html&quot;</span><span class="p">,</span> <span class="s2">&quot;utf8&quot;</span><span class="p">)</span>
+    <span class="nx">readStream</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Le nom <cite>__dirname</cite> est un globals de node (<a class="reference external" href="https://nodejs.org/docs/latest/api/globals.html">https://nodejs.org/docs/latest/api/globals.html</a>). Il permet de connaitre le répertoire du module courant (ici, notre application)</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">index.html</span><a class="headerlink" href="#id5" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span> <span class="p">/&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/css?family=Indie+Flower&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+
+
+        <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+            <span class="nt">html</span><span class="o">,</span> <span class="nt">body</span> <span class="p">{</span>
+                <span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+                <span class="k">padding</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+
+                <span class="k">background</span><span class="p">:</span> <span class="kc">skyblue</span><span class="p">;</span>
+                <span class="k">color</span><span class="p">:</span> <span class="mh">#FFFFFF</span><span class="p">;</span>
+                <span class="k">font-size</span><span class="p">:</span> <span class="mi">2</span><span class="kt">em</span><span class="p">;</span>
+                <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+
+            <span class="p">}</span>
+            <span class="nt">p</span> <span class="p">{</span>
+               <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Indie Flower&#39;</span><span class="p">,</span> <span class="kc">cursive</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Enfin du web !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Et on aime ça.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="fichier-distant">
+<h3>fichier distant<a class="headerlink" href="#fichier-distant" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Les fichiers précédents ne sont pas volumineux, ils sont donc quasi-immédiatement chargés, mais pour de gros fichiers, le chargement peut être long, node organise ainsi tout chargement en stream pour permettre de servir du contenu le plus tôt possible.</p>
+<p>L’exemple suivant récupère un gros fichier de l’internet.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">gutemberg.js</span><a class="headerlink" href="#id6" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
+
+<span class="c1">// le streaming permet de commencer à envoyer des données alors que le fichier n&#39;est pas fini.</span>
+<span class="c1">//exemple avec un gros fichier.</span>
+
+<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">((</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+            <span class="nx">response</span><span class="p">.</span><span class="nx">setHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">);</span>
+
+    <span class="c1">// stream : chargement par paquets.</span>
+    <span class="nx">http</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;http://www.gutenberg.org/files/4300/4300-0.txt&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">response_get</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">response_get</span><span class="p">.</span><span class="nx">setEncoding</span><span class="p">(</span><span class="s1">&#39;utf8&#39;</span><span class="p">);</span>
+        <span class="nx">response_get</span><span class="p">.</span><span class="nx">pipe</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span>
+    <span class="p">});</span>
+
+<span class="p">})</span>
+
+
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="s1">&#39;localhost&#39;</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;c&#39;est parti&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="odds-and-ends">
+<h2>Odds and ends<a class="headerlink" href="#odds-and-ends" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>À sauter si on est en retard.</p>
+</div>
+<div class="section" id="modules">
+<h3>Modules<a class="headerlink" href="#modules" title="Lien permanent vers ce titre">¶</a></h3>
+<p>La force de Node est ses modules. Le mécanisme de création est assez spécial. On en créera lorsque l’on voudra séparer notre code en unités fonctionnelles.</p>
+<p>Le mécanisme est expliqué dans les tutoriaux 6 et 7 du <em>ninja du net</em> : <a class="reference external" href="https://www.youtube.com/watch?v=xHLd36QoS4k&amp;index=6&amp;list=PL4cUxeGkcC9gcy9lrvMJ75z9maRw4byYp">https://www.youtube.com/watch?v=xHLd36QoS4k&amp;index=6&amp;list=PL4cUxeGkcC9gcy9lrvMJ75z9maRw4byYp</a></p>
+<p>Un module nommé <code class="code docutils literal notranslate"><span class="pre">un_module.js</span></code> :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">//module.exports est un objet rendu par require.</span>
+<span class="c1">// on lui donne donc comme attribut, les méthodes et constante que l&#39;on veut voir transmise.</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">klaxon</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;tuuuut !&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">.</span><span class="nx">reponse</span> <span class="o">=</span> <span class="mi">42</span>
+</pre></div>
+</div>
+<p>On l’utilise dans le code suivant, qui est un fichier dans le même répertoire que le module :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// importe le module, c&#39;est à dire que l&#39;on rend l&#39;objet module.exports</span>
+<span class="c1">// il est ensuite placé dans une variable, ici monModule</span>
+<span class="kd">var</span> <span class="nx">monModule</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;./un_module&quot;</span><span class="p">);</span>
+
+<span class="nx">monModule</span><span class="p">.</span><span class="nx">klaxon</span><span class="p">()</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">monModule</span><span class="p">.</span><span class="nx">reponse</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La gestion des exports est le plus souvent utilisé comme on l’a vu en front en créant un objet ayant déjà tous ces attributs :</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">klaxon</span> <span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;tuuuut !&quot;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">reponse</span><span class="o">:</span> <span class="mi">42</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scope-de-variables">
+<h3>scope de variables<a class="headerlink" href="#scope-de-variables" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pas forcément pertinent dans ce cours, on pourra passer outre si on est en retard.</p>
+</div>
+<p>En javascript, on peut utiliser des variables définies dans des <em>scopes</em> plus haut sans les redéfinir. Dans le code ci-après <code class="code docutils literal notranslate"><span class="pre">delta1</span></code> et <code class="code docutils literal notranslate"><span class="pre">delta2</span></code> sont ainsi mis à jour (pour avoir le même comportement en python par exemple, on aurait dû utiliser le mot clé <em>global</em>)</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">delta_1</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">// ces variables vont être utilisées autre part.</span>
+<span class="kd">var</span> <span class="nx">delta_2</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">// un peu comme une variable &quot;globale&quot; (attention au scope)</span>
+
+<span class="nx">setInterval</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>  <span class="c1">// encore une autre façon d&#39;écrire une fonction</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">delta_1</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// mieux vaut supprimer le timer dans le timer considéré.</span>
+        <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer1</span><span class="p">)</span>
+        <span class="nx">delta_1</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">delta_1</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">delta_2</span> <span class="o">==</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">clearInterval</span><span class="p">(</span><span class="nx">timer2</span><span class="p">)</span>
+        <span class="nx">delta_2</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">delta_2</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+
+<span class="p">},</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/2_2_node.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

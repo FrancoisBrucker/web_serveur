@@ -1,0 +1,804 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web front : html, css &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Web front : javascript" href="1_2_web_front_js.html" />
+    <link rel="prev" title="Premier projet html" href="ssh_premier_projet.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Web front : html, css</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#partie-d-un-tout">partie d’un tout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#projet">projet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#html">html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ajout-du-css">Ajout du css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-div-et-pourquoi-c-est-important">Les div et pourquoi c’est important</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">projet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#un-framework-web">Un framework web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gestion-de-packages">Gestion de packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build">build</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="ssh_premier_projet.html" title="Chapitre précédent">Premier projet html</a></li>
+      <li>Next: <a href="1_2_web_front_js.html" title="Chapitre suivant">Web front : javascript</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="web-front-html-css">
+<h1>Web front : html, css<a class="headerlink" href="#web-front-html-css" title="Lien permanent vers ce titre">¶</a></h1>
+<dl class="simple">
+<dt>On supposera que vous avez suivi un tuto pour apprendre les base de html/css comme celui-là:</dt><dd><p><a class="reference external" href="https://internetingishard.com/html-and-css/">https://internetingishard.com/html-and-css/</a></p>
+</dd>
+<dt>Il en existe plein d’autres. Essayez d’avoir des sites de références pour ces diverses techno :</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="http://www.w3schools.com">http://www.w3schools.com</a></p></li>
+<li><p><a class="reference external" href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web">https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web</a></p></li>
+<li><p><a class="reference external" href="http://www.thenetninja.co.uk">http://www.thenetninja.co.uk</a></p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">À faire</p>
+<p>faire un projet git avec les diverses parties du projet en tag. <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></p>
+</div>
+<div class="section" id="partie-d-un-tout">
+<h2>partie d’un tout<a class="headerlink" href="#partie-d-un-tout" title="Lien permanent vers ce titre">¶</a></h2>
+<p>front/back/ops</p>
+<ul class="simple">
+<li><p>front (client): affichage de contenu html5, css3, javascript.</p></li>
+<li><dl class="simple">
+<dt>back (serveur). Peut dans un sens très (trop) large :</dt><dd><ul>
+<li><p>servir du contenu html, css, js</p></li>
+<li><p>servir des fichiers binaires/textes</p></li>
+<li><p>fonctionnement asynchrone par défaut mais aussi synchrone (websocket)</p></li>
+<li><p>stockage et accès à des données côté serveur (api rest, crud) ou client (cookies)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>communication entre front et back par le protocole http ou https.</p></li>
+<li><p>ops : la mise en production. L’idée est que la mise en production doit être un <strong>non-évènement</strong>. On doit pouvoir le faire 20, 30 fois par jour si nécessaire. Parfois ça ratera mais il faut minimiser cela par un workflow efficace et surtout permettre une correction rapide en cas de bug.</p></li>
+</ul>
+</div>
+<div class="section" id="projet">
+<h2>projet<a class="headerlink" href="#projet" title="Lien permanent vers ce titre">¶</a></h2>
+<dl class="simple">
+<dt>Créez un projet webstorm de type <em>empty project</em>, et initialisez le avec git :</dt><dd><ul class="simple">
+<li><p>initialiser le projet : <code class="code docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code></p></li>
+<li><p>gérer le <code class="code docutils literal notranslate"><span class="pre">.gitignore</span></code> (<code class="code docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-la</span></code> pour voir les fichiers cachés)</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="html">
+<h2>html<a class="headerlink" href="#html" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>faire en direct avec le lien vers un navigateur.</p>
+</div>
+<p>Le HTML est un langage à balise. C’est-à-dire qu’il est toujours en deux parties. Par exemple : <code class="code docutils literal notranslate"><span class="pre">&lt;head&gt;&lt;/head&gt;</span></code> et <code class="code docutils literal notranslate"><span class="pre">&lt;body&gt;&lt;/body&gt;</span></code>.</p>
+<blockquote>
+<div><p>Structure de base d’un document html : <a class="reference external" href="http://www.alsacreations.com/article/lire/1374-html5-structure-globale-document.html">http://www.alsacreations.com/article/lire/1374-html5-structure-globale-document.html</a></p>
+</div></blockquote>
+<p>Juste un petit exemple, on en refera par la suite, c’est juste pour ne pas être (trop) perdu.
+Ici, le navigateur interprétera directement le fichier, sans passer par un <em>serveur</em>. Il trouve le fichier à afficher via une <a class="reference external" href="https://fr.wikipedia.org/wiki/Uniform_Resource_Identifier)">uri</a>   <code class="code docutils literal notranslate"><span class="pre">file://chemin/absolu/vers/fichier.html</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">index.html</span><a class="headerlink" href="#id5" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Enfin du web !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Bonjour à tous.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<p>Webstorm n’est pas content, il souligne la ligne 2. En passant le curseur à droite de l’éditeur, en regard de la ligne 2 sur le trait orange, il est dit : <em>Missing required “lang” attribute</em>. En cliqant dessus une ampoule orange apparait sur le mot <code class="code docutils literal notranslate"><span class="pre">html</span></code>. Si on clique si cette ampoule elle propose un correctif : <em>insert required tag</em>. Faisons le et choisissons <code class="code docutils literal notranslate"><span class="pre">fr</span></code> comme langue.</p>
+<p>Ouvrez le fichier avec chrome : <code class="code docutils literal notranslate"><span class="pre">fichier</span> <span class="pre">&gt;</span> <span class="pre">ouvrir</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>vous pouvez aussi l’ouvrir avec webstorm via un serveur local. <code class="code docutils literal notranslate"><span class="pre">clique</span> <span class="pre">droit</span> <span class="pre">su</span> <span class="pre">rle</span> <span class="pre">fichier</span> <span class="pre">&gt;</span> <span class="pre">open</span> <span class="pre">in</span> <span class="pre">browser</span></code></p>
+</div>
+<p>Le html crée un arbre (via les balises imbriquées). Il est appelé arbre dom (Document Object Model).</p>
+</div>
+<div class="section" id="ajout-du-css">
+<h2>Ajout du css<a class="headerlink" href="#ajout-du-css" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Faire uniquement le début pour voir les changements s’effectuer en direct.</p>
+</div>
+<p>Le css est ajouté directement sur la page grâce à la balise <code class="code docutils literal notranslate"><span class="pre">&lt;style&gt;&lt;/style&gt;</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">index.html</span><a class="headerlink" href="#id6" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;fr&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- https://fonts.google.com --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/css?family=Indie+Flower&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+        <span class="nt">html</span><span class="o">,</span> <span class="nt">body</span> <span class="p">{</span>
+            <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+
+            <span class="k">background</span><span class="p">:</span> <span class="kc">skyblue</span><span class="p">;</span>
+            <span class="k">color</span><span class="p">:</span> <span class="mh">#ffffff</span><span class="p">;</span>
+            <span class="k">font-size</span><span class="p">:</span> <span class="mi">2</span><span class="kt">em</span><span class="p">;</span>
+            <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nt">p</span> <span class="p">{</span>
+            <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Indie Flower&#39;</span><span class="p">,</span> <span class="kc">serif</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Enfin du web !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Bonjour à tous.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<p>Pour la couleur, on la gère en hexadécimal RGB sur 32bits 8 par channel.</p>
+<ul class="simple">
+<li><p>Pour un aperçu des couleurs : <a class="reference external" href="https://color.adobe.com/fr/create">https://color.adobe.com/fr/create</a>.</p></li>
+<li><p>Pour les couleurs en hexadécimal pour faire du développement web : <a class="reference external" href="https://www.w3schools.com/colors/colors_names.asp">https://www.w3schools.com/colors/colors_names.asp</a>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Utilisez les <a class="reference external" href="https://developers.google.com/web/tools/chrome-devtools">outils de développement</a> pour voir ce que vous avez fait. <code class="code docutils literal notranslate"><span class="pre">plus</span> <span class="pre">d'outils</span> <span class="pre">&gt;</span> <span class="pre">outils</span> <span class="pre">de</span> <span class="pre">développement</span></code></p>
+</div>
+</div>
+<div class="section" id="les-div-et-pourquoi-c-est-important">
+<h2>Les div et pourquoi c’est important<a class="headerlink" href="#les-div-et-pourquoi-c-est-important" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Les div (ou span) sont des blocs anonymes :</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/span">span</a> : sur une ligne. Ils sont placés les un à côtés des autres (propriété display en css). Comme un <code class="code docutils literal notranslate"><span class="pre">&lt;img</span> <span class="pre">/&gt;</span></code> ou un  <code class="code docutils literal notranslate"><span class="pre">&lt;strong&gt;&lt;/strong&gt;</span></code>;</p></li>
+<li><p><a class="reference external" href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/div">div</a> : un bloc les un en dessous des autres. Comme un <code class="code docutils literal notranslate"><span class="pre">&lt;p&gt;&lt;/p&gt;</span></code>, ou un <code class="code docutils literal notranslate"><span class="pre">&lt;h1&gt;&lt;/h1&gt;</span></code>.</p></li>
+</ul>
+<p>Elles ne vont être caractérisées que par les classes/id css qu’on leur mettra :</p>
+<ul>
+<li><p><a class="reference external" href="https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/class">class</a> : plusieurs paramètres peuvent avoir la ou les mêmes classes;</p></li>
+<li><p><a class="reference external" href="https://developer.mozilla.org/fr/docs/Web/HTML/Attributs_universels/id">id</a> : unique pour un bloc particulier.</p>
+<blockquote>
+<div><p>On peut très finement caractériser la portée d’un sélecteur css : <a class="reference external" href="https://www.w3schools.com/cssref/css_selectors.asp">https://www.w3schools.com/cssref/css_selectors.asp</a></p>
+</div></blockquote>
+</li>
+</ul>
+<p>Attention cependant :</p>
+<ul class="simple">
+<li><p>une caractérisation chasse l’autre (donc on mettra ses propres fichiers css en dernier);</p></li>
+<li><p>les propriétés sont appliquées de la plus générale à la plus spécifique (qui masque donc la plus générale);</p></li>
+<li><p>il est compliqué de centrer verticalement (on le fera donc rarement tout seul).</p></li>
+</ul>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">index.html</span><a class="headerlink" href="#id7" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;fr&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- https://fonts.google.com --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/css?family=Indie+Flower&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+        <span class="nt">html</span><span class="o">,</span> <span class="nt">body</span> <span class="p">{</span>
+            <span class="k">margin</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">padding</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+
+            <span class="k">background</span><span class="p">:</span> <span class="kc">skyblue</span><span class="p">;</span>
+            <span class="k">color</span><span class="p">:</span> <span class="mh">#ffffff</span><span class="p">;</span>
+            <span class="k">font-size</span><span class="p">:</span> <span class="mi">2</span><span class="kt">em</span><span class="p">;</span>
+            <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nt">p</span> <span class="p">{</span>
+            <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Indie Flower&#39;</span><span class="p">,</span> <span class="kc">serif</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="p">.</span><span class="nc">milieu</span> <span class="p">{</span>
+            <span class="k">margin</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span> <span class="kc">auto</span><span class="p">;</span>
+            <span class="k">height</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+            <span class="k">width</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="p">.</span><span class="nc">color</span> <span class="p">{</span>
+            <span class="k">background-color</span><span class="p">:</span> <span class="kc">olive</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Enfin du web !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;milieu color&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Bonjour à tous.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>projet<a class="headerlink" href="#id2" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Créez un projet github pour y téléverser votre projet.</p>
+<dl class="simple">
+<dt>Pour cette partie essayez d’utiliser uniquement les outils mis à votre disposition par webstorm, en particulier :</dt><dd><ul class="simple">
+<li><p>le <a class="reference external" href="https://www.jetbrains.com/help/webstorm/terminal-emulator.html">terminal</a></p></li>
+<li><p><a class="reference external" href="https://www.jetbrains.com/help/webstorm/version-control-integration.html">la gestion des sources</a></p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>pour utiliser powershell sous W10, vous pouvez suivre ce <a class="reference external" href="https://itnext.io/how-to-use-powershell-as-default-terminal-in-intellij-vscode-windows-power-user-menu-ba512e68b566">tuto</a></p>
+</div>
+<dl class="simple">
+<dt>N’oubliez pas de charger votre clé ssh. Une fois ceci fait :</dt><dd><ul class="simple">
+<li><p>ajoutez un readme depuis l’interface de github</p></li>
+<li><p>mettez à jour votre projet chez vous</p></li>
+<li><p>utilisez l’ovh comme serveur distant pour y mettre votre projet</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="un-framework-web">
+<h2>Un framework web<a class="headerlink" href="#un-framework-web" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Faire du javascript ou du css à la mimine, c’est rigolo deux minutes mais vite ça devient pénible. Dans la plupart des cas on utilisera des frameworks pour s’éviter de maintenir trop de css.</p>
+<p>Nous allons utiliser ici un nouveau framework : <a class="reference external" href="https://tailwindcss.com/">https://tailwindcss.com/</a> qui va nous permettre, non seulement de voir ce qu’un framework css peut faire mais également vous initier au build d’un projet front.</p>
+<blockquote>
+<div><p>Un très bon tutoriel : <a class="reference external" href="https://www.grafikart.fr/tutoriels/tailwindcss-framework-css-1177">https://www.grafikart.fr/tutoriels/tailwindcss-framework-css-1177</a></p>
+</div></blockquote>
+<p>On a juste mis tailwind, voyez le résultat. Tout le style par défaut est supprimé (enlevez l’import de tailwind pour voir la différence)</p>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">index.html</span><a class="headerlink" href="#id8" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;fr&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- https://fonts.google.com --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/css?family=Indie+Flower&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+        <span class="nt">p</span> <span class="p">{</span>
+            <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Indie Flower&#39;</span><span class="p">,</span> <span class="kc">serif</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;bg-gray-100&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;flex content-center&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-6xl max-w-lg mx-auto&quot;</span><span class="p">&gt;</span>Enfin du web !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;bg-orange-300 shadow-xl hover:underline&quot;</span><span class="p">&gt;</span>Bonjour à tous.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="gestion-de-packages">
+<h2>Gestion de packages<a class="headerlink" href="#gestion-de-packages" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Plutôt que de tout installer à la main et de ne plus se souvenir qui est quoi, on a coutume d’installer un gestionnaire de package. Le plus célèbre en front est <code class="code docutils literal notranslate"><span class="pre">npm</span></code> l’installeur de node (Node Package Manager). Il y a des alternatives comme <code class="code docutils literal notranslate"><span class="pre">yarn</span></code>, que nous utiliserons aujourd’hui.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A priori toutes les commandes par <code class="code docutils literal notranslate"><span class="pre">yarn</span></code> peuvent être remplacées par <code class="code docutils literal notranslate"><span class="pre">npm</span></code>.</p>
+</div>
+<div class="section" id="installation">
+<h3>installation<a class="headerlink" href="#installation" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="simple">
+<dt>Commençez par installer <a class="reference external" href="https://nodejs.org/en/">https://nodejs.org/en/</a> :</dt><dd><ul class="simple">
+<li><p>osx : <code class="code docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">nodejs</span></code></p></li>
+<li><p>w10 : <code class="code docutils literal notranslate"><span class="pre">scoop</span> <span class="pre">install</span> <span class="pre">nodejs</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Puis installez <a class="reference external" href="https://yarnpkg.com/lang/en/">https://yarnpkg.com/lang/en/</a> : <a class="reference external" href="https://yarnpkg.com/en/docs/install#mac-stable">https://yarnpkg.com/en/docs/install#mac-stable</a></p>
+</div>
+<div class="section" id="id3">
+<h3>projet<a class="headerlink" href="#id3" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On commence par initialiser le projet : <code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">init</span></code></p>
+<p>Un fichier <code class="code docutils literal notranslate"><span class="pre">package.json</span></code> a été créé. Ainsi qu’un répertoire <code class="code docutils literal notranslate"><span class="pre">node_modules</span></code> qui va contenir toutes nos dépendances.</p>
+<dl class="simple">
+<dt>Installation des dépendances. On a uniquement besoin de dépendance de développement :</dt><dd><ul class="simple">
+<li><p>la bibliothèque <a class="reference external" href="https://tailwindcss.com">https://tailwindcss.com</a> en dépendance pour le développement : <code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">add</span> <span class="pre">--dev</span> <span class="pre">tailwind</span></code></p></li>
+<li><p><a class="reference external" href="https://postcss.org">https://postcss.org</a> : <code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">add</span> <span class="pre">--dev</span> <span class="pre">postcss</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>node_modules va dans le <code class="code docutils literal notranslate"><span class="pre">.gitignore</span></code> et on ajoute <code class="code docutils literal notranslate"><span class="pre">package.json</span></code> au projet.</p>
+</div>
+<p>Le fichier <code class="code docutils literal notranslate"><span class="pre">package.json</span></code> devrait ressembler à ça :</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">package.json</span><a class="headerlink" href="#id9" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;2019_front&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;main&quot;</span><span class="o">:</span> <span class="s2">&quot;index.js&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;repository&quot;</span><span class="o">:</span> <span class="s2">&quot;git@github.com:FrancoisBrucker/cours_front_ecm.git&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;author&quot;</span><span class="o">:</span> <span class="s2">&quot;François Brucker &lt;francois.brucker@centrale-marseille.fr&gt;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;license&quot;</span><span class="o">:</span> <span class="s2">&quot;MIT&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;devDependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;postcss-cli&quot;</span><span class="o">:</span> <span class="s2">&quot;^6.1.3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tailwindcss&quot;</span><span class="o">:</span> <span class="s2">&quot;^1.1.2&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">index.html</span><a class="headerlink" href="#id10" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;fr&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- https://fonts.google.com --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/css?family=Indie+Flower&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;tailwind.css&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+
+
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;bg-gray-100&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;flex content-center&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-6xl max-w-lg mx-auto&quot;</span><span class="p">&gt;</span>Enfin du web !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;bg-orange-300 shadow-xl hover:underline&quot;</span><span class="p">&gt;</span>Bonjour à tous.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">postcss.config.js</span><a class="headerlink" href="#id11" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;tailwindcss&#39;</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">ptailwind.pcss</span><a class="headerlink" href="#id12" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">tailwind</span> <span class="nt">base</span><span class="p">;</span>
+
+<span class="p">@</span><span class="k">tailwind</span> <span class="nt">components</span><span class="p">;</span>
+
+<span class="p">@</span><span class="k">tailwind</span> <span class="nt">utilities</span><span class="p">;</span>
+
+<span class="nt">p</span> <span class="p">{</span>
+    <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Indie Flower&#39;</span><span class="p">,</span> <span class="kc">serif</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Il faut donc processer le fichier <code class="code docutils literal notranslate"><span class="pre">tailwind.pcss</span></code> pour le transformer en un fichier css utilisable. Pour cela on peut exécuter la commande : <code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">run</span> <span class="pre">postcss</span> <span class="pre">-o</span> <span class="pre">tailwind.css</span> <span class="pre">tailwind.pcss</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="code docutils literal notranslate"><span class="pre">postcss</span></code> est un exécutable que l’on peut trouver dans le dossier <code class="code docutils literal notranslate"><span class="pre">./node_modules/.bin</span></code>. La commande <cite>yarn run</cite> permet d’exécuter un de ces exécutable directement (on peut aussi bien sur directement taper <code class="code docutils literal notranslate"><span class="pre">./node_modules/.bin/postcss</span></code>).</p>
+</div>
+<p>La comande <code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">run</span></code> permet également d’exécuter un script construit dans le fichier <code class="code docutils literal notranslate"><span class="pre">package.json</span></code>. Créons notre script de <em>build</em> :</p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">package.json</span><a class="headerlink" href="#id13" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;2019_front&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;main&quot;</span><span class="o">:</span> <span class="s2">&quot;index.js&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;repository&quot;</span><span class="o">:</span> <span class="s2">&quot;git@github.com:FrancoisBrucker/cours_front_ecm.git&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;author&quot;</span><span class="o">:</span> <span class="s2">&quot;François Brucker &lt;francois.brucker@centrale-marseille.fr&gt;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;license&quot;</span><span class="o">:</span> <span class="s2">&quot;MIT&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;scripts&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;build&quot;</span><span class="o">:</span> <span class="s2">&quot;yarn run postcss -o tailwind.css tailwind.pcss&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;devDependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;postcss-cli&quot;</span><span class="o">:</span> <span class="s2">&quot;^6.1.3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tailwindcss&quot;</span><span class="o">:</span> <span class="s2">&quot;^1.1.2&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>La commande <code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">run</span> <span class="pre">build</span></code> exécutera notre <em>build</em> et créera tout ce qui est nécessaire à la création du projet.</p>
+</div>
+<div class="section" id="utilite-de-postcss">
+<h3>utilité de postcss<a class="headerlink" href="#utilite-de-postcss" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="section" id="les-imports">
+<h4>Les imports<a class="headerlink" href="#les-imports" title="Lien permanent vers ce titre">¶</a></h4>
+<p>Ils existent a priori pour css pure aussi.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>les plugins sont exécutés les uns à la suite des autres, dans l’ordre de la liste. Il faut exécuter <code class="code docutils literal notranslate"><span class="pre">postcss-import</span></code> en premier, pour les imports passent.</p>
+</div>
+</div></blockquote>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">postcss.config.js</span><a class="headerlink" href="#id14" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;postcss-import&#39;</span><span class="p">),</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;tailwindcss&#39;</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">tailwind.pcss</span><a class="headerlink" href="#id15" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">import</span> <span class="s2">&quot;tailwindcss/base&quot;</span><span class="p">;</span>
+<span class="p">@</span><span class="k">import</span> <span class="s2">&quot;tailwindcss/components&quot;</span><span class="p">;</span>
+<span class="p">@</span><span class="k">import</span> <span class="s2">&quot;tailwindcss/utilities&quot;</span><span class="p">;</span>
+
+<span class="p">@</span><span class="k">import</span> <span class="s2">&quot;custom-css.css&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">custom-css.css</span><a class="headerlink" href="#id16" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">p</span> <span class="p">{</span>
+    <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Indie Flower&#39;</span><span class="p">,</span> <span class="kc">serif</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="apply">
+<h4>apply<a class="headerlink" href="#apply" title="Lien permanent vers ce titre">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">tailwind.pcss</span><a class="headerlink" href="#id17" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="p">@</span><span class="k">import</span> <span class="s2">&quot;tailwindcss/base&quot;</span><span class="p">;</span>
+<span class="p">@</span><span class="k">import</span> <span class="s2">&quot;tailwindcss/components&quot;</span><span class="p">;</span>
+<span class="p">@</span><span class="k">import</span> <span class="s2">&quot;tailwindcss/utilities&quot;</span><span class="p">;</span>
+
+<span class="p">@</span><span class="k">import</span> <span class="s2">&quot;custom-components.pcss&quot;</span><span class="p">;</span>
+<span class="p">@</span><span class="k">import</span> <span class="s2">&quot;custom-css.css&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">custom-component.pcss</span><a class="headerlink" href="#id18" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>.info {
+    @apply bg-orange-300 shadow-xl;
+}
+
+.info:hover {
+    @apply underline;
+}
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">index.html</span><a class="headerlink" href="#id19" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;fr&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- https://fonts.google.com --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/css?family=Indie+Flower&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;tailwind.css&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+
+
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;bg-gray-100&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;flex content-center&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-6xl max-w-lg mx-auto&quot;</span><span class="p">&gt;</span>Enfin du web !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;info&quot;</span><span class="p">&gt;</span>Bonjour à tous.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="variables">
+<h4>variables<a class="headerlink" href="#variables" title="Lien permanent vers ce titre">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-text">postcss.config.js</span><a class="headerlink" href="#id20" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;postcss-import&#39;</span><span class="p">),</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;tailwindcss&#39;</span><span class="p">),</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;postcss-variables&#39;</span><span class="p">)({</span>
+            <span class="nx">globals</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;#f7fafc&#39;</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+    <span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-text">index.html</span><a class="headerlink" href="#id21" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;!doctype html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;fr&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Maison page<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+
+    <span class="c">&lt;!-- https://fonts.google.com --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://fonts.googleapis.com/css?family=Indie+Flower&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;tailwind.css&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+
+
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;flex content-center&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;text-6xl max-w-lg mx-auto&quot;</span><span class="p">&gt;</span>Enfin du web !<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;info&quot;</span><span class="p">&gt;</span>Bonjour à tous.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-text">tailwind.pcss</span><a class="headerlink" href="#id22" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>@import &quot;tailwindcss/base&quot;;
+@import &quot;tailwindcss/components&quot;;
+@import &quot;tailwindcss/utilities&quot;;
+
+@import &quot;custom-components.pcss&quot;;
+@import &quot;custom-css.css&quot;;
+
+$color: #bad;
+
+
+body {
+    background: $background;
+    color: $color;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="autoprefixer-et-purgecss">
+<h4>autoprefixer et purgecss<a class="headerlink" href="#autoprefixer-et-purgecss" title="Lien permanent vers ce titre">¶</a></h4>
+<p><a class="reference external" href="https://www.purgecss.com/">https://www.purgecss.com/</a> permet de supprimer le css inutile (et il y en a. Chez moi on passe de 800ko à 10ko)</p>
+<p><a class="reference external" href="https://autoprefixer.github.io/">https://autoprefixer.github.io/</a> gère tout seul ce qui est browser dépendant. Exemple avec les animations (tiré de <a class="reference external" href="https://www.grafikart.fr/tutoriels/parcel-bundler-985">https://www.grafikart.fr/tutoriels/parcel-bundler-985</a>). Regardez avec les outils de développement ou dans le fichier <code class="code docutils literal notranslate"><span class="pre">css</span></code> généré toutes les animations qui sont générées.</p>
+<div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-text">package.json</span><a class="headerlink" href="#id23" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;2019_front&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;main&quot;</span><span class="o">:</span> <span class="s2">&quot;index.js&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;repository&quot;</span><span class="o">:</span> <span class="s2">&quot;git@github.com:FrancoisBrucker/cours_front_ecm.git&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;author&quot;</span><span class="o">:</span> <span class="s2">&quot;François Brucker &lt;francois.brucker@centrale-marseille.fr&gt;&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;license&quot;</span><span class="o">:</span> <span class="s2">&quot;MIT&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;scripts&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;build&quot;</span><span class="o">:</span> <span class="s2">&quot;yarn run postcss -o tailwind.css tailwind.pcss&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;devDependencies&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;@fullhuman/postcss-purgecss&quot;</span><span class="o">:</span> <span class="s2">&quot;^1.3.0&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;autoprefixer&quot;</span><span class="o">:</span> <span class="s2">&quot;^9.6.4&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;postcss-cli&quot;</span><span class="o">:</span> <span class="s2">&quot;^6.1.3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;postcss-import&quot;</span><span class="o">:</span> <span class="s2">&quot;^12.0.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;postcss-variables&quot;</span><span class="o">:</span> <span class="s2">&quot;^1.1.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;tailwindcss&quot;</span><span class="o">:</span> <span class="s2">&quot;^1.1.2&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id24">
+<div class="code-block-caption"><span class="caption-text">custom-css.css</span><a class="headerlink" href="#id24" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-css notranslate"><div class="highlight"><pre><span></span><span class="nt">p</span> <span class="p">{</span>
+    <span class="k">font-family</span><span class="p">:</span> <span class="s1">&#39;Indie Flower&#39;</span><span class="p">,</span> <span class="kc">serif</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">keyframes</span> <span class="nt">bouge</span> <span class="p">{</span>
+    <span class="nt">from</span> <span class="p">{</span><span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mf">.9</span><span class="p">)}</span>
+    <span class="nt">50</span><span class="o">%</span> <span class="p">{</span> <span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)}</span>
+    <span class="nt">to</span> <span class="p">{</span> <span class="k">transform</span><span class="p">:</span> <span class="nb">scale</span><span class="p">(</span><span class="mf">.9</span><span class="p">)}</span>
+<span class="p">}</span>
+
+<span class="nt">h1</span> <span class="p">{</span>
+    <span class="k">animation</span><span class="p">:</span> <span class="n">bouge</span> <span class="mi">3</span><span class="kt">s</span> <span class="kc">infinite</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id25">
+<div class="code-block-caption"><span class="caption-text">postcss.config.js</span><a class="headerlink" href="#id25" title="Lien permanent vers ce code">¶</a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">purgecss</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;@fullhuman/postcss-purgecss&#39;</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;postcss-import&#39;</span><span class="p">),</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;tailwindcss&#39;</span><span class="p">),</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;postcss-variables&#39;</span><span class="p">)({</span>
+            <span class="nx">globals</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">background</span><span class="o">:</span> <span class="s1">&#39;#f7fafc&#39;</span>
+            <span class="p">}</span>
+        <span class="p">}),</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;autoprefixer&#39;</span><span class="p">),</span>
+        <span class="nx">purgecss</span><span class="p">({</span>
+            <span class="nx">content</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;./*.html&#39;</span><span class="p">]</span>
+        <span class="p">}),</span>
+    <span class="p">]</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="le-reste">
+<h4>le reste<a class="headerlink" href="#le-reste" title="Lien permanent vers ce titre">¶</a></h4>
+<p><a class="reference external" href="https://www.postcss.parts/">https://www.postcss.parts/</a></p>
+<blockquote>
+<div><p>un tuto : <a class="reference external" href="https://www.grafikart.fr/tutoriels/postcss-663">https://www.grafikart.fr/tutoriels/postcss-663</a> mais qui commence à être vieux. Utilisation avec gulp qui est un packager ancien.</p>
+</div></blockquote>
+<dl>
+<dt>Quelques plugins très utiles<span class="classifier"><a class="reference external" href="https://www.hongkiat.com/blog/postcss-plugins/">https://www.hongkiat.com/blog/postcss-plugins/</a> :</span></dt><dd><ul class="simple">
+<li><p>minifier (<a class="reference external" href="https://cssnano.co/">https://cssnano.co/</a>)</p></li>
+<li><p>cssnext (<a class="reference external" href="https://cssnext.github.io/">https://cssnext.github.io/</a>)</p></li>
+<li><p>font magician (<a class="reference external" href="https://github.com/jonathantneal/postcss-font-magician">https://github.com/jonathantneal/postcss-font-magician</a>)</p></li>
+<li><p>…</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" id="build">
+<h2>build<a class="headerlink" href="#build" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Pour finir de bien faire les choses, il faudrait mettre toutes nos sources dans un dossier <code class="code docutils literal notranslate"><span class="pre">src</span></code> et builder l’application web finale dans un dossier <code class="code docutils literal notranslate"><span class="pre">build</span></code> qui serait généré automatiquement à chaque fois.</p>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">À faire</p>
+<p>à faire bien</p>
+</div>
+<ul class="simple">
+<li><p>dossier src/ et build/</p></li>
+<li><p>deux scripts build.sh et build.ps1 si sous w10 et powershell (<a class="reference external" href="https://www.dummies.com/computers/operating-systems/windows-xp-vista/create-run-powershell-script/">https://www.dummies.com/computers/operating-systems/windows-xp-vista/create-run-powershell-script/</a>)</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/1_1_web_front_html_css.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,527 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tests &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Cookies" href="cours_3_2_2_cookies.html" />
+    <link rel="prev" title="Bases de données" href="3_4_bases_de_donnees.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tests-cote-front">Tests côté front</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#autre-truc">autre truc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="3_4_bases_de_donnees.html" title="Chapitre précédent">Bases de données</a></li>
+      <li>Next: <a href="cours_3_2_2_cookies.html" title="Chapitre suivant">Cookies</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tests">
+<h1>Tests<a class="headerlink" href="#tests" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">À faire</p>
+<p>à mettre à jour et utiliser jest et jsdom</p>
+</div>
+<div class="section" id="id2">
+<h2>Tests<a class="headerlink" href="#id2" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference external" href="https://www.slideshare.net/robertgreiner/test-driven-development-at-10000-feet">https://www.slideshare.net/robertgreiner/test-driven-development-at-10000-feet</a>
+regardez en particulier la courbe décroissante.</p>
+</div>
+<div class="section" id="cote-client">
+<h3>Côté Client<a class="headerlink" href="#cote-client" title="Lien permanent vers ce titre">¶</a></h3>
+</div>
+</div>
+<div class="section" id="tests-cote-front">
+<h2>Tests côté front<a class="headerlink" href="#tests-cote-front" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On fera plutôt des tests fonctionnels en racontant des petites histoires que doit satisfaire notre site, mais on peut aussi voir si nos balises html se placent bien.</p>
+<div class="section" id="webdriver-io">
+<h3>webdriver.io<a class="headerlink" href="#webdriver-io" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On peut tester le rendu client en simulant un navigateur.</p>
+<p>Pour cela on utilise Selenium <a class="reference external" href="http://www.seleniumhq.org">http://www.seleniumhq.org</a> et ses webdrivers qui simulent un browser. Tout ceci fonctionne en java, donc assurez vous d’avoir un java qui corresponde.
+Étapes à suivre :</p>
+<ol class="arabic simple">
+<li><p>installation de java (si nécessaire. Tapez java dans un terminal/powershell et si ça rate, c’est qu’il faut l’installer) : <a class="reference external" href="https://www.java.com/fr/download/faq/develop.xml">https://www.java.com/fr/download/faq/develop.xml</a> et suivez le lien pour télécharger le jdk.</p></li>
+<li><p>récupérer le fichier jar de Selenium standalone server : <a class="reference external" href="http://www.seleniumhq.org/download/">http://www.seleniumhq.org/download/</a>.</p></li>
+<li><p>ajouter un driver. Nous utiliserons celui de Chrome : <a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/">https://sites.google.com/a/chromium.org/chromedriver/</a>. Il y en a d’autres possibles (par exemple pour Firefox : <a class="reference external" href="https://github.com/mozilla/geckodriver/releases">https://github.com/mozilla/geckodriver/releases</a>).</p></li>
+</ol>
+<p>Une fois Selenium et le driver placé dans un dossier Selenium. Je l’ai placé dans le dossier parent de l’application. On peut tester pour voir si ça marche. En utilisant ce que j’ai téléchargé et mis dans le même dossier : <code class="code docutils literal notranslate"><span class="pre">java</span> <span class="pre">-Dwebdriver.chrome.driver=./chromedriver</span> <span class="pre">-jar</span> <span class="pre">selenium-server-standalone-3.14.jar</span></code></p>
+<p>sous windows la commande devient : <code class="code docutils literal notranslate"><span class="pre">java</span> <span class="pre">&quot;-Dwebdriver.chrome.driver=chromedriver.exe&quot;</span> <span class="pre">-jar</span> <span class="pre">&quot;selenium-server-standalone-3.14.0.jar&quot;</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Attention à la version du serveur selenium et au driver que vous utilisez.</p>
+</div>
+<p>Un serveur web Selenium est lancé. Il est sur le port 4444 par défaut (lisez les logs).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Java est toujours verbeux dans ses logs. Apprenez à les lire.</p>
+</div>
+<p>Et maintenant, il nous reste à installer <a class="reference external" href="http://webdriver.io">http://webdriver.io</a> pour utiliser Selenium avec Node : <code class="code docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">--save-dev</span> <span class="pre">webdriverio</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On a installé webdriver.io uniquement pour le développement. Il n’est pas nécessaire de l’emmener avec nous en production. voir <a class="reference external" href="https://docs.npmjs.com/cli/install">https://docs.npmjs.com/cli/install</a></p>
+</div>
+<p>Et on fait un premier essai avec le tout : <code class="file docutils literal notranslate"><span class="pre">selenium.test.js</span></code> dans un repertoire de test :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">webdriverio</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webdriverio&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">desiredCapabilities</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">browserName</span><span class="o">:</span> <span class="s1">&#39;chrome&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">webdriverio</span>
+<span class="p">.</span><span class="nx">remote</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">init</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="s1">&#39;https://www.google.fr&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">saveScreenshot</span><span class="p">(</span><span class="s2">&quot;snapshot.png&quot;</span><span class="p">)</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);})</span>
+<span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Avant d’exécuter le fichier avec <code class="code docutils literal notranslate"><span class="pre">node</span> <span class="pre">./tests/selenium.test.js</span></code> On s’assure que le serveur Selenium tourne toujours sur le port 4444.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Assurez vous de ne part avoir de serveur qui tourne sur le port par défaut. Sinon, changez de port par défaut.</p>
+</div>
+<p>On peut maintenant faire la même chose pour notre fichier :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">webdriverio</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webdriverio&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">desiredCapabilities</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">browserName</span><span class="o">:</span> <span class="s1">&#39;chrome&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">toUpload</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;/index.html&#39;</span><span class="p">)</span>
+
+<span class="nx">webdriverio</span>
+    <span class="p">.</span><span class="nx">remote</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">init</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="s1">&#39;file://&#39;</span> <span class="o">+</span> <span class="nx">toUpload</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">saveScreenshot</span><span class="p">(</span><span class="s2">&quot;snapshot.png&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);})</span>
+    <span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Notez que l’on a ajouté un module (<code class="code docutils literal notranslate"><span class="pre">path</span></code>) pour concaténer des chemins (NE JAMAIS LE FAIRE A LA MAIN !) et utilisé la variable spéciale <code class="code docutils literal notranslate"><span class="pre">__dirname</span></code> qui rend le repertoire où est le fichier qui est entrain d’être lu (ici <code class="code docutils literal notranslate"><span class="pre">selenium.test.js</span></code>).</p>
+<p>Pour l’instant ce ne sont pas de vrais tests. Pour cela, on va utiliser une bibliothèque de test (ici <a class="reference external" href="https://mochajs.org/">https://mochajs.org/</a>).</p>
+<p>Commençons par voir ce que l’on veut tester :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">webdriverio</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webdriverio&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">desiredCapabilities</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">browserName</span><span class="o">:</span> <span class="s1">&#39;chrome&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">toUpload</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+
+<span class="nx">browser</span> <span class="o">=</span> <span class="nx">webdriverio</span>
+    <span class="p">.</span><span class="nx">remote</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">init</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="s1">&#39;file://&#39;</span> <span class="o">+</span> <span class="nx">toUpload</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">getTitle</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span> <span class="p">(</span><span class="nx">title</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;titre : &quot;</span> <span class="o">+</span> <span class="nx">title</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">getText</span><span class="p">(</span><span class="s1">&#39;h1.title&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">title</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;h1 : &quot;</span> <span class="o">+</span> <span class="nx">title</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">})</span>
+
+<span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Attention au .end(). Tout est asynchrone donc si on ajoute une ligne avec le .end(), il risque d’être exécuté avant la fin de la requête.</p>
+</div>
+<p>On peut attraper plein de choses avec Selenium et Webdriver.io en utilisant les selecteurs : <a class="reference external" href="http://webdriver.io/guide/usage/selectors.html">http://webdriver.io/guide/usage/selectors.html</a></p>
+</div>
+<div class="section" id="mocha">
+<h3>mocha<a class="headerlink" href="#mocha" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On peut finalement rajouter tous nos tests à la batterie de tests de Node en créant un dernier morceau notre fichier avec le nom</p>
+<p>on utilise toujours celui dans node_modules. Sur le serveur on peu en avoir un vieux. Et on ajoute la ligne dans les tests.</p>
+<p>Les tests js et de routes sont lents par rapport aux tests python ou java. C’est comme ça. Mais il faut tout de même en faire.</p>
+<ul class="simple">
+<li><p>la bibliothèque de tests : <code class="code docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">mocha</span> <span class="pre">--save-dev</span></code></p></li>
+<li><p>ecrire des jolis tests : <code class="code docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">chai</span> <span class="pre">--save-dev</span></code></p></li>
+</ul>
+<p>Le code des tests <code class="code docutils literal notranslate"><span class="pre">mocha</span></code> pour le fichier <code class="file docutils literal notranslate"><span class="pre">./tests/index.test.js</span></code> :</p>
+<p><a class="reference external" href="https://medium.com/&#64;ChrisDobler/getting-started-guide-to-browser-testing-with-webdriver-io-and-mocha-and-chai-323c2ff3c773">https://medium.com/&#64;ChrisDobler/getting-started-guide-to-browser-testing-with-webdriver-io-and-mocha-and-chai-323c2ff3c773</a></p>
+<p>A expliquer :</p>
+<ul class="simple">
+<li><p>tout est asynchrone. Donc on ne continue qu’après le <code class="code docutils literal notranslate"><span class="pre">done()</span></code></p></li>
+<li><p>before est exécuté avant les tests. Si on ne mets pas done, gettitle va rater puisque la page ne sera pas chargée. Faite le test</p></li>
+<li><p>after est exécuté après les tests. On log les erreurs et on stope le browser</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">webdriverio</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webdriverio&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+
+<span class="kr">const</span> <span class="nx">expect</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;chai&#39;</span><span class="p">).</span><span class="nx">expect</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">desiredCapabilities</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">browserName</span><span class="o">:</span> <span class="s1">&#39;chrome&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">const</span> <span class="nx">browser</span> <span class="o">=</span> <span class="nx">webdriverio</span><span class="p">.</span><span class="nx">remote</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">toUpload</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;..&#39;</span><span class="p">,</span> <span class="s1">&#39;index.html&#39;</span><span class="p">)</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;index tests&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">before</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">browser</span><span class="p">.</span><span class="nx">init</span><span class="p">().</span><span class="nx">url</span><span class="p">(</span><span class="s1">&#39;file://&#39;</span> <span class="o">+</span> <span class="nx">toUpload</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span><span class="nx">done</span><span class="p">();})</span>
+            <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+      <span class="p">});</span>
+
+      <span class="nx">after</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">browser</span>
+          <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);})</span>
+          <span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+      <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;page title&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">browser</span><span class="p">.</span><span class="nx">getTitle</span><span class="p">().</span><span class="nx">then</span><span class="p">((</span><span class="nx">title</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">title</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;Maison page&#39;</span><span class="p">);</span>
+          <span class="nx">done</span><span class="p">();</span>
+        <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+    <span class="p">});</span>
+
+    <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;h1 title&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">browser</span><span class="p">.</span><span class="nx">getText</span><span class="p">(</span><span class="s1">&#39;h1.title&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">title</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="nx">expect</span><span class="p">(</span><span class="nx">title</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="s1">&#39;Enfin du web&#39;</span><span class="p">);</span>
+          <span class="nx">done</span><span class="p">();</span>
+        <span class="p">}).</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">));</span>
+    <span class="p">});</span>
+
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>On lance le test avec la comande : <code class="code docutils literal notranslate"><span class="pre">./node_modules/.bin/mocha</span> <span class="pre">./tests/index.test.js</span> <span class="pre">--timeout</span> <span class="pre">0</span></code></p>
+<p>A expliquer :</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">timeout</span></code> il faut le temps de lancer le nvigateur, de charger la page, etc. Par défaut c’est 2 secondes et c’est trop court (tester le sans)</p></li>
+<li><p>on utilise le <code class="code docutils literal notranslate"><span class="pre">mocha</span></code> installé, il n’existe pas globalement (a priori)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="autre-truc">
+<h2>autre truc<a class="headerlink" href="#autre-truc" title="Lien permanent vers ce titre">¶</a></h2>
+</div>
+<div class="section" id="id3">
+<h2>Tests<a class="headerlink" href="#id3" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference external" href="https://www.slideshare.net/robertgreiner/test-driven-development-at-10000-feet">https://www.slideshare.net/robertgreiner/test-driven-development-at-10000-feet</a>
+regardez en particulier la courbe décroissante.</p>
+</div>
+<div class="section" id="id5">
+<h3>Côté Client<a class="headerlink" href="#id5" title="Lien permanent vers ce titre">¶</a></h3>
+<p>On peut tester le rendu client en simulant un navigateur.</p>
+<p>Pour cela on utilise Selenium <a class="reference external" href="http://www.seleniumhq.org">http://www.seleniumhq.org</a> et ses webdrivers qui simulent un browser. Tout ceci fonctionne en java, donc assurez vous d’avoir un java qui corresponde.
+Étapes à suivre :</p>
+<ol class="arabic simple">
+<li><p>installation de java (si nécessaire. Tapez java dans un terminal/powershell et si ça rate, c’est qu’il faut l’installer) : <a class="reference external" href="https://www.java.com/fr/download/faq/develop.xml">https://www.java.com/fr/download/faq/develop.xml</a> et suivez le lien pour télécharger le jdk.</p></li>
+<li><p>récupérer le fichier jar de Selenium standalone server : <a class="reference external" href="http://www.seleniumhq.org/download/">http://www.seleniumhq.org/download/</a>.</p></li>
+<li><p>ajouter un driver. Nous utiliserons celui de Chrome : <a class="reference external" href="https://sites.google.com/a/chromium.org/chromedriver/">https://sites.google.com/a/chromium.org/chromedriver/</a>. Il y en a d’autres possibles (par exemple pour Firefox : <a class="reference external" href="https://github.com/mozilla/geckodriver/releases">https://github.com/mozilla/geckodriver/releases</a>).</p></li>
+</ol>
+<p>Une fois Selenium et le driver placé dans un dossier Selenium. Je l’ai placé dans le dossier parent de l’application. On peut tester pour voir si ça marche. En utilisant ce que j’ai téléchargé et mis dans le même dossier : <code class="code docutils literal notranslate"><span class="pre">java</span> <span class="pre">-Dwebdriver.chrome.driver=./chromedriver.exe</span> <span class="pre">-jar</span> <span class="pre">selenium-server-standalone-3.8.1.jar</span></code></p>
+<p>Un serveur web Selenium est lancé. Il est sur le port 4444 par défaut (lisez les logs).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Java est toujours verbeux dans ses logs. Apprenez à les lire.</p>
+</div>
+<p>Et maintenant, il nous reste à installer <a class="reference external" href="http://webdriver.io">http://webdriver.io</a> pour utiliser Selenium avec Node : <code class="code docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">--save-dev</span> <span class="pre">webdriverio</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On a installé webdriver.io uniquement pour le développement. Il n’est pas nécessaire de l’emmener avec nous en production.</p>
+</div>
+<p>Et on fait un premier essai avec le tout : <code class="file docutils literal notranslate"><span class="pre">selenium.essai.js</span></code> :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">webdriverio</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webdriverio&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">desiredCapabilities</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">browserName</span><span class="o">:</span> <span class="s1">&#39;chrome&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">webdriverio</span>
+<span class="p">.</span><span class="nx">remote</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">init</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="s1">&#39;https://www.google.fr&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">saveScreenshot</span><span class="p">(</span><span class="s2">&quot;snapshot.png&quot;</span><span class="p">)</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);})</span>
+<span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Avant d’exécuter le fichier avec <code class="code docutils literal notranslate"><span class="pre">node</span> <span class="pre">selenium.essai.js</span></code> On s’assure que le serveur Selenium tourne toujours sur le port 4444.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Assurez vous de ne part avoir de serveur qui tourne sur le port par défaut. Sinon, changez de port par défaut.</p>
+</div>
+<p>On peut maintenant faire des vrais tests pour notre application :</p>
+<ul class="simple">
+<li><p>vérifier que par défaut on est sur la page d’accueil ;</p></li>
+<li><p>en cliquant sur commentaires on arrive bien sur la page de commentaires ;</p></li>
+<li><p>en recliquant sur le nom de la page, on retourne à l’accueil.</p></li>
+</ul>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">webdriverio</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;webdriverio&#39;</span><span class="p">);</span>
+
+
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">desiredCapabilities</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">browserName</span><span class="o">:</span> <span class="s1">&#39;chrome&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">browser</span> <span class="o">=</span> <span class="nx">webdriverio</span>
+<span class="p">.</span><span class="nx">remote</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">init</span><span class="p">()</span>
+
+
+<span class="nx">browser</span><span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="s1">&#39;http://localhost:8080&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">getTitle</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span> <span class="p">(</span><span class="nx">title</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;titre : &quot;</span> <span class="o">+</span> <span class="nx">title</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="s2">&quot;a[href=&#39;commentaires&#39;]&quot;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">getTitle</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span> <span class="p">(</span><span class="nx">title</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;titre : &quot;</span> <span class="o">+</span> <span class="nx">title</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">click</span><span class="p">(</span><span class="s2">&quot;a*=Da&quot;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">getTitle</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span> <span class="p">(</span><span class="nx">title</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;titre : &quot;</span> <span class="o">+</span> <span class="nx">title</span><span class="p">)</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+    <span class="p">})</span>
+<span class="p">.</span><span class="nx">end</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Attention au .end(). Tout est asynchrone donc si on ajoute une ligne avec le .end(), il risque d’être exécuté avant la fin de la requête.</p>
+</div>
+<p>On peut attraper plein de choses avec Selenium et Webdriver.io en utilisant les selecteurs : <a class="reference external" href="http://webdriver.io/guide/usage/selectors.html">http://webdriver.io/guide/usage/selectors.html</a></p>
+<p>On peut finalement rajouter tous nos tests à la batterie de tests de Node en créant un dernier morceau notre fichier avec le nom « test.js ». Voir partie suivante pour créer une batterie de tests avec jest.js.</p>
+</div>
+<div class="section" id="cote-serveur">
+<h3>Côté Serveur<a class="headerlink" href="#cote-serveur" title="Lien permanent vers ce titre">¶</a></h3>
+<p><a class="reference external" href="https://facebook.github.io/jest/">https://facebook.github.io/jest/</a></p>
+<p>ou mocha.</p>
+<p>Tester le JS et les routes.</p>
+<p>Pour l’instant on a pas de fonction JS, donc on va faire comme si et reprendre le tuto.</p>
+<p><code class="file docutils literal notranslate"><span class="pre">sum.js</span></code> :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">sum</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="file docutils literal notranslate"><span class="pre">sum.test.js</span></code> :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./sum&#39;</span><span class="p">);</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;test sum&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">test</span><span class="p">(</span><span class="s1">&#39;adds 0 + 0 to equal 0&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+      <span class="p">});</span>
+    <span class="nx">test</span><span class="p">(</span><span class="s1">&#39;adds 1 + 2 to equal 3&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">expect</span><span class="p">(</span><span class="nx">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+      <span class="p">});</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>On installe jest pour le développement, <code class="code docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">--save-dev</span> <span class="pre">jest</span></code>, puis on mets jest comme commande de test dans <code class="file docutils literal notranslate"><span class="pre">package.json</span></code>. Par exemple le mien ressemble à :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;donnees&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;cours sur les données&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;main&quot;</span><span class="p">:</span> <span class="s2">&quot;server.js&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;test&quot;</span><span class="p">:</span> <span class="s2">&quot;jest&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;license&quot;</span><span class="p">:</span> <span class="s2">&quot;ISC&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;dependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;ejs&quot;</span><span class="p">:</span> <span class="s2">&quot;^2.5.7&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;express&quot;</span><span class="p">:</span> <span class="s2">&quot;^4.16.2&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;winston&quot;</span><span class="p">:</span> <span class="s2">&quot;^3.0.0-rc1&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;devDependencies&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;jest&quot;</span><span class="p">:</span> <span class="s2">&quot;^21.2.1&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>On peut ensuite utiliser la commande <code class="code docutils literal notranslate"><span class="pre">npm</span> <span class="pre">test</span></code>  pour exécuter tous les fichiers qui finissent par <cite>test.js</cite></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>on peut aussi utiliser jest en ligne de commande en l’installant de façon globale. Voir <a class="reference external" href="https://facebook.github.io/jest/docs/en/getting-started.html#running-from-command-line">https://facebook.github.io/jest/docs/en/getting-started.html#running-from-command-line</a></p>
+</div>
+<p>Pour tester des routes maintenant : on utilise en plus supertest <a class="reference external" href="https://github.com/visionmedia/supertest">https://github.com/visionmedia/supertest</a></p>
+<p><code class="code docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span> <span class="pre">--save-dev</span> <span class="pre">supertest</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>voir <a class="reference external" href="http://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/">http://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/</a></p>
+</div>
+<p><code class="file docutils literal notranslate"><span class="pre">routes.test.js</span></code> :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;supertest&#39;</span><span class="p">);</span>
+<span class="nx">logger</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./logger.js&#39;</span><span class="p">)</span>
+<span class="nx">app</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./app.js&#39;</span><span class="p">)(</span><span class="nx">logger</span><span class="p">)</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;routes ok&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">test</span><span class="p">(</span><span class="s1">&#39;It should response the GET method&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">request</span><span class="p">(</span><span class="nx">app</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+            <span class="nx">done</span><span class="p">()</span>
+        <span class="p">})</span>
+    <span class="p">});</span>
+    <span class="nx">test</span><span class="p">(</span><span class="s1">&#39;It should response the GET method&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">request</span><span class="p">(</span><span class="nx">app</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/commentaires&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+            <span class="nx">done</span><span class="p">()</span>
+        <span class="p">})</span>
+    <span class="p">});</span>
+<span class="p">})</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;routes 404&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nx">test</span><span class="p">(</span><span class="s1">&#39;It should response 404&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="nx">request</span><span class="p">(</span><span class="nx">app</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;/troululu&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">expect</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusCode</span><span class="p">).</span><span class="nx">toBe</span><span class="p">(</span><span class="mi">404</span><span class="p">)</span>
+            <span class="nx">done</span><span class="p">()</span>
+        <span class="p">})</span>
+    <span class="p">});</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="test-utilisateur-ui">
+<h3>Test Utilisateur (UI)<a class="headerlink" href="#test-utilisateur-ui" title="Lien permanent vers ce titre">¶</a></h3>
+<p><a class="reference external" href="https://www.invisionapp.com/blog/ux-usability-research-testing/">https://www.invisionapp.com/blog/ux-usability-research-testing/</a></p>
+<p><a class="reference external" href="https://blogs.adobe.com/creativecloud/best-practices-for-usability-testing-in-ux-design/">https://blogs.adobe.com/creativecloud/best-practices-for-usability-testing-in-ux-design/</a></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/tests_selenium_mocha.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

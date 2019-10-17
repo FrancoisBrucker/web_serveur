@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Outils &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Premier projet html" href="ssh_premier_projet.html" />
+    <link rel="prev" title="Web Serveur" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Outils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#les-indispensables">Les indispensables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installeur-de-package">Installeur de package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ssh">ssh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#git">git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#node">node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#java">java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#odds-ends">odds &amp; ends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#la-documentation">La documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="Chapitre précédent">Web Serveur</a></li>
+      <li>Next: <a href="ssh_premier_projet.html" title="Chapitre suivant">Premier projet html</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="outils">
+<h1>Outils<a class="headerlink" href="#outils" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="les-indispensables">
+<h2>Les indispensables<a class="headerlink" href="#les-indispensables" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Il vous faudra :</p>
+<ul class="simple">
+<li><p>un <strong>terminal</strong> :
+* Par défaut sous linux,
+* <code class="file docutils literal notranslate"><span class="pre">/Applications/Utilitaires/Terminal</span></code> sous OSX
+* Powershell sous Windows 10.</p></li>
+<li><dl class="simple">
+<dt>Un navigateur muni d’outils de développement :</dt><dd><ul>
+<li><p>On utilisera <a class="reference external" href="https://www.google.fr/chrome">chrome</a> pour ce cours</p></li>
+<li><p>Des outils de développement existent pour la plupart des autres navigateurs.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Un éditeur de texte :</dt><dd><ul>
+<li><p>2019-2020 : On utilisera <a class="reference external" href="https://www.jetbrains.com/webstorm/">Webstorm</a></p></li>
+<li><p>2018-2019 : On utilisera <em>Atom</em> : <a class="reference external" href="https://atom.io">https://atom.io</a> (<a class="reference external" href="https://davidl.fr/blog/atom.html">https://davidl.fr/blog/atom.html</a>)</p></li>
+<li><p>2017-2018 : On utilisera <em>Visual Studio Code</em> <a class="reference external" href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p></li>
+<li><p>2016-2017 : On utilisera <em>Brackets</em> : <a class="reference external" href="http://brackets.io">http://brackets.io</a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Vous pouvez venir avec vos propres outils, mas dans ce cas là vous êtes sensés savoir vous en servir et avoir les même fonctionnalités que celles utilisées en cours.</p>
+<p>On utilisera peut-être (mais c’est pas sûr) telnet. Par défaut sous OSX et linux, on peut l’activer sous Windows 10 : <a class="reference external" href="https://www.rootusers.com/how-to-enable-the-telnet-client-in-windows-10/">https://www.rootusers.com/how-to-enable-the-telnet-client-in-windows-10/</a>).</p>
+<div class="section" id="utilisation">
+<h3>utilisation<a class="headerlink" href="#utilisation" title="Lien permanent vers ce titre">¶</a></h3>
+<dl class="simple">
+<dt>terminal :</dt><dd><ul class="simple">
+<li><p>micro tuto : <a class="reference external" href="https://www.youtube.com/watch?v=t7Ci2hwUpIM">https://www.youtube.com/watch?v=t7Ci2hwUpIM</a>,</p></li>
+<li><p>l’excellent <a class="reference external" href="https://informatique.centrale-marseille.fr/tutos/post/initiation-linux.html">https://informatique.centrale-marseille.fr/tutos/post/initiation-linux.html</a></p></li>
+</ul>
+</dd>
+<dt>powershell :</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://www.guru99.com/powershell-tutorial.html">https://www.guru99.com/powershell-tutorial.html</a> (je ne sais pas ce que ça vaut. dites moi)</p></li>
+</ul>
+</dd>
+<dt>outils de développement :</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://developers.google.com/web/tools/chrome-devtools">https://developers.google.com/web/tools/chrome-devtools</a></p></li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="installeur-de-package">
+<h2>Installeur de package<a class="headerlink" href="#installeur-de-package" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nous aurons besoin de nombreuses bibliothèques, applis au cours de ce cours. Il faut un moyen d’installer tout ça rapidement.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://brew.sh/">brew</a> sous osx</p></li>
+<li><p><a class="reference external" href="https://scoop.sh/">scoop</a> sous w10</p></li>
+<li><p>apt-get sous linux (par défaut). Voir :  <a class="reference external" href="https://vitux.com/how-to-use-apt-get-package-manager-on-ubuntu-command-line/">https://vitux.com/how-to-use-apt-get-package-manager-on-ubuntu-command-line/</a></p></li>
+</ul>
+<p>Sous windows installez également wsl, qui nous servira de roue de secours lorsque plus rien de logique ne fonctionnera : <a class="reference external" href="https://docs.microsoft.com/fr-fr/windows/wsl/about">https://docs.microsoft.com/fr-fr/windows/wsl/about</a> choisissez une distribution debian, puis <cite>apt-get  install curl git</cite> dans un terminal puis vous pouvez installer brew pour wsl (<a class="reference external" href="https://docs.brew.sh/Homebrew-on-Linux">https://docs.brew.sh/Homebrew-on-Linux</a>)</p>
+</div>
+<div class="section" id="ssh">
+<h2>ssh<a class="headerlink" href="#ssh" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="section" id="osx">
+<h3>osx<a class="headerlink" href="#osx" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">openssh</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="w10">
+<h3>w10<a class="headerlink" href="#w10" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">scoop</span> <span class="pre">install</span> <span class="pre">openssh</span></code></p>
+</div></blockquote>
+<p>Il faut aussi mettre à jour les service ssh de windows même : <cite>scoop install win32-openssh</cite>. Une fois installé win32-openssh, scoop vous indique comment créer le service ssh-agent. Il s’agit d’exécuter une ligne commençant par sudo. Exécutez la ligne <strong>en enlevant le mot sudo</strong> (exécuter juste le programme) dans un powershell ouvert en mode administrateur.</p>
+<dl class="simple">
+<dt>Une fois ceci fait, vous pourrez<span class="classifier">dans un powershell en mode administrateur  :</span></dt><dd><ul class="simple">
+<li><p>stopper le service avec la commande : <code class="code docutils literal notranslate"><span class="pre">Stop-Service</span> <span class="pre">ssh-agent</span></code></p></li>
+<li><p>permettre à l’agent de se lancer au boot de façon automatique : <code class="code docutils literal notranslate"><span class="pre">Set-Service</span> <span class="pre">-Name</span> <span class="pre">ssh-agent</span>&#160;&#160; <span class="pre">*</span> <span class="pre">StartupType</span> <span class="pre">'Automatic'</span></code></p></li>
+<li><p>exécuter le service avec la commande : <code class="code docutils literal notranslate"><span class="pre">Start-Service</span> <span class="pre">ssh-agent</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="id1">
+<h3>utilisation<a class="headerlink" href="#id1" title="Lien permanent vers ce titre">¶</a></h3>
+<ul class="simple">
+<li><p>cours debian : <a class="reference external" href="https://formation-debian.viarezo.fr/ssh.html">https://formation-debian.viarezo.fr/ssh.html</a></p></li>
+<li><p>Je ne sais pas ce que ça vaut (dites-moi) : <a class="reference external" href="https://www.youtube.com/watch?v=QGixbJ9prEc&amp;list=PLQqbP89HgbbYIarPqOU8DdC2jC3P3L7a6">https://www.youtube.com/watch?v=QGixbJ9prEc&amp;list=PLQqbP89HgbbYIarPqOU8DdC2jC3P3L7a6</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="git">
+<h2>git<a class="headerlink" href="#git" title="Lien permanent vers ce titre">¶</a></h2>
+<p>On utilisera git et github comme gestionnaire de sources.</p>
+<div class="section" id="github">
+<h3>github<a class="headerlink" href="#github" title="Lien permanent vers ce titre">¶</a></h3>
+<p>Faites vous un compte sur <a class="reference external" href="https://github.com/">https://github.com/</a> Ajoutez y votre clé publique pour vous y connecter.</p>
+</div>
+<div class="section" id="id2">
+<h3>osx<a class="headerlink" href="#id2" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><p><code class="code docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">git</span></code></p>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h3>w10<a class="headerlink" href="#id3" title="Lien permanent vers ce titre">¶</a></h3>
+<blockquote>
+<div><p>tiré de <a class="reference external" href="https://dev.to/qm3ster/setting-up-gitsshgpg-on-windows-5c85">https://dev.to/qm3ster/setting-up-gitsshgpg-on-windows-5c85</a></p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">scoop</span> <span class="pre">install</span> <span class="pre">git-with-openssh</span></code></p></li>
+<li><p>exécuter la commande en mode administrateur : <code class="code docutils literal notranslate"><span class="pre">[environment]::setenvironmentvariable('GIT_SSH',</span> <span class="pre">(resolve-path</span> <span class="pre">(scoop</span> <span class="pre">which</span> <span class="pre">ssh)),</span> <span class="pre">'USER')</span></code></p></li>
+<li><p>ouvrez une nouvelle fenêtre powershell et git devrait fonctionner.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id4">
+<h3>utilisation<a class="headerlink" href="#id4" title="Lien permanent vers ce titre">¶</a></h3>
+<p>git est très puissant. En utilisation courante, on ne va utiliser que 2% de ses capacités. On montrera petit à petit l’utilisation de git. Mais pour la doc complète, elle est là :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/fr/">http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/fr/</a></p></li>
+<li><p><a class="reference external" href="https://fr.wikibooks.org/wiki/Git/Principes">https://fr.wikibooks.org/wiki/Git/Principes</a></p></li>
+<li><p><a class="reference external" href="https://git-scm.com/book/fr/v2">https://git-scm.com/book/fr/v2</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="node">
+<h2>node<a class="headerlink" href="#node" title="Lien permanent vers ce titre">¶</a></h2>
+<p>La bibliothèque de développement <em>node</em> (version 7.4 à l’heure où je tape ces lignes, version 9.5 à l’heure où je les corrige) disponible à <a class="reference external" href="https://nodejs.org">https://nodejs.org</a>. On installera d’autres package lors du cours.</p>
+<p>Installation:</p>
+<ul class="simple">
+<li><p>Sous Windows 10, suivez les instructions de <a class="reference external" href="https://nodejs.org/en/download/">https://nodejs.org/en/download/</a>,</p></li>
+<li><p>Sous linux, on pourra suivre <a class="reference external" href="https://nodejs.org/en/download/package-manager/">https://nodejs.org/en/download/package-manager/</a>,</p></li>
+<li><p>Sous OSX, je vous conseille de passer par <em>brew</em>: <code class="code docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">node</span></code>. Brew (<a class="reference external" href="http://brew.sh">http://brew.sh</a>) est un outil magnifique qui permet d’installer sans douleur la quasi totalité des logiciels unix (il y a forcément un package pour ça).</p></li>
+</ul>
+</div>
+<div class="section" id="java">
+<h2>java<a class="headerlink" href="#java" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">À faire</p>
+<p>à remanier.</p>
+</div>
+<p>Pour le cours de java android de la semaine prochaine, vous aurez besoin de :
+- java (un jdk) d’installé
+- android studio : <a class="reference external" href="https://developer.android.com/studio/?gclid=Cj0KCQjwrfvsBRD7ARIsAKuDvMMw7iwPWLVNsbhPcyvxj5-kIyiTKbbnGxRjjvaxC-Dvs9Y4LR_SiDkaAs3dEALw_wcB">https://developer.android.com/studio/?gclid=Cj0KCQjwrfvsBRD7ARIsAKuDvMMw7iwPWLVNsbhPcyvxj5-kIyiTKbbnGxRjjvaxC-Dvs9Y4LR_SiDkaAs3dEALw_wcB</a></p>
+<p>Pour installer sans problème un jdk, je vous conseille d’utiliser <a class="reference external" href="https://sdkman.io/">https://sdkman.io/</a> (une fois installer il suffit de taper sdk install java). Pour que cette installation fonctionne sous w10, il va être nécessaire de faire plein de choses :</p>
+<p>sdkman et java pour w10 :</p>
+<ol class="arabic">
+<li><p>supprimer java si vous l’aviez déjà installé : paramètres &gt; Applications &gt; trouver java puis le désinstaller.</p></li>
+<li><p>installation de sdkman : <a class="reference external" href="https://sdkman.io/install">https://sdkman.io/install</a></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>avant d’installer sdkman, il faut installer zip avec scoop : <code class="code docutils literal notranslate"><span class="pre">scoop</span> <span class="pre">install</span> <span class="pre">zip</span></code> dans un powershell</p></li>
+<li><p>si git-bash n’est pas déjà installé (tapez git-bash dans un powershell ou dans une barre de recherche), installez le en suivant le lien dans le tuto de sdkman. Lors de l’installation, on n’a pas besoin de modifier le path de git (puisque c’est scoop qui nous a installé git).</p></li>
+<li><p>ouvrez une fenêtre git-bash et faites comme dit dans le tuto d’install de sdkman</p></li>
+<li><p>fermez la fenêtre git-bash et ouvrez en une autre.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><dl>
+<dt>modification du path. Il faut que notre java soit reconnu par windows.</dt><dd><ol class="arabic">
+<li><ul class="simple">
+<li><p>trouver où est java : tapez la commande <cite>which java</cite> dans le nouveau git-bash</p></li>
+</ul>
+</li>
+<li><p>utilsez  <a class="reference external" href="https://www.java.com/fr/download/help/path.xml">https://www.java.com/fr/download/help/path.xml</a> pour modifier le path. Il faut ajouter le chemin où est java. Attention, dans le monde windows on utilise de à la place des / :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>chez moi <code class="code docutils literal notranslate"><span class="pre">which</span> <span class="pre">java</span></code> donne : /c/Users/francois/.sdkman/candidates/java/current/bin/java</p></li>
+<li><p>le path que j’ai ajouté est : C:Usersfrancois.sdkmancandidatesjavacurrentbin</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><p>dans un powershell, en tapant <code class="code docutils literal notranslate"><span class="pre">get-command</span> <span class="pre">java</span></code> on doit trouver le bon.</p></li>
+</ol>
+</div>
+<div class="section" id="odds-ends">
+<h2>odds &amp; ends<a class="headerlink" href="#odds-ends" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Un pad pour les divers copier/coller : <a class="reference external" href="https://outils.centrale-marseille.fr/pad/">https://outils.centrale-marseille.fr/pad/</a></p>
+</div>
+<div class="section" id="la-documentation">
+<h2>La documentation<a class="headerlink" href="#la-documentation" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Elle a été écrite en utilisant Sphinx <a class="reference external" href="http://www.sphinx-doc.org">http://www.sphinx-doc.org</a>.</p>
+<p>Le format <a class="reference external" href="https://fr.wikipedia.org/wiki/ReStructuredText">https://fr.wikipedia.org/wiki/ReStructuredText</a> est à la fois lisible en texte brut et se transforme en différents formats (html, pdf, …) facilement.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/outils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

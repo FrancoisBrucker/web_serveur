@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web Serveur &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Outils" href="outils.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="outils.html" title="Chapitre suivant">Outils</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="web-serveur">
+<h1>Web Serveur<a class="headerlink" href="#web-serveur" title="Lien permanent vers ce titre">¶</a></h1>
+<div class="section" id="bienvenue">
+<h2>Bienvenue<a class="headerlink" href="#bienvenue" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Bienvenue sur le site du cours web serveur du cours DFS de l’option digital·e de l’ecm.</p>
+</div>
+<div class="section" id="table-des-matieres">
+<h2>Table des matières<a class="headerlink" href="#table-des-matieres" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="outils.html#les-indispensables">Les indispensables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outils.html#installeur-de-package">Installeur de package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outils.html#ssh">ssh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outils.html#git">git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outils.html#node">node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outils.html#java">java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outils.html#odds-ends">odds &amp; ends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="outils.html#la-documentation">La documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ssh_premier_projet.html#utilisation-git">utilisation git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh_premier_projet.html#projet-git">projet git</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh_premier_projet.html#github">github</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssh_premier_projet.html#ovh">ovh</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="front">
+<h3>front<a class="headerlink" href="#front" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1_1_web_front_html_css.html#partie-d-un-tout">partie d’un tout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_web_front_html_css.html#projet">projet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_web_front_html_css.html#html">html</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_web_front_html_css.html#ajout-du-css">Ajout du css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_web_front_html_css.html#les-div-et-pourquoi-c-est-important">Les div et pourquoi c’est important</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_web_front_html_css.html#id2">projet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_web_front_html_css.html#un-framework-web">Un framework web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_web_front_html_css.html#gestion-de-packages">Gestion de packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_1_web_front_html_css.html#build">build</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="1_2_web_front_js.html#javascript-et-jquery">Javascript et jQuery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1_2_web_front_js.html#build">build</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="back">
+<h3>back<a class="headerlink" href="#back" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2_1_protocole_http.html#back-vs-front">Back vs Front</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_1_protocole_http.html#le-protocole-http">Le protocole HTTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_1_protocole_http.html#la-suite">La suite</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2_2_node.html#node-en-console">Node en console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_2_node.html#node-et-serveur-web">Node et serveur web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_2_node.html#sur-le-serveur-distant">sur le serveur distant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_2_node.html#globaux-et-asynchrones">Globaux et Asynchrones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_2_node.html#les-routes">Les Routes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_2_node.html#servir-des-fichiers">Servir des fichiers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_2_node.html#odds-and-ends">Odds and ends</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2_3_express.html#gestion-de-packages">Gestion de packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_3_express.html#route-express">Route Express</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_3_express.html#middleware-et-404">Middleware et 404</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_3_express.html#fichiers-statiques">Fichiers statiques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_3_express.html#templates">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2_3_express.html#build">build</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="donnees">
+<h3>données<a class="headerlink" href="#donnees" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3_1_app_complete.html#initialisation">initialisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_1_app_complete.html#ejs">ejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_1_app_complete.html#logger">logger</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3_2_formulaires.html#mise-en-place">Mise en place</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_2_formulaires.html#fonctionnement">fonctionnement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_2_formulaires.html#templating">Templating</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_2_formulaires.html#postman">Postman</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_2_formulaires.html#requete-post">Requête POST</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_2_formulaires.html#post-et-formulaires">POST et formulaires</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="3_3_crud.html#api">api</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_3_crud.html#crud">CRUD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_3_crud.html#lier-l-api-aux-commentaires">Lier l’api aux commentaires</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3_3_crud.html#stockage-des-donnees">Stockage des données</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="a-retravailler">
+<h3>à retravailler<a class="headerlink" href="#a-retravailler" title="Lien permanent vers ce titre">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests_selenium_mocha.html#id2">Tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests_selenium_mocha.html#tests-cote-front">Tests côté front</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests_selenium_mocha.html#autre-truc">autre truc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests_selenium_mocha.html#id3">Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cours_3_2_2_cookies.html">Cookies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours_3_2_2_cookies.html#voir-les-cookies">Voir les cookies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cours_3_2_2_cookies.html#creer-des-cookies">Créer des cookies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ejs_partials.html#server-js">server.js</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ejs_partials.html#ejs">404.ejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ejs_partials.html#main-css">main.css</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ejs_partials.html#home-ejs">home.ejs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ejs_partials.html#commentaires-placeholders">Commentaires (placeholders)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ejs_partials.html#refactor-en-separant-les-routes-du-serveur">Refactor en séparant les routes du serveur</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours_4_1_identification.html#a-completer">À compléter</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cours_4_3_2_webstorage.html#a-completer">À compléter</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="index">
+<h2>Index<a class="headerlink" href="#index" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Page de recherche</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="tbd">
+<h2>TBD<a class="headerlink" href="#tbd" title="Lien permanent vers ce titre">¶</a></h2>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">À faire</p>
+<p>replacer tous les <code class="code docutils literal notranslate"><span class="pre">fichier</span></code> par <code class="file docutils literal notranslate"><span class="pre">fichier</span></code></p>
+</div>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>faire un projet git avec les diverses parties du projet en tag. <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">https://git-scm.com/book/en/v2/Git-Basics-Tagging</a></p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="1_1_web_front_html_css.html#id1"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/1_1_web_front_html_css.rst, à la ligne 14)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>à faire bien</p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="1_1_web_front_html_css.html#id4"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/1_1_web_front_html_css.rst, à la ligne 634)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>à faire bien</p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="1_2_web_front_js.html#id1"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/1_2_web_front_js.rst, à la ligne 161)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>faire un speech sur les ps et kill</p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="2_2_node.html#id1"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/2_2_node.rst, à la ligne 124)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>faire une référence avec la patie front</p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="2_3_express.html#id1"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/2_3_express.rst, à la ligne 14)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>Passage de paramètres</p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="2_3_express.html#id2"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/2_3_express.rst, à la ligne 364)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>à faire en regardant l’appli sport</p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="3_4_bases_de_donnees.html#id1"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/3_4_bases_de_donnees.rst, à la ligne 5)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>à remanier.</p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="outils.html#id5"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/outils.rst, à la ligne 133)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>écrire Premier projet html. 1er cours de 2019-2020.</p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="ssh_premier_projet.html#id1"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/ssh_premier_projet.rst, à la ligne 5)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>ajout des tutos git/ssh. pour créer sa clé, la mettre sur gihub etc</p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="ssh_premier_projet.html#id2"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/ssh_premier_projet.rst, à la ligne 6)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>à mettre à jour et utiliser jest et jsdom</p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="tests_selenium_mocha.html#id1"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/tests_selenium_mocha.rst, à la ligne 5)</p>
+<div class="admonition-todo admonition">
+<p class="admonition-title">À faire</p>
+<p>replacer tous les <code class="code docutils literal notranslate"><span class="pre">fichier</span></code> par <code class="file docutils literal notranslate"><span class="pre">fichier</span></code></p>
+</div>
+<p class="todo-source">(l'<a class="reference internal" href="#id1"><em>entrée originale</em></a> se trouve dans /Users/fbrucker/Library/Mobile Documents/com~apple~CloudDocs/Professionnel/Enseignements/moi/Centrale/web serveur/doc/source/index.rst, à la ligne 90)</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

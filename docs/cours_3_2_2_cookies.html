@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Cookies &#8212; Documentation Web serveur 1.0</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="ejs : partials" href="ejs_partials.html" />
+    <link rel="prev" title="Tests" href="tests_selenium_mocha.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Web serveur</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="outils.html">Outils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ssh_premier_projet.html">Premier projet html</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_1_web_front_html_css.html">Web front : html, css</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_2_web_front_js.html">Web front : javascript</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="2_1_protocole_http.html">Protocole HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_2_node.html">Node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_3_express.html">Express</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="3_1_app_complete.html">Squelette d’une application complète</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_2_formulaires.html">Formulaires</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_3_crud.html">API CRUD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_4_bases_de_donnees.html">Bases de données</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tests_selenium_mocha.html">Tests</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cookies</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#voir-les-cookies">Voir les cookies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creer-des-cookies">Créer des cookies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ejs_partials.html">ejs : partials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_1_identification.html">S’identifier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cours_4_3_2_webstorage.html">Webstorage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="tests_selenium_mocha.html" title="Chapitre précédent">Tests</a></li>
+      <li>Next: <a href="ejs_partials.html" title="Chapitre suivant">ejs : partials</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Recherche rapide</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="cookies">
+<h1>Cookies<a class="headerlink" href="#cookies" title="Lien permanent vers ce titre">¶</a></h1>
+<p>On va utiliser les cookies pour se rappeler de notre pseudo.</p>
+<p>Un <a class="reference external" href="https://fr.wikipedia.org/wiki/Cookie_(informatique)">https://fr.wikipedia.org/wiki/Cookie_(informatique)</a>, c’est un objet chez le client. Il a un nom, une durée de vie et contient des informations.</p>
+<p>Les cookies mis par un serveur sont envoyés par le client à chaque requête de celui-ci. Ceci permet de sauvegarder des données directement chez le client et de les retrouver.</p>
+<div class="section" id="voir-les-cookies">
+<h2>Voir les cookies<a class="headerlink" href="#voir-les-cookies" title="Lien permanent vers ce titre">¶</a></h2>
+<ul class="simple">
+<li><p>Les cookies d’un site en particulier, dans l’onglet application des outils de développement. Allez voir sur un site contenant des publicités par exemple pour voir le nombre de cookies qui vous concerne.</p></li>
+<li><p>Dans la console : <code class="code docutils literal notranslate"><span class="pre">document.cookie</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="creer-des-cookies">
+<h2>Créer des cookies<a class="headerlink" href="#creer-des-cookies" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Pour avoir accès aux cookies, il faut utiliser un middleware : <code class="code docutils literal notranslate"><span class="pre">cookie-parser</span></code>. <a class="reference external" href="https://www.npmjs.com/package/cookie-parser">https://www.npmjs.com/package/cookie-parser</a></p>
+<p>On commence par l’installer : <strong class="command">npm install --save cookie-parser</strong> puis on l’utilise dans <code class="file docutils literal notranslate"><span class="pre">app.js</span></code> :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">cookieParser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cookie-parser&#39;</span><span class="p">)</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cookieParser</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Ceci nous donnera accès aux cookies que nous aurons créé.</p>
+<ul class="simple">
+<li><p>Les cookies seront dans <code class="code docutils literal notranslate"><span class="pre">request.cookies</span></code> : <a class="reference external" href="https://expressjs.com/en/4x/api.html#req.cookies">https://expressjs.com/en/4x/api.html#req.cookies</a></p></li>
+<li><p>On pourra en créer de nouveaux en les placant dans la réponse : <a class="reference external" href="https://expressjs.com/en/4x/api.html#res.cookie">https://expressjs.com/en/4x/api.html#res.cookie</a></p></li>
+</ul>
+<p>Comme tout sera géré au niveau des commentaires, regardons la route dédiée dans <code class="file docutils literal notranslate"><span class="pre">app.js</span></code> :</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/commentaires&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;cookie (request) : &quot;</span> <span class="o">+</span> <span class="nx">request</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">request</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;cookie as default name&quot;</span><span class="p">)</span>
+            <span class="nx">request</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">pseudo</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">cookies</span><span class="p">.</span><span class="nx">pseudo</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">response</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="s2">&quot;pseudo&quot;</span><span class="p">,</span> <span class="nx">request</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">pseudo</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;maxAge&quot;</span><span class="o">:</span> <span class="mi">3000</span><span class="p">})</span>
+    <span class="p">}</span>
+
+    <span class="nx">response</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s2">&quot;commentaires&quot;</span><span class="p">,</span> <span class="p">{</span><span class="nx">qs</span><span class="o">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">query</span><span class="p">})</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>On vérifie si un cookie existe déjà pour donner un nom par défaut. La durée de vie du cookie que l’on crée est de 3s.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, FB & GD.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/cours_3_2_2_cookies.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
