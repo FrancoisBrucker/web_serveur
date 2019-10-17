@@ -230,6 +230,6 @@ Testez botre api avec postman et l'url :
     http://localhost:3000/api/françois en DELETE puis un http://localhost:3000/api en GET 
             
       
-.. note:: postman et utf8 ? françois pas ok dans url.
+.. note:: postman et utf8 pas ok... Et c'est une honte. Bref il faut encoder l'url à la main. Par exemple en ouvrant une console et en tapant : encodeURIComponent("françois") ce qui me retourne : fran%C3%A7ois que je peux utiliser dans postman
 
   
