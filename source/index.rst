@@ -11,8 +11,7 @@ Web Serveur
 Bienvenue
 *********
 
-Bienvenue sur le site du cours de Web et Systèmes, une Option d'informatique de la filière OMIS 3A en 2017-2018.
-Le cours sera disponible en ligne.
+Bienvenue sur le site du cours web serveur du cours DFS de l'option digital·e de l'ecm.
 
 ******************
 Table des matières
