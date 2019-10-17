@@ -2,8 +2,6 @@
 API CRUD
 ********
 
-.. todo:: à mettre à jour avec la version actuelle
-
 Les données sont usuellement stockées quelque part. Celles-ci peuvent prendre des formes différentes (base de données, fichier json, objets) et se stocker de façon diverses : 
 
   * en mémoire ;
