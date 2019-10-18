@@ -200,6 +200,10 @@ Le tuto est bien mais écrit pour une vieille version de winston. Il y a donc qu
 <p>On va commencer par installer le logger winston (<code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">add</span> <span class="pre">winston</span></code>) et le module app-root-path (<code class="code docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">add</span> <span class="pre">app-root-path</span></code>) qui va nous permettre de spécifier dans l’appli les chemins.</p>
 <div class="section" id="config">
 <h4>config<a class="headerlink" href="#config" title="Lien permanent vers ce titre">¶</a></h4>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">À faire</p>
+<p>utiliser path.join et pas de concaténation dans les ficheirs</p>
+</div>
 <p>Une fois ça fait, on peut créer le fichier de configuration de winston :</p>
 <div class="highlight-javascript notranslate" id="winston-config-js"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">appRoot</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;app-root-path&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">winston</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;winston&#39;</span><span class="p">);</span>
