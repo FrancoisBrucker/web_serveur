@@ -98,6 +98,8 @@ On va commencer par installer le logger winston (:code:`yarn add winston`) et le
 config
 ^^^^^^
 
+.. todo:: utiliser path.join et pas de concaténation dans les ficheirs
+
 Une fois ça fait, on peut créer le fichier de configuration de winston :
 
 .. code:: javascript

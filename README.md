@@ -1,5 +1,7 @@
 # Cours de Web serveur avec Node de l'ECM
 
+Le rendu est disponible là : https://francoisbrucker.github.io/web_serveur/
+
 Les sources aux format restructuredtext. Pour les compilier en html/pdf ou autre, on utilise sphinx (http://www.sphinx-doc.org/),
 l'outil de création de documentation de python.
 
